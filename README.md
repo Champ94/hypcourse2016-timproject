@@ -14,10 +14,13 @@ Note alla creazione di nuove pagine
         
         /* Extra small devices (phones, less than 768px) */
         @media(max-width: 767px) { /* code here */ }
+        
         /* Small devices (tablets, 768px and up) */
         @media(min-width: 768px) { /* code here */ }
+        
         /* Medium devices (desktops, 992px and up) */
         @media(min-width: 992px) { /* code here */ }
+        
         /* Large devices (large desktops, 1200px and up) */
         @media(min-width: 1200px) { /* code here */ }
 
