@@ -31,3 +31,33 @@ Note alla creazione di nuove pagine
         - utility-classes.css       // Classi di utilità (e.g. vertical align)
         - style.css o app.css       // File di style per l'applicazione
         - mobile.css                // Media query per rendere il design responsive
+        
+- Guida al backend:
+
+        - Inserire dati dispositivo (Devices)
+            - idDevices (automatico)
+            - categoriaID
+            - marcaID
+            - nome
+            - prezzo_intero (facoltativo)
+            - prezzo_rate (facoltativo)
+            - prezzo_scontato (facoltativo)
+            - n_rate (facoltativo)
+            - promo
+            - novita
+            - disponibile
+            - tipologiaID
+            - sisopID
+            - schermoID
+            - connessioneID
+            - caratteristiche (facoltativo)
+            - descrizione (facoltativo)
+            - inclusi (facoltativo)
+            - specifiche
+            - memoriaID
+        - Inserire dati immagine, viene caricata automaticamente nella directory. Se non esiste la crea seguendo per il path la convenzione data/tipologia/nomedispositivo/colore/nomeimmagine.estensione
+            - idImmagini (automatico)
+            - file
+            - colore
+        N.B.: Se l'immagine è già stata inserita e bisogna solo collegarla al dispositivo usare il terzo form
+            
