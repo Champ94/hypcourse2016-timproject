@@ -2,8 +2,8 @@
 -- version 4.0.10.12
 -- http://www.phpmyadmin.net
 --
--- Host: 127.10.127.2:3306
--- Generato il: Giu 15, 2016 alle 13:59
+-- Host: 127.11.7.130:3306
+-- Generato il: Giu 16, 2016 alle 22:46
 -- Versione del server: 5.5.45
 -- Versione PHP: 5.3.3
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `Ass_Dev` (
 DROP TABLE IF EXISTS `Categoria`;
 CREATE TABLE IF NOT EXISTS `Categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
+  `nome` varchar(45) NOT NULL,
   `icona` mediumtext NOT NULL,
   PRIMARY KEY (`idCategoria`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
@@ -88,7 +88,7 @@ INSERT INTO `Categoria` (`idCategoria`, `nome`, `icona`) VALUES
 (4, 'TV e Smart Living', ''),
 (5, 'Gestione linea e servizi', ''),
 (6, 'Controllo costi e pagamenti', ''),
-(7, 'Supporto tecnico e configurazi', ''),
+(7, 'Supporto tecnico e configurazione', ''),
 (8, 'Contenuti e Smart Life', '');
 
 -- --------------------------------------------------------
@@ -100,12 +100,12 @@ INSERT INTO `Categoria` (`idCategoria`, `nome`, `icona`) VALUES
 DROP TABLE IF EXISTS `Colori`;
 CREATE TABLE IF NOT EXISTS `Colori` (
   `idColori` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(15) NOT NULL,
-  `codice` varchar(6) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `codice` varchar(11) NOT NULL,
   PRIMARY KEY (`idColori`),
   UNIQUE KEY `nome_UNIQUE` (`nome`),
   UNIQUE KEY `Coloricol_UNIQUE` (`codice`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dump dei dati per la tabella `Colori`
@@ -115,9 +115,14 @@ INSERT INTO `Colori` (`idColori`, `nome`, `codice`) VALUES
 (1, 'Bianco', '#FFFFF'),
 (2, 'Nero', '#00000'),
 (3, 'Oro', '#9F9F9'),
-(4, 'Argernto Sidera', '#D2D2D'),
+(4, 'Argernto Siderale', '#D2D2D'),
 (5, 'Argento', '#E9DB9'),
-(6, 'Oro Rosa', '#F9C6A');
+(6, 'Oro Rosa', '#F9C6A'),
+(7, 'Oro Lime', '#F8EDA'),
+(8, 'Oro Galaxy', '#EDE0A'),
+(9, 'Blu', '#403E6'),
+(10, 'nocolor', 'transparent'),
+(11, 'Grigio', '#8E8C8C');
 
 -- --------------------------------------------------------
 
@@ -131,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `Connessione` (
   `tipo` varchar(10) NOT NULL,
   PRIMARY KEY (`idConnessione`),
   UNIQUE KEY `tipo_UNIQUE` (`tipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dump dei dati per la tabella `Connessione`
@@ -140,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `Connessione` (
 INSERT INTO `Connessione` (`idConnessione`, `tipo`) VALUES
 (1, '3G'),
 (2, '4G LTE'),
-(3, '4G PLUS');
+(3, '4G PLUS'),
+(4, 'nessuna');
 
 -- --------------------------------------------------------
 
@@ -178,14 +184,17 @@ CREATE TABLE IF NOT EXISTS `Devices` (
   KEY `fkd_categoria_idx` (`categoriaID`),
   KEY `fkd_connessione_idx` (`connessioneID`),
   KEY `fkd_memoria_idx` (`memoriaID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dump dei dati per la tabella `Devices`
 --
 
 INSERT INTO `Devices` (`idDevices`, `categoriaID`, `marcaID`, `nome`, `prezzo_intero`, `prezzo_rate`, `prezzo_scontato`, `n_rate`, `promo`, `novita`, `disponibile`, `tipologiaID`, `sisopID`, `schermoID`, `connessioneID`, `caratteristiche`, `descrizione`, `inclusi`, `specifiche`, `memoriaID`) VALUES
-(1, 1, 1, 'Apple iPhone 6s', '789.90', '21.94', NULL, 36, 1, 0, 1, 1, 2, 4, 2, '- 4GPLUS<br>- Display Retina HD da 4,7"(diagonale) con risoluzione di 1334x750 px<br>- 3D Touch<br>- Chip A9 con coprocessore di movimento M9 integrato<br>- Fotocamera iSight da 12 megapixel con Focus Pixels, True Tone Flash e Live Photos<br>- iOS 9 e iCloud<br>', 'Display Retina HD da 4,7" con 3D Touch. Alluminio serie 7000 e vetro più resistente. Chip A9 con architettura a 64 bit di livello desktop. Nuova fotocamera iSight da 12MP con Live Photos. Touch ID. Connessioni Wi-Fi e 4G LTE più veloci.1 Batteria a lunga durata.2 E ancora, iOS 9 e iCloud. Il tutto in un elegante guscio unibody.', '- 22GB gratis per 30 giorni Internet 4G LTE!<br>- TIM Card con 5 euro di traffico prepagato incluso<br>- TIM Cloud - fino a 10 GB di spazio GRATIS e 1000 MMS inclusi', 'iOS 9 e iCloud<br>Display Retina HD da 4,7" (diagonale) con risoluzione di 1334x750 pixel<br>Chip A9 con coprocessore di movimento M9 integrato<br>Fotocamera iSight da 12 megapixel con Focus Pixels, True Tone Flash e Live Photos', 1);
+(1, 1, 1, 'Apple iPhone 6s', '789.90', '21.94', '0.00', 36, 1, 0, 1, 1, 2, 4, 2, '4GPLUS#Display Retina HD da 4,7"(diagonale) con risoluzione di 1334x750 px#3D Touch#Chip A9 con coprocessore di movimento M9 integrato#Fotocamera iSight da 12 megapixel con Focus Pixels# True Tone Flash e Live Photos#iOS 9 e iCloud', 'Display Retina HD da 4,7" con 3D Touch. Alluminio serie 7000 e vetro più resistente. Chip A9 con architettura a 64 bit di livello desktop. Nuova fotocamera iSight da 12MP con Live Photos. Touch ID. Connessioni Wi-Fi e 4G LTE più veloci.1 Batteria a lunga durata.2 E ancora, iOS 9 e iCloud. Il tutto in un elegante guscio unibody.', '22GB gratis per 30 giorni Internet 4G LTE!#TIM Card con 5 euro di traffico prepagato incluso#TIM Cloud - fino a 10 GB di spazio GRATIS e 1000 MMS inclusi', 'iOS 9 e iCloud#Display Retina HD da 4,7" (diagonale) con risoluzione di 1334x750 pixel#Chip A9 con coprocessore di movimento M9 integrato#Fotocamera iSight da 12 megapixel con Focus Pixels, True Tone Flash e Live Photos\n', 1),
+(5, 1, 7, 'ZTE Blade A450', '79.90', '0.00', '0.00', 0, 0, 0, 1, 2, 2, 5, 2, 'Sistema Operativo Android 5.1#Display 5”#Processore DualCore 1.3 GHz#Fotocamera 8 Mpixel/Flash', NULL, 'TIM Card del valore di 5 € (IVA incl)#Solo TIM ti regala la SIM-Plus di TIM con 128 Kbyte di memoria. L’unica card che ti permette di sfruttare tutte le potenzialità del tuo telefonino GSM e UMTS offrendoti i servizi più evoluti ed innovativi.#10GB gratis per 30 giorni!', 'Sistema Operativo Android 5.1#Display 5”#Processore DualCore 1.3 GHz#Connettivita	HSDPA21/UMTS/EDGE/GPRS - Wi-Fi - Bluetooth - Micro USB - Ricevitore GPS Integrato#Frequenze	850/900/1800/1900/2100#Display	5” 16 Milioni colori Touch#Fotocamera	8 Mpixel/Flash#Memoria	8GB - Slot Memory Card Micro SD fino a 32GB#Processore	DualCore 1.3 GHz#Multimedia	Video Recorder&Playback - MP3 Player - Radio FM#In dotazione:	Caricabatteria - Cavo Dati – Auricolare stereo - Guida di riferimento rapido#Dimensioni	143,5 x 71,8 x 8,6 mm#\nPeso	142 gr.#Autonomia: 	(*)Stand-by fino a 500 ore - Conversazione fino a 240 min#Note	* Le prestazioni delle batterie dipendono da vari fattori tra cui la vicinanza delle antenne# lo stato delle batterie# la posizione geografica e il tipo di rete utilizzata.', 4),
+(6, 1, 8, 'FACILE MAXI', '39.39', '3.33', '0.00', 12, 0, 0, 0, 3, 1, 7, 1, 'Ampio schermo#Tasti grandi retroilluminati#Tasto ECO mode plus per risparmio energetico', 'Il Cordless all''avanguardia, ma FACILE da usare#FACILE MAXI Ã¨ un cordless, pratico, funzionale ed elegante dalle ottime prestazioni.#Il suo display da 1,8" ad alto contrasto con caratteri grandi garantisce una leggibilitÃ  ottimale; la tastiera ampia con tasti ben distanziati e illuminati facilita la composizione dei numeri; l''audio Ã¨ chiaro e nitido, anche in vivavoce.#FACILE MAXI rispetta l''ambiente e consente un risparmio di energia del 60% rispetto a un cordless analogo di generazione precedente, il consumo della base in stand by Ã¨ inferiore a 0,7W.#Acquista il cordless FACILE MAXI direttamente su questo sito. Lo riceverai a casa tua in consegna gratuita.', '', 'Ampio schermo#Telefono Cordless FACILE MAXI#Tasto ECO mode plus per risparmio energetico#Tipo di telefono	cordless#Raggio d''azione	fino a 300 metri in aria libera e 50 metri indoor#Tecnologia	DECT-GAP#Ricerca portatile (paging)	si#Display	da 1,8'''' grafico illuminato bianco, 96X64 px#Data e ora a display	si#Lingue disponibili	14 (inglese, tedesco, francese, spagnolo, russo, ecc.)#Suoneria	ampia scelta tra 20 suonerie di alta qualitÃ #CompatibilitÃ 	Compatibile con gli Apparecchi acustici (TIA 1083)#Visualizzazione durata conversazione	si#Visualizzazione numero chiamante	si, dopo aver attivato il Servizio CHI E''#Autonomia	fino a 16 in conversazione e 300 ore in standby#Vivavoce	si, di alta qualitÃ #Rubrica	150 numeri e nomi#Segreteria Telefonica	no#LED	no#Tastiera	numerica + tasti funzione su portatile#Tasti dedicati sulla tastiera	sul cordless: da navigatore tasto accesso rubrica, mute, tasto chiamata interna,,9 tasti di chiamata diretta#Ripetizione numeri	ultimi 10 numeri selezionati#Selezione Rapida	si, su 9 tasti#Tasto mute/attesa	si, sia mute che attesa#Chiamata Interna	si#Sicurezza	blocco tastiera (tasto cancelletto)#Batteria	Utilizzare batterie ricaricabili NI-MH di tipo AAA#Segnalazione batteria scarica	si#Segnalazione mancanza di collegamento radio	si#Collegamenti	no#Altre funzioni	tono tasti attivabile o disattivabile#FunzionalitÃ  ECO	sistema ad alta efficienza energetica, risparmio del 60%; consumo della base inferiore a 0,7W in standby - alimentatore a bassissimo consumo di corrente - controllo elettronico della carica delle batterie (ricaricabili) - ottimizzazione potenza impiegata in funzione della distanza base-portatile - con la funzione ECO abilitata, significativa riduzione del consumo (fino allâ€™80% in meno in stand-by e conversazione, copertura base/portatile 25/150 m)#Dimensioni	portatile: 157 x 51 x 27 mm - base: 122 x 104 x 32 mm#Peso	base: 198 g (alimentatore, presa e cavo di linea inclusi) - portatile: 96/120 g (senza/con batterie)', 5),
+(8, 2, 9, 'Acer ICONIA W4 821', '299.90', '0.00', '0.00', 0, 0, 0, 0, 6, 3, 1, 4, 'Display 8â€ (1280x800) IPS#Sistema Operativo Windows 8.1 + Office Home & Students 2013', NULL, '20GB gratis per 30 giorni!#TIM Card del valore di 5 â‚¬ (IVA incl)', 'Connettivita HSDPA 21.2/HSUPA 5,76/,Wi-Fi Direct 802.11 a/b/g/n, Bluetooth 4.0 - Chiamata voce#Display 8" (1280x800) IPS#Video/Audio/Picture 5 Mpx A/F + 2 Mpx frontale, Lettore multimediale, MP3, WAV, 3GP, AAC, AAC+, e-AAC+, JPG, PNG,GIF, BMP, WMV, DivX/AVI#Memoria 32GB, 2GB RAM#Processore Intel Atom Quad-Core 1.8GHz#SistemaOperativo Windows 8.1 + Office Home & Students 2013#Applicazioni Office Home & Students 2013, E-mail, GPS/A-GPS, SMS/MMS Invio e ricezione#Dotazione Caricabatteria - Guida di riferimento rapido#Dimensioni 218.9 x 134.9 x 10.75 mm#Peso 420 grammi#Autonomia(*) 4960 mAh / durata 8h#Note * Le prestazioni delle batterie dipendono da vari fattori tra cui la vicinanza delle antenne, lo stato delle batterie, la posizione geografica e il tipo di rete utilizzata.', 2);
 
 -- --------------------------------------------------------
 
@@ -224,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `Img_Dev` (
   PRIMARY KEY (`idImg_Dev`),
   KEY `fkid_immagini_idx` (`immaginiID`),
   KEY `fkid_devices_idx` (`devicesID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Dump dei dati per la tabella `Img_Dev`
@@ -246,7 +255,14 @@ INSERT INTO `Img_Dev` (`idImg_Dev`, `immaginiID`, `devicesID`) VALUES
 (13, 13, 1),
 (14, 14, 1),
 (15, 15, 1),
-(16, 16, 1);
+(16, 16, 1),
+(17, 17, 5),
+(18, 18, 5),
+(19, 19, 5),
+(20, 32, 6),
+(22, 73, 8),
+(23, 74, 8),
+(24, 75, 8);
 
 -- --------------------------------------------------------
 
@@ -261,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `Immagini` (
   `coloriID` int(11) NOT NULL,
   PRIMARY KEY (`idImmagini`),
   KEY `fki_colori_idx` (`coloriID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=76 ;
 
 --
 -- Dump dei dati per la tabella `Immagini`
@@ -283,7 +299,66 @@ INSERT INTO `Immagini` (`idImmagini`, `percorso`, `coloriID`) VALUES
 (13, 'data/s_t/iphone6s/oro_rosa/apple-iPhone6s_RsGld-1.jpg', 6),
 (14, 'data/s_t/iphone6s/oro_rosa/apple-iPhone6s_RsGld-2.jpg', 6),
 (15, 'data/s_t/iphone6s/oro_rosa/apple-iPhone6s_RsGld-3.jpg', 6),
-(16, 'data/s_t/iphone6s/oro_rosa/apple-iPhone6s_RsGld-4.jpg', 6);
+(16, 'data/s_t/iphone6s/oro_rosa/apple-iPhone6s_RsGld-4.jpg', 6),
+(17, 'data/s_t/bladea450/nero/ZTE_BLADE_01.jpg', 2),
+(18, 'data/s_t/bladea450/nero/ZTE_BLADE_02.jpg', 2),
+(19, 'data/s_t/bladea450/nero/ZTE_BLADE_03.jpg', 2),
+(20, 'data/s_t/bladea450/bianco/sony-xperia-x-wht-front.jpg', 1),
+(21, 'data/s_t/bladea450/bianco/sony-xperia-x-wht3_4sx.jpg', 1),
+(22, 'data/s_t/bladea450/bianco/sony-xperia-x-wht-back.jpg', 1),
+(23, 'data/s_t/bladea450/bianco/sony-xperia-x-wht-double.jpg', 1),
+(24, 'data/s_t/bladea450/nero/sony-xperia-x-wht-double.jpg', 2),
+(25, 'data/s_t/bladea450/nero/sony-xperia-x-grphblk-3_4sx_0.jpg', 2),
+(26, 'data/s_t/bladea450/nero/sony-xperia-x-grphblk-back.jpg', 2),
+(27, 'data/s_t/bladea450/nero/sony-xperia-x-grphblk-double.jpg', 2),
+(28, 'data/s_t/bladea450/oro_lime/sony-xperia-x-limegld-front.jpg', 7),
+(29, 'data/s_t/bladea450/oro_lime/sony-xperia-x-limegold-3_4sx.jpg', 7),
+(30, 'data/s_t/bladea450/oro_lime/sony-xperia-x-limegld-back.jpg', 7),
+(31, 'data/s_t/bladea450/oro_lime/sony-xperia-x-limegld-double.jpg', 7),
+(32, 'data/s_t/facilemaxi/bianco/slider_cordless_facile_maxi_1.jpg', 1),
+(33, 'data/s_t/g5/argento/LG_G5_silver_01_1.jpg', 5),
+(34, 'data/s_t/g5/argento/LG_G5_silver_03.jpg', 5),
+(35, 'data/s_t/g5/argento/LG_G5_silver_04.jpg', 5),
+(36, 'data/s_t/g5/nero/LG_G5_titan_01_1.jpg', 2),
+(37, 'data/s_t/g5/nero/LG_G5_titan_03.jpg', 2),
+(38, 'data/s_t/g5/nero/LG_G5_titan_04.jpg', 2),
+(39, 'data/s_t/galaxyj5/bianco/sgh-galaxy-j5_6-whtfront.jpg', 1),
+(40, 'data/s_t/galaxyj5/bianco/sgh-galaxy-j5_6-wht3_4dx.jpg', 1),
+(41, 'data/s_t/galaxyj5/bianco/sgh-galaxy-j5_6-whtback.jpg', 1),
+(42, 'data/s_t/galaxyj5/nero/sgh-galaxy-j5_6-blkfront.jpg', 2),
+(43, 'data/s_t/galaxyj5/nero/sgh-galaxy-j5_6-blk3_4dx.jpg', 2),
+(44, 'data/s_t/galaxyj5/nero/sgh-galaxy-j5_6-blkback.jpg', 2),
+(45, 'data/s_t/galaxyj5/oro_galaxy/sgh-galaxy-j5_6-goldfront.jpg', 8),
+(46, 'data/s_t/galaxyj5/oro_galaxy/sgh-galaxy-j5_6-gold3_4dx.jpg', 8),
+(47, 'data/s_t/galaxyj5/oro_galaxy/sgh-galaxy-j5_6-goldback.jpg', 8),
+(48, 'data/s_t/k8/bianco/lg-k8-4g-indigowhite-01.jpg', 1),
+(49, 'data/s_t/k8/bianco/lg-k8-4g-indigowhite-02.jpg', 1),
+(50, 'data/s_t/k8/bianco/lg-k8-4g-indigowhite-03.jpg', 1),
+(51, 'data/s_t/k8/blu/lg-k8-4g-indigoblue-01.jpg', 9),
+(52, 'data/s_t/k8/blu/lg-k8-4g-indigoblue-02.jpg', 9),
+(53, 'data/s_t/k8/blu/lg-k8-4g-indigoblue-03.jpg', 9),
+(54, 'data/s_t/lumia950/bianco/microsoft-LUMIA950_wht-1_2.jpg', 1),
+(55, 'data/s_t/lumia950/bianco/microsoft-LUMIA950_wht-2.jpg', 1),
+(56, 'data/s_t/lumia950/bianco/microsoft-LUMIA950_wht-3_0.jpg', 1),
+(57, 'data/s_t/lumia950/bianco/microsoft-LUMIA950_wht-4.jpg', 1),
+(58, 'data/s_t/lumia950/nero/microsoft-LUMIA950_blk-1_0.jpg', 2),
+(59, 'data/s_t/lumia950/nero/microsoft-LUMIA950_blk-2.jpg', 2),
+(60, 'data/s_t/lumia950/nero/microsoft-LUMIA950_blk-3.jpg', 2),
+(61, 'data/s_t/lumia950/nero/microsoft-LUMIA950_blk-4.jpg', 2),
+(62, 'data/s_t/p9/argento/huawei-p9-silver-01.jpg', 5),
+(63, 'data/s_t/p9/argento/huawei-p9-silver-02.jpg', 5),
+(64, 'data/s_t/p9/argento/huawei-p9-silver-03.jpg', 5),
+(65, 'data/s_t/p9/argento/huawei-p9-silver-04.jpg', 5),
+(66, 'data/s_t/p9/grigio/huawei-p9-grey-01.jpg', 11),
+(67, 'data/s_t/p9/grigio/huawei-p9-grey-02.jpg', 11),
+(68, 'data/s_t/p9/grigio/huawei-p9-grey-03.jpg', 11),
+(69, 'data/s_t/p9/grigio/huawei-p9-grey-04.jpg', 11),
+(70, 'data/s_t/p9plus/nocolor/huawei-p9-plus-qrtzgry-front.jpg', 10),
+(71, 'data/s_t/p9plus/nocolor/huawei-p9-plus-qrtzgry-3_4dx.jpg', 10),
+(72, 'data/s_t/p9plus/nocolor/huawei-p9-plus-qrtzgry-back.jpg', 10),
+(73, 'data/tablet/acericoniaw4821/neroacer-iconia-w4-grigio-1.jpg', 2),
+(74, 'data/tablet/acericoniaw4821/neroacer-iconia-w4-grigio-2.jpg', 2),
+(75, 'data/tablet/acericoniaw4821/neroacer-iconia-w4-grigio-3.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -297,19 +372,22 @@ CREATE TABLE IF NOT EXISTS `Marca` (
   `nome` varchar(15) NOT NULL,
   PRIMARY KEY (`idMarca`),
   UNIQUE KEY `nome_UNIQUE` (`nome`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dump dei dati per la tabella `Marca`
 --
 
 INSERT INTO `Marca` (`idMarca`, `nome`) VALUES
+(9, 'Acer'),
 (1, 'Apple'),
 (3, 'BlackBerry'),
 (4, 'Huawei'),
 (5, 'Nokia'),
 (2, 'Samsung'),
-(6, 'Sony');
+(6, 'Sony'),
+(8, 'TIM'),
+(7, 'ZTE');
 
 -- --------------------------------------------------------
 
@@ -320,10 +398,10 @@ INSERT INTO `Marca` (`idMarca`, `nome`) VALUES
 DROP TABLE IF EXISTS `Memoria`;
 CREATE TABLE IF NOT EXISTS `Memoria` (
   `idMemoria` int(11) NOT NULL AUTO_INCREMENT,
-  `dimensione` varchar(10) NOT NULL,
+  `dimensione` varchar(15) NOT NULL,
   PRIMARY KEY (`idMemoria`),
   UNIQUE KEY `dimensione_UNIQUE` (`dimensione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dump dei dati per la tabella `Memoria`
@@ -332,7 +410,9 @@ CREATE TABLE IF NOT EXISTS `Memoria` (
 INSERT INTO `Memoria` (`idMemoria`, `dimensione`) VALUES
 (1, '16GB'),
 (2, '32GB'),
-(3, '64GB');
+(3, '64GB'),
+(4, 'espandibile'),
+(5, 'nessuna');
 
 -- --------------------------------------------------------
 
@@ -346,14 +426,16 @@ CREATE TABLE IF NOT EXISTS `Schermo` (
   `dimensione` decimal(3,1) NOT NULL,
   PRIMARY KEY (`idSchermo`),
   UNIQUE KEY `dimensioni_UNIQUE` (`dimensione`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dump dei dati per la tabella `Schermo`
 --
 
 INSERT INTO `Schermo` (`idSchermo`, `dimensione`) VALUES
+(7, '1.8'),
 (4, '4.7'),
+(5, '5.0'),
 (1, '8.0'),
 (2, '9.7'),
 (3, '10.0');
