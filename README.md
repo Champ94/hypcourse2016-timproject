@@ -64,4 +64,3 @@ Note alla creazione di nuove pagine
             - colore
             
         N.B.: Se l'immagine è già stata inserita e bisogna solo collegarla al dispositivo usare il terzo form
-            
