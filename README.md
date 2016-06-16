@@ -31,7 +31,12 @@ Note alla creazione di nuove pagine
         - utility-classes.css       // Classi di utilità (e.g. vertical align)
         - style.css o app.css       // File di style per l'applicazione
         - mobile.css                // Media query per rendere il design responsive
-        
+
+- Come collegarsi al DataBase:
+
+        - Caricare il server in locale e modificare le variabili nel file connessione.php
+        - Usare il comando rhc port-forward -a timwebapp -n hypcourse2016 (dopo aver effettuato il login tramite rhc setup -l denniscampagna@gmail.com), lasciando il file connessione.php inalterato
+
 - Guida al backend:
 
         - Inserire dati dispositivo (Devices)
