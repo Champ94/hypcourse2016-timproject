@@ -55,11 +55,13 @@ Note alla creazione di nuove pagine
             - inclusi (facoltativo)
             - specifiche
             - memoriaID
+            
         - Inserire dati immagine, viene caricata automaticamente nella directory. Se non esiste la crea seguendo per il path la convenzione data/tipologia/nomedispositivo/colore/nomeimmagine.estensione
             - idImmagini (automatico)
             - nome cartella (-> tipologia del dispositivo)
             - dispositivo
             - file
             - colore
+            
         N.B.: Se l'immagine è già stata inserita e bisogna solo collegarla al dispositivo usare il terzo form
             
