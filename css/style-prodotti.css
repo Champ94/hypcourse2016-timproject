@@ -1,0 +1,142 @@
+html, body {
+    height: 100%;
+}
+
+.btn-primary.active {
+    background-color: #ed1c24;
+    border-color: #ed1c24;
+}
+
+.btn-primary.active:hover {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-primary.active:active {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-primary.active:focus {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-memory.active {
+    background-color: #004d91;
+    border-color: #004d91;
+}
+
+.btn-memory.active:hover {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-memory.active:active {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-memory.active:focus {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+/*
+    Utility Classes
+*/
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+/*
+    Personal Classes
+*/
+
+.tim-header {
+    background-color: #004489;
+    margin-bottom: 0px;
+    border: 0px;
+    background-image: none;
+    border-radius: 0px;
+}
+
+.timbrand {
+    padding-top: 10px;
+}
+
+.cartbrand {
+    padding-top: 13px;
+}
+
+.cartlogo {
+    width: 25px;
+    height: 25px;
+}
+
+
+.tim-footer {
+    min-height: 30px;
+    height: 30px;
+    background-color: #004489;
+    border: 0px;
+    background-image: none;
+    border-radius: 0px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.footerpadding {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.color-buttons {
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    border: 1px solid;
+    border-color: grey;
+    float: left;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.img-dev {
+    width: 100%;
+}
+
+.tim-pricetext {
+    color: #ed1c24;
+    font-size: 2em;
+}
+
+.tim-cbtext {
+    font-size: 1em;
+}
+
+.tim-u-cbtext {
+    font-size: 0.75em;
+}
+
+.tim-acquista {  
+    color: #ffffff;
+    background: #ed1c24;
+    border-radius: 4px;
+}
+
+.tim-memoria{  
+    color:#ffffff;
+    background: #004d91;
+    border-radius: 4px;
+}
+
+.device-color {
+    width: 20px;
+    height: 20px;
+}

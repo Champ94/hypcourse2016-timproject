@@ -1,0 +1,60 @@
+<div class="col-md-4"> 
+                        <button type="button" class="btn btn-primary btn-lg active tim-acquista">Acquista</button>
+                    </div>
+                    
+                    
+                        
+                    
+                        
+                        
+                        
+                        
+                        
+                        $("#campo_prezzi").append(
+                                    '<div class="col-md-4"><div class="checkbox"> <label class="tim-cbtext"> <input type="radio" name="optradio"> In '+data["n_rate"]+' rate senza interessi </label> </div> <p id="prezzo_rate" class="tim-pricetext">'+data["prezzo_rate"]+'</p> <p class="tim-u-cbtext">Se hai una linea di casa TIM</p> </div>'
+                                )
+                                
+                                
+                                
+                                
+                                .sl-highcover {
+    display: table;
+    background-image: url("../img/smartlife/Unknown-2.jpeg");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    position: relative;
+    text-align: right;
+    height: 350px;
+    width: 100%;
+}
+
+.sl-highcover-text {
+    display: table-cell;
+    vertical-align: middle;
+    color: #ffffff;
+    
+}
+
+<span class="a-button a-button-null a-button-thumbnail a-button-toggle a-button-selected" id="a-autoid-5" aria-checked="true"><span class="a-button-inner"><button class="a-button-text" type="button" id="a-autoid-5-announce"> 
+            
+              
+              
+                
+
+
+
+
+
+
+
+
+
+<div class="">
+  <div class="twisterTextDiv text">
+    <span class="a-size-base">MacBook (Pro) 2006-Early '08 (13" 15")</span>
+  </div>
+  <div class="">	
+  </div>
+</div>
+ </button></span></span>

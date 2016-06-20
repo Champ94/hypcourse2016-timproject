@@ -1,0 +1,278 @@
+<!doctype html>
+
+<html>
+    
+    <head>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <title>
+            Prodotti
+        </title>
+        
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.css">
+        <link rel="stylesheet" href="css/style-prodotti.css">
+        
+    </head>
+    
+  
+    
+    
+    <body>
+        
+        <!-- MAIN HEADER -->
+		<nav class="navbar navbar-default tim-header">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand timbrand" href="#">
+						<img alt="TIM" src="img/logo.png">
+					</a>
+				</div>
+                <div class="collapse navbar-collapse" id="header">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" style="color:white;">Chi siamo</a></li>
+                        <li><a href="#" style="color:white;">Il gruppo</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" style="color:white;">PRODOTTI</a></li>
+                        <li><a href="#" style="color:white;">SMARTLIFE</a></li>
+                        <li><a href="#" style="color:white;">ASSISTENZA</a></li>
+                        <a class="navbar-brand cartbrand" href="#">
+                            <img class="cartlogo" alt="Carrello" src="img/cart.png">
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <ol class="breadcrumb">
+            <li><a href="#">Prodotti</a></li>
+            <li><a href="#"></a></li>
+            <li class="active"></li>
+        </ol>
+        
+        <div class="container-fluid">
+            
+        <div class="row"><!--riga1-->
+            
+            <div class="col-sm-5 col-sm-offset-1"> <!--colonna1 -->
+                
+                <div class="row">
+                    <div id="img_dev" class="col-sm-2">
+                            
+                    </div>
+                    <div id="main_img" class="col-sm-8">
+                    
+                    </div>
+                </div>
+                    
+            </div>
+           
+            <div class="col-sm-5"><!--colonna2 -->
+                            
+                <div class="row">
+                    <div id="nome_dispositivo" class="col-sm-12">
+                    </div>
+                </div>
+                
+                <div class="row">                    
+                    <div id="caratteristiche" class="col-sm-12">
+                        <h3>Caratteristiche:</h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div id="memoria" class="col-sm-12">
+                   
+
+                    </div>
+                </div>
+                
+                 <div class="row">
+                    <div id="colori_device" class="col-sm-12">
+                        <div class="device-color" style="background-color: #000000;"></div>
+                        
+                     </div>
+                </div>
+                    
+                                         
+            </div>
+        </div>
+        <div class="row"><!--riga2-->
+            
+            <div class="col-sm-5 col-sm-offset-1"><!--colonna3--->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="checkbox">
+                            <label class="tim-cbtext"><input type="radio" name="optradio"> Unica soluzione</label>
+                        </div>
+                        <p id="prezzo_intero" class="tim-pricetext"></p>
+                    </div>
+                    
+                    <div id="prezzo_rate" class="col-sm-6">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-5 "><!--colonna4--->
+              
+                 <div class="row">
+                    
+                        <button type="button" class="btn btn-primary btn-lg active tim-acquista">Acquista</button>
+                    </div>
+                </div>
+            
+            
+        </div>
+            
+            
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <ul id="nav-schede" class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">DESCRIZIONE</a></li>
+                        <li><a data-toggle="tab" href="#menu1">INCLUSI NEL PREZZO</a></li>
+                        <li><a data-toggle="tab" href="#menu2">SPECIFICHE TECNICHE</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>DESCRIZIONE</h3>
+                            <p>Some content.</p>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h3>INCLUSI NEL PREZZO</h3>
+                            <p>Some content in menu 1.</p>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h3>SPECIFICHE TECNICHE</h3>
+                            <p >Some content in menu 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+       
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
+         <script type="text/javascript">
+            $("document").ready(function() {
+                get_device();
+                get_img(3);
+                
+            });
+             
+             function get_device() {
+                 
+                 var data = {
+                    "action": "get_device",
+                    "id": "1"
+                    };
+                    data = $(this).serialize() + "&" + $.param(data);
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "querydispositivo.php",
+                        data: data,
+                        success: function(data) {
+                            console.log(data["json"]);
+                        
+                          
+                                $("#nav-schede").append(
+                                    '<li><a data-toggle="tab" ></a></li>' 
+                            );
+                            $(".tab-content").append(
+                                '<div id="menu3" class="tab-pane fade"><h3>CIAO</h3><p>'+data["caratteristiche"]+'</p></div>'
+                            );
+                            $("#menu2").html (
+                                data["specifiche"]
+                            );
+                            $("#prezzo_intero").html(
+                                data["prezzo_intero"]+" €"
+                            );
+    
+                            if(data["n_rate"]!=0) {
+                                $("#prezzo_rate").html(
+                                    '<div class="checkbox"><label class="tim-cbtext"><input type="radio" name="optradio"> In '+data["n_rate"]+' rate senza interessi </label> </div> <p id="prezzo_rate" class="tim-pricetext">'+data["prezzo_rate"]+' €/mese'+'</p> <p class="tim-u-cbtext">Se hai una linea di casa TIM</p>'
+                                );
+                            }
+                            
+                             $("#nome_dispositivo").html(
+                                data["nome"]
+                            );
+                            
+                             $("#caratteristiche").html(
+                             data["caratteristiche"]
+                             );
+                             
+                            $("#menu1").html(
+                            data["inclusi"]
+                            );
+                            
+                            $("#home").html(
+                            data["descrizione"]
+                            );
+                            
+                           
+                            
+                            $("#caratteristiche").html(
+                            data["caratteristiche"]
+                              
+                            );
+                          
+                            
+                            for(i=0; i <4 ; i++)
+                             $("#memoria").append(
+                           '<button type="button" class="btn btn-default">Memoria'+i+'</button>'
+                              
+                            );
+                            
+                        }
+                    });
+                    return false;
+             }
+             
+             function get_img (idColore) {
+                 
+                 var data = {
+                    "action": "get_img",
+                    "id": "1",
+                     "id_colore": idColore
+                    };
+                    data = $(this).serialize() + "&" + $.param(data);
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "querydispositivo.php",
+                        data: data,
+                        success: function(data) {
+                            console.log(data["json"]);
+                            
+                            $("#img_dev").html (
+                                ""
+                            );
+                            
+                            for (i=0; i <data["n_immagini"] ; i++) {
+                            $("#img_dev").append (
+                                '<a href="#" class="thumbnail"><img src="'+data["percorso_"+i]+'" alt=""></a>'
+                            );
+                            }
+                            
+                            $("#main_img").html(
+                                '<img src="'+data["percorso_0"]+'" class="img-dev" alt="">'
+                            );
+                            
+                        }
+                    });
+                    return false;
+             }
+             
+        </script>
+    </body>
+       
+</html>
