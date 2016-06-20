@@ -35,7 +35,7 @@ Note alla creazione di nuove pagine
 - Come collegarsi al DataBase:
 
         - Caricare il server in locale e modificare le variabili nel file connessione.php
-        - Usare il comando rhc port-forward -a timwebapp -n hypcourse2016 (dopo aver effettuato il login tramite rhc setup -l denniscampagna@gmail.com), lasciando il file connessione.php inalterato
+        - Usare il comando rhc port-forward -a timwebapp -n hypcourse2016 (dopo aver effettuato il login tramite rhc setup -l denniscampagna@gmail.com o rhc setup -l nicolo.anto@gmail.com), lasciando il file connessione.php inalterato
 
 - Guida al backend:
 
