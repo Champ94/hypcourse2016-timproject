@@ -1,0 +1,260 @@
+@media screen and (min-width: 768px) {
+    .tim-header {
+        background-color: #004489;
+        margin-bottom: 0px;
+        border: 0px;
+        background-image: none;
+        border-radius: 0px;
+    }
+
+    .timbrand {
+        padding-top: 10px;
+    }
+
+    .cartbrand {
+        padding-top: 13px;
+    }
+
+    .cartlogo {
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .tim-footer {
+        min-height: 30px;
+        height: 30px;
+        width: 100%;
+        background-color: #004489;
+        border: 0px;
+        background-image: none;
+        border-radius: 0px;
+        position:fixed;
+        bottom: 0px;
+    }
+
+    .tim.navfooter {
+        min-height: 30px!important;
+        height: 30px!important;
+    }
+
+
+    .footerpadding {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    .color-buttons {
+        width: 15px;
+        height: 15px;
+        border-radius: 4px;
+        border: 1px solid;
+        border-color: grey;
+        float: left;
+        margin-top: 3px;
+        margin-left: 10px;
+    }
+
+    .detail-button {
+        font-size: 10px;
+        background-color: red;
+        background-image: none;
+        color: white;
+        text-shadow: none;
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 20px;
+
+    }
+
+    .etichette {
+        margin-top: 10px;
+        margin-right: 10px;
+        width: 54px;
+        min-height: 16px;
+    }
+
+    .pannelli-store {
+        text-align: center;
+    }
+
+    .tim-row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .devicepics {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .prezzi {
+        color: red;
+        font-size: 25px;
+        font-weight: bolder;
+    }
+
+    .rate {
+        font-size: 10px;
+    }
+
+    .products {
+        margin-bottom: 40px;
+        margin-top: 30px;
+    }
+
+    .testo {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .vantaggi {
+        color: red;
+        font-size: 20px;
+    }
+
+    .filtroresp {
+        margin-left: 15px;
+        margin-right: 15px;
+    }    
+    
+    .pulsantefiltri {
+        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tim-header {
+        background-color: #004489;
+        margin-bottom: 0px;
+        border: 0px;
+        background-image: none;
+        border-radius: 0px;
+    }
+
+    .timbrand {
+        padding-top: 10px;
+    }
+
+    .cartbrand {
+        padding-top: 13px;
+    }
+
+    .cartlogo {
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .tim-footer {
+        min-height: 30px;
+        height: 30px;
+        width: 100%;
+        background-color: #004489;
+        border: 0px;
+        background-image: none;
+        border-radius: 0px;
+        position:fixed;
+        bottom: 0px;
+    }
+
+    .tim.navfooter {
+        min-height: 30px!important;
+        height: 30px!important;
+    }
+
+
+    .footerpadding {
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    .color-buttons {
+        width: 15px;
+        height: 15px;
+        border-radius: 4px;
+        border: 1px solid;
+        border-color: grey;
+        float: left;
+        margin-top: 3px;
+        margin-left: 10px;
+    }
+
+    .detail-button {
+        font-size: 15px;
+        background-color: red;
+        background-image: none;
+        color: white;
+        text-shadow: none;
+        font-weight: bold;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        padding: 12px 30px 12px 30px;
+
+    }
+
+    .etichette {
+        margin-top: 10px;
+        margin-right: 10px;
+        width: 54px;
+        height: 16px;
+    }
+
+    .pannelli-store {
+        text-align: center;
+        margin: 20px 20px 20px 20px;
+    }
+
+    .tim-row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .devicepics {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .prezzi {
+        color: red;
+        font-size: 23px;
+        font-weight: bolder;
+    }
+
+    .rate {
+        font-size: 15px;
+    }
+
+    .products {
+        margin-bottom: 40px;
+        margin-top: 30px;
+    }
+
+    .testo {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .vantaggi {
+        color: red;
+        font-size: 20px;
+    }
+
+    .filtroresp {
+        margin-left: 15px;
+        margin-right: 15px;
+    }    
+    
+    .pulsantefiltri {
+        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .nomedevices {
+        font-size: 20px;
+    }
+}
+
