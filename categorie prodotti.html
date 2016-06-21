@@ -74,8 +74,50 @@
             </div>
         </div>
         
-        <div class="row tim-row hidden-xs hidden-sm ">
-            <div class="col-md-2 col-md-offset-1">
+        <div class="hidden-md hidden-lg">
+        <a class="btn btn-primary collapsed pulsantefiltri" role="button" data-toggle="collapse" href="#menufiltri2" aria-expanded="false" aria-controls="menufiltri">Filtra per...</a>
+        <div class="collapse row filtroresp" id="menufiltri2">
+            <div class="col-sm-4 col-xs-12">
+                <p class=" filtroresp">Mostra solo  </p>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> I più venduti </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> In promozione </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> Novità </label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <p class=" filtroresp"> Tipologia </p>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> Smartphone </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> iPhone </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> Telefoni di casa </label>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <p class=" filtroresp"> Prezzo </p>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> -200€ </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> 200€-500€ </label>
+                </div>
+                <div class="checkbox filtroresp">
+                    <label><input type="checkbox"> +500€ </label>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <div class="row tim-row">
+            <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm ">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Filtra per</h3>
@@ -118,7 +160,7 @@
                         <p>Prezzo</p>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> <200
+                                <input type="checkbox"> -200
                             </label>
                         </div>
                         <div class="checkbox">
@@ -128,7 +170,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> >500
+                                <input type="checkbox"> +500
                             </label>
                         </div>
                         <hr>
@@ -139,214 +181,17 @@
                 </div>
             </div> 
             
-            <!--
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label label-warning pull-right etichette">PROMO</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">500€</p>
-                            <p class="text-center rate">Rate</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label label-warning pull-right etichette">PROMO</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">21€/mese</p>
-                            <p class="text-center rate">in 36 rate a interessi zero<br>se hai una linea di casa TIM</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3 ">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label label-danger pull-right etichette">NOVITA'</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label pull-right etichette" style="background-color:white;">       </span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <button type="button" class="btn btn-default detail-button" href="#">DETTAGLI</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label label-warning pull-right etichette">PROMO</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <button type="button" class="btn btn-default detail-button" href="#">DETTAGLI</button>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                       <div class="panel panel-default pannelli-store">
-                            <span class="label label-warning pull-right etichette">PROMO</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label label-danger pull-right etichette">NOVITA'</span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="panel panel-default pannelli-store">
-                            <span class="label pull-right etichette" style="background-color:white;">     </span>
-                            <img class="devicepics" href="#" src="img/device.png">
-                            <p class="text-center">Marca<br>Nome Device</p>
-                            <p class="text-center prezzi">Prezzo</p>
-                            <p class="text-center rate">Rate</p>
-                            <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
-        </div>
- 
-        
-    <div class="visible-xs-inline hidden-sm">
-            <a class="btn btn-primary collapsed pulsantefiltri" role="button" data-toggle="collapse" href="#menufiltri" aria-expanded="false" aria-controls="menufiltri">Filtra per...</a>
-        <div class="collapse filtroresp" id="menufiltri">
-            <p class=" filtroresp">Mostra solo  </p>
-            <div class="checkbox filtroresp">
-                <label><input type="checkbox"> I più venduti </label>
-            </div>
-            <div class="checkbox filtroresp">
-                <label><input type="checkbox"> In promozione </label>
-            </div>
-            <div class="checkbox filtroresp">
-                <label><input type="checkbox"> Novità </label>
-            </div>
-        </div>
-    </div>
             
-    <div class="visible-sm-inline">
-        <a class="btn btn-primary collapsed pulsantefiltri" role="button" data-toggle="collapse" href="#menufiltri2" aria-expanded="false" aria-controls="menufiltri">Filtra per...</a>
-        <div class="collapse row filtroresp" id="menufiltri2">
-            <div class="col-sm-4">
-                <p class=" filtroresp">Mostra solo  </p>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> I più venduti </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> In promozione </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> Novità </label>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <p class=" filtroresp"> Tipologia </p>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> Smartphone </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> iPhone </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> Telefoni di casa </label>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <p class=" filtroresp"> Prezzo </p>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> <200€ </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> 200€-500€ </label>
-                </div>
-                <div class="checkbox filtroresp">
-                    <label><input type="checkbox"> >500€ </label>
+            <div class="col-md-8 col-sm-12">
+                <div id="devlist" class="row">
+                    
                 </div>
             </div>
         </div>
-    </div>
     
-        
-    <div id="container-list">
-        
-        
-        
-    </div>    
-    <!--
-    <div class="row visible-sm-inline resp-catalog">
-        <div class="col-sm-4">
-            <div class="panel panel-default pannelli-store">
-                <span class="label label-warning pull-right etichette">PROMO</span>
-                <img class="devicepics" href="#" src="img/device.png">
-                <p class="text-center">Marca<br>Nome Device</p>
-                <p class="text-center prezzi">500€</p>
-                <p class="text-center rate">Rate</p>
-                <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default pannelli-store">
-                <span class="label label-warning pull-right etichette">PROMO</span>
-                <img class="devicepics" href="#" src="img/device.png">
-                <p class="text-center">Marca<br>Nome Device</p>
-                <p class="text-center prezzi">21€/mese</p>
-                <p class="text-center rate">in 36 rate a interessi zero<br>se hai una linea di casa TIM</p>
-                <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default pannelli-store">
-                <span class="label label-danger pull-right etichette">NOVITA'</span>
-                <img class="devicepics" href="#" src="img/device.png">
-                <p class="text-center">Marca<br>Nome Device</p>
-                <p class="text-center prezzi">Prezzo</p>
-                <p class="text-center rate">Rate</p>
-                <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-            </div>
-        </div>
-    </div>
-            
-    <div class="panel panel-default pannelli-store visible-xs-block">
-        <span class="label label-warning pull-right etichette">PROMO</span>
-        <img class="devicepics" href="#" src="img/device.png">
-        <p class="text-center nomedevices">Marca<br>Nome Device</p>
-        <p class="text-center prezzi">500€</p>
-        <p class="text-center rate">Rate</p>
-        <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-    </div>
-    <div class="panel panel-default pannelli-store visible-xs-block">
-        <span class="label label-warning pull-right etichette">PROMO</span>
-        <img class="devicepics" href="#" src="img/device.png">
-        <p class="text-center nomedevices">Marca<br>Nome Device</p>
-        <p class="text-center prezzi">500€</p>
-        <p class="text-center rate">Rate</p>
-        <a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>
-    </div>
-    -->
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/get.js"></script>
             
     <script>
         
@@ -357,36 +202,100 @@
             }).get(),
                 
             maxHeight = Math.max.apply(null, heights);
-            $(".rate").height(maxHeight);});
+            $(".rate").height(maxHeight);
             
-    </script>
+            var idCategoria = $_GET("idCategoria");
+            console.log(idCategoria)
+            get_devlist(idCategoria);
         
-        <script type="text/javascript">
-            $("document").ready(function() {
-                var data = {
-                    "action": "get_catalogo"
-                };
-                data = $(this).serialize() + "&" + $.param(data);
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "query-demo.php",
-                    data: data,
-                    success: function(data) {
-                        $("#container-list").html(
-                            data["json"]
-                        );
-                        
-                        for(i=0; i<data["n_elementi"]; i++) {
-                            
-                            console.log("idDevice: "+data["idDevices#"+i]+"\nnome: "+data["nome#"+i]);
+        });
+        
+        function get_devlist(idCategoria) {
+                 
+            var data = {
+                "action": "get_devlist",
+                "categoria": idCategoria
+            };
+            data = $(this).serialize() + "&" + $.param(data);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "querydispositivo.php",
+                data: data,
+                success: function(data) {
+                    console.log(data["json"]);
+                    
+                    console.log(typeof(data["device_0"]["prezzo_scontato"]));
+                    
+                    for(var i=0; i <data["n_devices"] ; i++) {
+                        if(data["device_"+i]["prezzo_scontato"]!="0.00"){
+                            $("#devlist").append(
+                                '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                    '<div class="panel panel-default pannelli-store">'+
+                                        '<span class="label label-warning pull-right etichette">PROMO</span>'+
+                                        '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                        '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                        '<div class="row"> <div class="col-md 6 text-center prezzi-scont">'+data['device_'+i]["prezzo_intero"]+'€'+'</div> <div class="col-md-6 text-center prezzi">'+data['device_'+i]["prezzo_scontato"]+'€</div> </div>'+
+                                        '<p class="rate">&nbsp;</p>'+
+                                        '<a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                    '</div>'+
+                                '</div>'
+                            );
                         }
-                        
+                        else {
+                            if(data['device_'+i]["n_rate"]!=0){
+                                $("#devlist").append(
+                                    '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                        '<div class="panel panel-default pannelli-store">'+
+                                            '<span class="label label-warning pull-right etichette">PROMO</span>'+
+                                            '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                            '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                            '<p class="text-center prezzi">'+data['device_'+i]["prezzo_rate"]+'€/mese</p>'+
+                                            '<p class="text-center rate">in '+data['device_'+i]["n_rate"]+' rate senza interessi</p>'+
+                                            '<a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                        '</div>'+
+                                    '</div>'
+                                );
+                            }
+                            else {
+                                if(data['device_'+i]["novita"]==1){
+                                    $("#devlist").append(
+                                        '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                            '<div class="panel panel-default pannelli-store">'+
+                                                '<span class="label label-primary pull-right etichette">NOVIT&#192;</span>'+
+                                                '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                                '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                                '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
+                                                '<p class="rate">&nbsp;</p>'+
+                                                '<a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '</div>'+
+                                        '</div>'
+                                    );
+                                }
+                                else {
+                                    $("#devlist").append(
+                                        '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                            '<div class="panel panel-default pannelli-store">'+
+                                                '<span class="label label-primary pull-right etichette" style="background-color:white;">&nbsp;</span>'+
+                                                '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                                '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                                '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
+                                                '<p class="rate">&nbsp;</p>'+
+                                                '<a  href="pagina_prodotti.html"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '</div>'+
+                                        '</div>'
+                                    );        
+                        }
                     }
-                });
-                return false;
-            });
-        </script>
+                }
+            };
+
+            return false;
+            
+        }
+    });
+    }
+    </script>   
         
 	</body>
 	

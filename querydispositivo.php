@@ -9,7 +9,10 @@
                     break;
                 case "get_img":
                     get_img();
-                
+                    break;
+                case "get_devlist":
+                    get_devlist();
+                    break;
             }
         }
     }
@@ -25,7 +28,7 @@
         $id = $_POST["id"];
             
           $query = "
-          SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita, Devices.disponibile, Devices.caratteristiche, Devices.descrizione, Devices.inclusi, Devices.specifiche, Categoria.nome AS  'nome_categoria', Marca.nome AS  'nome_marca', Tipologia.nome AS  'nome_tipologia', SisOp.nome AS  'nome_sisop', Schermo.dimensione AS  'dimensione_schermo', Connessione.tipo AS  'tipo_connessione'
+          SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato,Devices.n_rate, Devices.promo, Devices.novita, Devices.disponibile, Devices.caratteristiche, Devices.descrizione, Devices.inclusi, Devices.specifiche, Categoria.nome AS  'nome_categoria', Marca.nome AS  'nome_marca', Tipologia.nome AS  'nome_tipologia', SisOp.nome AS  'nome_sisop', Schermo.dimensione AS  'dimensione_schermo', Connessione.tipo AS  'tipo_connessione'
             FROM Devices, Categoria, Marca, Tipologia, SisOp, Schermo, Connessione
             WHERE Devices.idDevices = ".$id."
                 AND Devices.categoriaID = Categoria.idCategoria
@@ -127,6 +130,64 @@
         }
         
         $return["n_immagini"] = $i;
+        $return["json"] = json_encode($return);
+        echo json_encode($return);
+        
+    }
+
+    function get_devlist() {
+        
+        require "connessione.php";
+        
+        $cat = $_POST["categoria"];
+        
+        $query = '
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = '.$cat.'
+        ';
+        
+        $dati = mysqli_query($con, $query);
+        
+        $dev = "device_0";
+        $i=0;
+        
+         if(mysqli_num_rows($dati) > 0) {
+            while($riga = mysqli_fetch_assoc($dati)){
+                $return[$dev] = $riga;
+                $i++;
+                $dev="device_".$i;
+            }
+         }
+        
+        $return["n_devices"] = $i;
+        
+        $queryImg = '
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = '.$cat.'
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ';
+        
+        $dati = mysqli_query($con, $queryImg);
+        
+        $img_dev = "device_0";
+        $i=0;
+        
+         if(mysqli_num_rows($dati) > 0) {
+            while($riga = mysqli_fetch_assoc($dati)){
+                $return[$img_dev] += $riga;
+                $i++;
+                $img_dev="device_".$i;
+            }
+        }
+        
         $return["json"] = json_encode($return);
         echo json_encode($return);
         
