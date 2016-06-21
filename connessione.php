@@ -7,15 +7,12 @@
     $password = getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
     $db = getenv("OPENSHIFT_APP_NAME");
 
-    $con = mysqli_connect($host, $username, $password, $db);
+    $con = new mysqli($host, $username, $password, $db);
 
-    if(!$con) {
-        
-        echo "Error: Unable to connect to MySQL." . PHP_EOL;
-        echo "Debugging errno: " . mysqli_connect_errno() .  PHP_EOL;
-        echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-        exit();
-        
+    if($con->connect_error) {
+        echo "Connection failed: " . $con->connect_error;
+        echo "Errno: " . $con->connect_errno;
+        exit;
     }
 
 ?>

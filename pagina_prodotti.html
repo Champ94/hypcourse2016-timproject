@@ -161,13 +161,13 @@
                  
                  var data = {
                     "action": "get_device",
-                    "id": idDevice
+                    "idDevice": idDevice
                     };
                     data = $(this).serialize() + "&" + $.param(data);
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "querydispositivo.php",
+                        url: "query_devices.php",
                         data: data,
                         success: function(data) {
                             console.log(data["json"]);
