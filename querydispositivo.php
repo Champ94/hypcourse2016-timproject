@@ -69,6 +69,28 @@
         }
         
         $return["n_colori"] = $i;
+        
+        $queryImg = '
+        SELECT Memoria.idMemoria, Memoria.dimensione
+            FROM Devices JOIN Mem_Dev ON Devices.idDevices = Mem_Dev.devicesID
+			JOIN Memoria ON Memoria.idMemoria = Mem_Dev.memoriaID
+            WHERE Devices.idDevices = '.$id.'
+        ';
+        
+        $dati = mysqli_query($con, $queryImg);
+        
+        $e_p = "memoria_0";
+        $i=0;
+        
+         if(mysqli_num_rows($dati) > 0) {
+            while($riga = mysqli_fetch_assoc($dati)){
+                $return[$e_p] = $riga;
+                $i++;
+                $e_p="memoria_".$i;
+            }
+        }
+        
+        $return["n_memoria"] = $i;
         $return["json"] = json_encode($return);
         echo json_encode($return);
         

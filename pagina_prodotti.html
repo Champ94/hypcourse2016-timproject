@@ -132,24 +132,11 @@
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1">
                     <ul id="nav-schede" class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#home">DESCRIZIONE</a></li>
-                        <li><a data-toggle="tab" href="#menu1">INCLUSI NEL PREZZO</a></li>
-                        <li><a data-toggle="tab" href="#menu2">SPECIFICHE TECNICHE</a></li>
+                      
                     </ul>
 
-                    <div class="tab-content">
-                        <div id="home" class="tab-pane fade in active">
-                            <h3>DESCRIZIONE</h3>
-                            <p>Some content.</p>
-                        </div>
-                        <div id="menu1" class="tab-pane fade">
-                            <h3>INCLUSI NEL PREZZO</h3>
-                            <p>Some content in menu 1.</p>
-                        </div>
-                        <div id="menu2" class="tab-pane fade">
-                            <h3>SPECIFICHE TECNICHE</h3>
-                            <p >Some content in menu 2.</p>
-                        </div>
+                    <div id="content-schede" class="tab-content">
+                        
                     </div>
                 </div>
             </div>
@@ -213,27 +200,49 @@
                              data["caratteristiche"]
                              );
                              
-                            $("#menu1").html(
-                            data["inclusi"]
-                            );
+                            if(data["specifiche"]!=null) {
+                                $("#nav-schede").append(
+                                    '<li class="active"><a data-toggle="tab" href="#specifiche">SPECIFICHE TECNICHE</a></li>'
+                                );
+                                $("#content-schede").append(
+                                    '<div id="specifiche" class="tab-pane fade in active">'+
+                                        '<h3>SPECIFICHE</h3>'+
+                                        '<p>'+data["specifiche"]+'</p>'+
+                                    '</div>'
+                                );
+                            }
                             
-                            $("#home").html(
-                            data["descrizione"]
-                            );
+                            if(data["descrizione"]!=null) {
+                                $("#nav-schede").append(
+                                    '<li class=""><a data-toggle="tab" href="#descrizione">DESCRIZIONE</a></li>'
+                                );
+                                $("#content-schede").append(
+                                    '<div id="descrizione" class="tab-pane fade">'+
+                                        '<h3>DESCRIZIONE</h3>'+
+                                        '<p>'+data["descrizione"]+'</p>'+
+                                    '</div>'
+                                );
+                            }
                             
-                           
-                            
-                            $("#caratteristiche").html(
-                            data["caratteristiche"]
-                              
-                            );
+                            if(data["inclusi"]!=null) {
+                                $("#nav-schede").append(
+                                    '<li class=""><a data-toggle="tab" href="#inclusi">INCLUSI NEL PREZZO</a></li>'
+                                );
+                                $("#content-schede").append(
+                                    '<div id="inclusi" class="tab-pane fade">'+
+                                        '<h3>INCLUSI NEL PREZZO</h3>'+
+                                        '<p>'+data["inclusi"]+'</p>'+
+                                    '</div>'
+                                );
+                            }
                           
-                            
-                            for(i=0; i <4 ; i++)
+                            for(i=0; i <data["n_memoria"] ; i++){
                              $("#memoria").append(
-                           '<button type="button" class="btn btn-default">Memoria'+i+'</button>'
+                                 
+                           '<button type="button" class="btn btn-default">'+data["memoria_"+i]["dimensione"]+'</button>'
                               
-                            );
+                            )
+                            };
                             
                         }
                     });
