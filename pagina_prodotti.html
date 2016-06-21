@@ -159,19 +159,22 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/get.js"></script>
         
          <script type="text/javascript">
             $("document").ready(function() {
-                get_device();
+                var id= $_GET("id");
+                console.log(id);
+                get_device(id);
                 get_img(3);
                 
             });
              
-             function get_device() {
+             function get_device(idDevice) {
                  
                  var data = {
                     "action": "get_device",
-                    "id": "1"
+                    "id": idDevice
                     };
                     data = $(this).serialize() + "&" + $.param(data);
                     $.ajax({
