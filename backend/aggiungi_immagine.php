@@ -21,7 +21,7 @@
             echo "Directory creata!<br>";
         }
         
-        $target_dir = "../data/".$cartella."/".$nomeDev."/".$coloreDev;
+        $target_dir = "../data/".$cartella."/".$nomeDev."/".$coloreDev."/";
         $target_file = $target_dir . basename($_FILES["immagine"]["name"]);
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         

@@ -250,7 +250,7 @@
             </div>
             
             <div>
-                <input type="submit" name="inserisci" value="Inserisci relazione">
+                <input type="submit" name="inserisci" value="Inserisci Immagine">
             </div>
             
         </form>
@@ -292,49 +292,7 @@
             </div>
             
             <div>
-                <input type="submit" name="inserisci" value="Inserisci Immagine">
-            </div>
-            
-        </form>
-        
-        <h1>Collega immagine inserita a dispositivo</h1>
-        
-        <form action="collega_imgdev.php" method="post" enctype="multipart/form-data">
-            
-            <div>
-                <label for="immagine">Immagine</label>
-                <select id="immagine" name="immagine">
-                    <option value=""></option>
-                    <?php
-
-                        if($result = mysqli_query($con, "SELECT * FROM Immagini")) {
-                            while($value = mysqli_fetch_object($result)) {
-                                printf('<option value="'.$value->idImmagini.'">'.$value->percorso.'</option>');
-                            }
-                        }
-
-                    ?>
-                </select>
-            </div>
-            
-            <div>
-                <label for="device">Dispositivo</label>
-                <select id="device" name="device">
-                    <option value=""></option>
-                    <?php
-
-                        if($result = mysqli_query($con, "SELECT idDevices, nome FROM Devices")) {
-                            while($value = mysqli_fetch_object($result)) {
-                                printf('<option value="'.$value->idDevices.'">'.$value->nome.'</option>');
-                            }
-                        }
-
-                    ?>
-                </select>
-            </div>
-            
-            <div>
-                <input type="submit" name="inserisci" value="Abbina Img-Dev">
+                <input type="submit" name="inserisci" value="Inserisci Relazione">
             </div>
             
         </form>
