@@ -1,0 +1,87 @@
+/*
+    Classi di Bootstrap
+*/
+
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.label-warning{
+    margin-left: 10px;
+    padding: 0.4em;
+    font-size: 50%;
+}
+
+.btn-primary.active {
+    background-color: #ed1c24;
+    border-color: #ed1c24;
+}
+
+.btn-primary.active:hover {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-primary.active:active {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+.btn-primary.active:focus {
+    background-color: crimson;
+    border-color: crimson;
+}
+
+/*
+    Personal Classes
+*/
+
+.thumb-active {
+    border-color: #337ab7;
+}
+
+.img-dev {
+    width: 100%;
+}
+
+.nome-device {
+    color: #004990;
+    font-family: inherit;
+    font-size: 2em;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.tim-memoria{  
+    color:#ffffff;
+    background: #004d91;
+    border-radius: 4px;
+}
+
+.device-color {
+    border-radius: 10px;
+    border: 2px solid #0078c1;
+    height: 15px;
+    padding: 15px; 
+    width: 15px;
+}
+
+.tim-cbtext {
+    font-size: 1em;
+}
+
+.tim-pricetext {
+    color: #ed1c24;
+    font-size: 2em;
+}
+
+.tim-u-cbtext {
+    font-size: 0.75em;
+}
+
+.tim-acquista {  
+    color: #ffffff;
+    background: #ed1c24;
+    border-radius: 4px;
+}

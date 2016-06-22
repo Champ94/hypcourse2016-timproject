@@ -1,0 +1,78 @@
+.bannerpic {
+    background-size: 100%;
+}
+
+.innov-puls {
+    background-color: red;
+    background-image: none;
+    border-color: red;
+    color: white;
+    font-weight: bolder;
+    margin-top: 136px;
+    min-width: 140px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-shadow: 0 0px 0;
+}
+
+.siamobanner {
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.innov-head {
+    font-size: 20px;
+}
+
+.innov-carousel {
+    top: 5%;
+    right: 0;
+    bottom: 5%;
+    left: 0;
+    padding-top: 30px;
+    position: relative;
+}
+
+.innov-titoli {
+    color: #0092D5;
+    font-size: 25px;
+    margin-top: 10%;
+    text-shadow: 0 0px;
+}
+
+.innov-desc {
+    color: #000000;
+    font-size: 16px;
+    text-shadow: 0 0px;
+}
+
+.carousel-sfumatura-sin {
+    background-image: linear-gradient(to right, #050f84 0%, #fff)!important;
+}
+
+.carousel-sfumatura-des {
+    background-image: linear-gradient(to left, #050f84 0%, #fff)!important;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    background-color: #000 \9;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #0092D5;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    width: 10px;
+}
+
+.carousel-indicators .active {
+    background-color: #0092D5;
+    height: 12px;
+    margin: 0;
+    width: 12px;
+}

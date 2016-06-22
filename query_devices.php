@@ -8,16 +8,13 @@
             
             switch($action) {
                 case "get_device":
-                    $par = $_POST["idDevice"];
-                    getDevice($par);
-                    /*
                     if(isset($_POST["idDevice"])) {
                         getDevice($_POST["idDevice"]);
                     }
                     else {
                         $error["json"] = "Ajax call: error!";
                         echo json_encode($error);
-                    }*/
+                    }
                     break;
                     
                 case "get_img":
@@ -31,7 +28,7 @@
                     break;
                     
                 case "get_devlist":
-                    if(isset($_POST["idCategoria"]))) {
+                    if(isset($_POST["idCategoria"])) {
                         getDevlist($_POST["idCategoria"]);
                     }
                     else {
@@ -90,8 +87,6 @@
             $return["descrizione"] = str_replace("#", "<br>", $return["descrizione"]);
             $return["inclusi"] = str_replace("#", "<br>", $return["inclusi"]);
             $return["specifiche"] = str_replace("#", "<br>", $return["specifiche"]);
-            
-            $return["json"] = json_encode($return);
 
             $statement->close();
             
@@ -144,6 +139,7 @@
             
             $return["n_memoria"] = $cont;
             
+            $return["json"] = json_encode($return);
             echo json_encode($return);
 
             $statement->close();
@@ -178,12 +174,13 @@
             $cont = 0;
             $result = $statement->get_result();
             while($data = $result->fetch_assoc()) {
-                $return["percorso_".$cont] = $data;
+                $return["percorso_".$cont] = $data["percorso"];
                 $cont++;
             }
             
             $return["n_immagini"] = $cont;
             
+            $return["json"] = json_encode($return);
             echo json_encode($return);
             
             $statement->close();
@@ -252,6 +249,7 @@
             
             $return["n_devices"] = $cont;
             
+            $return["json"] = json_encode($return);
             echo json_encode($return);
             
             $statement->close();

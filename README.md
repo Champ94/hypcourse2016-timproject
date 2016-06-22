@@ -5,9 +5,9 @@ Note alla creazione di nuove pagine
 
 - Inserire nell'head di ogni pagina .html/.php i seguenti meta tag:
     
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
         
 - Media queries selectors usati in BS3:
@@ -27,10 +27,10 @@ Note alla creazione di nuove pagine
 - Guida ai file .css:
 
         - bootstrap-*.css           // Framework
-        - page-components.css       // Componenti presenti in ogni pagina (e.g. header, footer)
-        - utility-classes.css       // Classi di utilità (e.g. vertical align)
-        - style.css o app.css       // File di style per l'applicazione
-        - mobile.css                // Media query per rendere il design responsive
+        - tim/tim-components.css        // Componenti presenti in ogni pagina (e.g. header, footer)
+        - tim/utility-classes.css       // Classi di utilità (e.g. vertical align)
+        - tim/nome-pagina.css           // File di style per l'applicazione
+        - tim/mobile.css                // Media query per rendere il design responsive
 
 - Come collegarsi al DataBase:
 

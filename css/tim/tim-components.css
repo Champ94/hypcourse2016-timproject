@@ -1,0 +1,103 @@
+/*
+    PAGE
+*/
+
+html {
+    min-height: 100%;
+    height: 100%;
+    position: relative;
+}
+
+body {
+    height: 100%;
+    margin-bottom: 50px;
+    min-width: 320px;
+}
+
+/*
+    HEADER
+*/
+
+.tim-header {
+    background-color: #004489;
+    background-image: none;
+    border: 0px;
+    border-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.timbrand {
+    padding-top: 10px;
+}
+
+.cartbrand {
+    padding-top: 13px;
+}
+
+.cartlogo {
+    width: 25px;
+    height: 25px;
+}
+
+/*
+    FOOTER
+*/
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #004990;
+}
+
+.footer-row {
+    height: 50px;
+}
+
+.footer-row div {
+    height: inherit;
+}
+
+.footer-row div img {
+    margin: auto;
+}
+
+.footer-text {
+    color: #FFFFFF;
+    font-size: 1.2em;
+    text-align: center;
+    width: 100%;
+}
+
+/*
+    INTRO SECTION PAGES
+*/
+
+.products {
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.catpic {
+    margin-bottom: 15px;
+}
+
+.cattext {
+    font-size: 20px;
+}
+
+.products {
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.vantaggi {
+    color: red;
+    font-size: 20px;
+}
+
+.testo {
+    margin-left: 10%;
+    margin-right: 10%;
+}

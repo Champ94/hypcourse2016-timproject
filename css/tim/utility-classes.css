@@ -1,0 +1,21 @@
+/*
+    Utility Classes
+*/
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.rigarespo {
+    margin-left: 0px;
+    margin-right: 0px;
+}
