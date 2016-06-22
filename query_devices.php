@@ -8,15 +8,36 @@
             
             switch($action) {
                 case "get_device":
-                    getDevice();
+                    $par = $_POST["idDevice"];
+                    getDevice($par);
+                    /*
+                    if(isset($_POST["idDevice"])) {
+                        getDevice($_POST["idDevice"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }*/
                     break;
                     
                 case "get_img":
-                    getImages();
+                    if(isset($_POST["idDevice"]) && isset($_POST["idColore"])) {
+                        getImages($_POST["idDevice"], $_POST["idColore"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
                     break;
                     
                 case "get_devlist":
-                    getDevlist();
+                    if(isset($_POST["idCategoria"]))) {
+                        getDevlist($_POST["idCategoria"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
                     break;
                 
                 default:
@@ -36,14 +57,12 @@
         return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
     }
 
-    function getDevice() {
+    function getDevice($idDevice) {
         
         require "connessione.php";
         
         $con->query("SET NAMES 'utf8'");
         $con->query("SET CHARACTER_SET utf8;");
-        
-        $idDevice = $_POST["idDevice"];
         
         $query = "
         SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita, Devices.disponibile, Devices.caratteristiche, Devices.descrizione, Devices.inclusi, Devices.specifiche, Categoria.nome AS 'nome_categoria', Marca.nome AS 'nome_marca', Tipologia.nome AS  'nome_tipologia', SisOp.nome AS 'nome_sisop', Schermo.dimensione AS 'dimensione_schermo', Connessione.tipo AS 'tipo_connessione'
@@ -127,6 +146,114 @@
             
             echo json_encode($return);
 
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+    function getImages($idDevice, $idColore) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT Immagini.percorso, Colori.idColori AS 'id_colore', Colori.codice AS 'codice_colore', Colori.nome AS 'nome_colore'
+            FROM Colori, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+            WHERE Devices.idDevices = ?
+                AND Colori.idColori = ?
+                AND Colori.idColori = Immagini.coloriID
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("ii", $idDevice, $idColore);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["percorso_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_immagini"] = $cont;
+            
+            echo json_encode($return);
+            
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+    function getDevlist($idCategoria) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = ?
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_devices"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] += $data;
+                $cont++;
+            }
+            
+            $return["n_devices"] = $cont;
+            
+            echo json_encode($return);
+            
             $statement->close();
             
         }

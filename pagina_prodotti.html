@@ -181,8 +181,8 @@
                         url: "query_devices.php",
                         data: data,
                         success: function(data) {
-                            console.log(data["colore_0"]);
-                            console.log(data["n_colori"]);
+                            //console.log(data["colore_0"]);
+                            //console.log(data["n_colori"]);
                              console.log(data["json"]);
                         
                           
@@ -289,14 +289,14 @@
                  
                  var data = {
                     "action": "get_img",
-                    "id": idDevice,
-                     "id_colore": idColore
+                    "idDevice": idDevice,
+                     "idColore": idColore
                     };
                     data = $(this).serialize() + "&" + $.param(data);
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "querydispositivo.php",
+                        url: "query_devices.php",
                         data: data,
                         success: function(data) {
                             console.log(data["json"]);
