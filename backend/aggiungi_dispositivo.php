@@ -35,11 +35,10 @@
         $inclusi = mysqli_real_escape_string($con, $inclusi);
         $specifiche = $_POST["specifiche"];
         $specifiche = mysqli_real_escape_string($con, $specifiche);
-        $memoria = $_POST["memoria"];
         
         $query = "
             INSERT INTO Devices
-            VALUES ('', '".$categoria."', '".$marca."', '".$nome."', '".$prezzo_intero."', '".$prezzo_rate."', '".$prezzo_scontato."', '".$n_rate."', '".$promo."', '".$novita."', '".$disponibile."', '".$tipologia."', '".$sis_op."', '".$schermo."', '".$connessione."', '".$caratteristiche."', '".$descrizione."', '".$inclusi."', '".$specifiche."', '".$memoria."')
+            VALUES ('', '".$categoria."', '".$marca."', '".$nome."', '".$prezzo_intero."', '".$prezzo_rate."', '".$prezzo_scontato."', '".$n_rate."', '".$promo."', '".$novita."', '".$disponibile."', '".$tipologia."', '".$sis_op."', '".$schermo."', '".$connessione."', '".$caratteristiche."', '".$descrizione."', '".$inclusi."', '".$specifiche."')
         ";
         
         if (mysqli_query($con, $query)) {

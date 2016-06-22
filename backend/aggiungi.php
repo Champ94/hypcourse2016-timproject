@@ -193,22 +193,6 @@
             </div>
             
             <div>
-                <label for="memoria">Memoria</label>
-                <select id="memoria" name="memoria">
-                    <option value=""></option>
-                    <?php
-
-                        if($result = mysqli_query($con, "SELECT * FROM Memoria")) {
-                            while($value = mysqli_fetch_object($result)) {
-                                printf('<option value="'.$value->idMemoria.'">'.$value->dimensione.'</option>');
-                            }
-                        }
-
-                    ?>
-                </select>
-            </div>
-            
-            <div>
                 <input type="submit" name="inserisci" value="Inserisci Dispositivo">
             </div>
             
@@ -223,6 +207,10 @@
                 <label for="cartella">Nome Cartella</label>
                 <input type="text" id="cartella" name="cartella">
             </div>
+            
+            <p>
+            Legenda cartella: s_t per smartphone e telefoni, tablet per tablet, m_n per modem e networking, tv_sl per tv e smartlife
+            </p>
             
             <div>
                 <label for="device">Dispositivo</label>
@@ -254,6 +242,48 @@
                         if($result = mysqli_query($con, "SELECT * FROM Colori")) {
                             while($value = mysqli_fetch_object($result)) {
                                 printf('<option value="'.$value->idColori.'-'.$value->nome.'">'.$value->nome.'</option>');
+                            }
+                        }
+
+                    ?>
+                </select>
+            </div>
+            
+            <div>
+                <input type="submit" name="inserisci" value="Inserisci relazione">
+            </div>
+            
+        </form>
+        
+        <h1>Inserisci relazione memoria-dispositivo</h1>
+        
+        <form action="aggiungi_memoria.php" method="post" enctype="multipart/form-data">
+            
+            <div>
+                <label for="device">Dispositivo</label>
+                <select id="device" name="device">
+                    <option value=""></option>
+                    <?php
+
+                        if($result = mysqli_query($con, "SELECT idDevices, nome FROM Devices")) {
+                            while($value = mysqli_fetch_object($result)) {
+                                printf('<option value="'.$value->idDevices.'-'.$value->nome.'">'.$value->nome.'</option>');
+                            }
+                        }
+
+                    ?>
+                </select>
+            </div>
+            
+            <div>
+                <label for="memoria">Memoria</label>
+                <select id="memoria" name="memoria">
+                    <option value=""></option>
+                    <?php
+
+                        if($result = mysqli_query($con, "SELECT * FROM Memoria")) {
+                            while($value = mysqli_fetch_object($result)) {
+                                printf('<option value="'.$value->idMemoria.'">'.$value->dimensione.'</option>');
                             }
                         }
 
