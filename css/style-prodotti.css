@@ -137,6 +137,28 @@ html, body {
 }
 
 .device-color {
-    width: 20px;
-    height: 20px;
+    border-radius: 10px;
+    border: 2px solid #0078c1;
+    padding: 15px; 
+    width: 15px;
+    height: 15px;
+}
+
+.row{
+  margin-top: 20px;
+  margin-bottom: 20px
+}
+
+.nome_device{
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #004990;
+    font-size: 2em;
+}
+
+.label-warning{
+    margin-left: 10px;
+    padding: 0.4em;
+    font-size: 50%;
 }

@@ -47,10 +47,8 @@
             </div>
         </nav>
         
-        <ol class="breadcrumb">
-            <li><a href="#">Prodotti</a></li>
-            <li><a href="#"></a></li>
-            <li class="active"></li>
+        <ol id="breadcrumb" class="breadcrumb">
+            
         </ol>
         
         <div class="container-fluid">
@@ -73,9 +71,11 @@
             <div class="col-sm-5"><!--colonna2 -->
                             
                 <div class="row">
-                    <div id="nome_dispositivo" class="col-sm-12">
+                    <div id="nome_dispositivo" class="nome_device" class="col-sm-12">
                     </div>
                 </div>
+                
+        
                 
                 <div class="row">                    
                     <div id="caratteristiche" class="col-sm-12">
@@ -92,7 +92,6 @@
                 
                  <div class="row">
                     <div id="colori_device" class="col-sm-12">
-                        <div class="device-color" style="background-color: #000000;"></div>
                         
                      </div>
                 </div>
@@ -153,9 +152,21 @@
                 var id = $_GET("id");
                 console.log(id);
                 get_device(id);
-                get_img(3);
+                get_img(id, 3);
+                
+                
                 
             });
+             
+             $('#img_dev').click(function() {
+                    console.log("CI SONOOOOOOO");
+    var thmb = this;
+    var src = this.src;
+    $('#main_img img').fadeOut(400,function(){
+        thmb.src = this.src;
+        $(this).fadeIn(400)[0].src = src;
+    });
+});
              
              function get_device(idDevice) {
                  
@@ -170,21 +181,32 @@
                         url: "query_devices.php",
                         data: data,
                         success: function(data) {
-                            console.log(data["json"]);
+                            console.log(data["colore_0"]);
+                            console.log(data["n_colori"]);
+                             console.log(data["json"]);
                         
                           
-                                $("#nav-schede").append(
+                            $("#nav-schede").append(
                                     '<li><a data-toggle="tab" ></a></li>' 
                             );
+                            
                             $(".tab-content").append(
                                 '<div id="menu3" class="tab-pane fade"><h3>CIAO</h3><p>'+data["caratteristiche"]+'</p></div>'
                             );
+                            
                             $("#menu2").html (
                                 data["specifiche"]
                             );
+                            
                             $("#prezzo_intero").html(
                                 data["prezzo_intero"]+" €"
                             );
+                            
+                            $("#breadcrumb").html(
+                                '<li><a href="#">Prodotti</a></li>'+
+                                '<li><a href="#"></a></li>'+
+                                '<li class="active"></li>'
+                            )
     
                             if(data["n_rate"]!=0) {
                                 $("#prezzo_rate").html(
@@ -192,13 +214,28 @@
                                 );
                             }
                             
-                             $("#nome_dispositivo").html(
-                                data["nome"]
+                             $("#nome_dispositivo").html(function(){
+                                if(data["promo"]==1 )
+                                    return data["nome"]+'<span class="label label-warning">promo</span>';
+                                 else if(data["novita"]==1)
+                                    return data["nome"]+'<span class="label label-warning">novità</span>';
+                                 else
+                                     return data["nome"];
+
+                             }
+                                
+
+                                 
                             );
                             
                              $("#caratteristiche").html(
                              data["caratteristiche"]
                              );
+                            
+                            for(i=0;i<data["n_colori"];i++)
+                               $("#colori_device").append(
+                                    '<div class="col-sm-1"> <div class="device-color" class="active-color" style="background-color:'+data["colore_"+i]["codice_colore"]+'" > </div> </div> '
+                            );
                              
                             if(data["specifiche"]!=null) {
                                 $("#nav-schede").append(
@@ -206,7 +243,6 @@
                                 );
                                 $("#content-schede").append(
                                     '<div id="specifiche" class="tab-pane fade in active">'+
-                                        '<h3>SPECIFICHE</h3>'+
                                         '<p>'+data["specifiche"]+'</p>'+
                                     '</div>'
                                 );
@@ -216,9 +252,9 @@
                                 $("#nav-schede").append(
                                     '<li class=""><a data-toggle="tab" href="#descrizione">DESCRIZIONE</a></li>'
                                 );
+                                
                                 $("#content-schede").append(
                                     '<div id="descrizione" class="tab-pane fade">'+
-                                        '<h3>DESCRIZIONE</h3>'+
                                         '<p>'+data["descrizione"]+'</p>'+
                                     '</div>'
                                 );
@@ -230,14 +266,14 @@
                                 );
                                 $("#content-schede").append(
                                     '<div id="inclusi" class="tab-pane fade">'+
-                                        '<h3>INCLUSI NEL PREZZO</h3>'+
                                         '<p>'+data["inclusi"]+'</p>'+
                                     '</div>'
                                 );
                             }
                           
                             for(i=0; i <data["n_memoria"] ; i++){
-                             $("#memoria").append(
+                                if(data["memoria_0"]["dimensione"]!="nessuna")
+                                $("#memoria").append(
                                  
                            '<button type="button" class="btn btn-default">'+data["memoria_"+i]["dimensione"]+'</button>'
                               
@@ -249,11 +285,11 @@
                     return false;
              }
              
-             function get_img (idColore) {
+             function get_img (idDevice, idColore) {
                  
                  var data = {
                     "action": "get_img",
-                    "id": "1",
+                    "id": idDevice,
                      "id_colore": idColore
                     };
                     data = $(this).serialize() + "&" + $.param(data);
