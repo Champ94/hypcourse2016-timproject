@@ -1,4 +1,21 @@
 @media screen and (min-width: 768px) {
+    .carousel-sfumatura-sin {
+        background-image: linear-gradient(to right, #050f84 0%, #fff)!important;
+    }
+
+    .carousel-sfumatura-des {
+        background-image: linear-gradient(to left, #050f84 0%, #fff)!important;
+    }
+    
+    .siamobanner {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 120px;
+        padding-bottom: 120px;
+        color: white;
+
+    }
+    
     .tim-header {
         background-color: #004489;
         margin-bottom: 0px;
@@ -133,6 +150,48 @@
 }
 
 @media screen and (max-width: 767px) {
+    .carousel-sfumatura-sin {
+        background-image: linear-gradient(to right, #fff 0%, #fff)!important;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black!important;
+    }
+
+    .carousel-sfumatura-des {
+        background-image: linear-gradient(to left, #fff 0%, #fff)!important;
+        text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black!important;
+    }
+    
+    .innov-desc-xs {
+        font-size: 12px!important;
+        padding: 0 20% 0 20%;
+    }
+    
+    .innov-titoli-xs {
+        font-size: 16px!important;
+        padding: 0 20% 0 20%;
+    }
+    
+    .siamobanner {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        color: white;
+        font-size: 20px;
+    }
+    
+    .innov-puls {
+        min-width: 100px;
+        background-color: red;
+        background-image: none;
+        border-color: red;
+        text-shadow: 0 0px 0;
+        color: white;
+        font-weight: bolder;
+        margin-top: 0px;
+        margin-bottom: 25px;
+        font-size: 9px;s
+    }
+    
     .tim-header {
         background-color: #004489;
         margin-bottom: 0px;
@@ -295,11 +354,79 @@
     background-size: 100%;
 }
 
-.siamobanner {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-top: 120px;
-    padding-bottom: 120px;
-    color: white;
+@media screen and (min-width: 769px) {
+    .innov-puls {
+        min-width: 140px;
+        background-color: red;
+        background-image: none;
+        border-color: red;
+        text-shadow: 0 0px 0;
+        color: white;
+        font-weight: bolder;
+        margin-top: 136px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}
+
+@media screen and (width: 768px) {
+
+    .innov-puls {
+        min-width: 100px;
+        background-color: red;
+        background-image: none;
+        border-color: red;
+        text-shadow: 0 0px 0;
+        color: white;
+        margin-top: 136px;
+        font-size: 9px;
+    }
+    
+    .innov-head {
+        font-size: 20px;
+    }
     
 }
+
+.innov-carousel {
+    left: 0;
+    right: 0;
+    top: 5%;
+    bottom: 5%;
+    position: relative;
+    padding-top: 30px;
+}
+
+.innov-titoli {
+    color: #0092D5;
+    font-size: 25px;
+    margin-top: 10%;
+    text-shadow: 0 0px;
+}
+
+.innov-desc {
+    font-size: 16px;
+    color: black;
+    text-shadow: 0 0px;
+}
+
+.carousel-indicators li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #0092D5;
+  border-radius: 10px;
+}
+
+.carousel-indicators .active {
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  background-color: #0092D5;
+}
+
