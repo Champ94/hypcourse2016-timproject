@@ -107,13 +107,13 @@
 
     .prezzi {
         color: red;
-        font-size: 25px;
+        font-size: 22px;
         font-weight: bolder;
     }
     
     .prezzi_scont {
         color: black;
-        font-size: 20px;
+        font-size: 17px;
         font-weight: bolder;
         text-decoration: line-through;
     }
@@ -285,13 +285,13 @@
 
     .prezzi {
         color: red;
-        font-size: 23px;
+        font-size: 20px;
         font-weight: bolder;
     }
 
     .prezzi_scont {
         color: black;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bolder;
         text-decoration: line-through;
     }
@@ -430,3 +430,7 @@
   background-color: #0092D5;
 }
 
+.col-scontati {
+    padding: 0 0 0 0;
+    margin: 0 5px 0 5px;
+}
