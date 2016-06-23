@@ -329,6 +329,35 @@
                 
                 return false;
             }
+            
+            function getFilteredlist(idCategoria) {
+                
+                var data = {
+                    "action": "get_filteredlist",
+                    "idCategoria": idCategoria
+                    /*
+                        -> CREARE (PRENDERE) UNA VARIABILE PER OGNI FILTRO
+                        Con un form viene più semplice (vedi esempio completo nella cartella esempi)
+                    */
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_devices.php", // -> Da finire la funzione
+                    data: data,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        // TO DO
+                        
+                    }
+                });
+                
+                return false;
+            }
         
         </script>
     

@@ -47,6 +47,29 @@
                     }
                     break;
                     
+                case "get_filteredlist":
+                    if(isset($_POST["idCategoria"])) {
+                        
+                        $filters = array(
+                            "promo" => (!empty($_POST["promo"])) ? $_POST["promo"] : 0,
+                            "novita" => (!empty($_POST["novita"])) ? $_POST["novita"] : 0,
+                            "disponibile" => (!empty($_POST["disponibile"])) ? $_POST["disponibile"] : 0,
+                            "tipologiaID" => (!empty($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : 0,
+                            "prezzo" => (!empty($_POST["prezzo"])) ? $_POST["prezzo"] : 0,
+                            "marcaID" => (!empty($_POST["marcaID"])) ? $_POST["marcaID"] : 0,
+                            "rate" => (!empty($_POST["rate"])) ? $_POST["rate"] : 0,
+                            "sisopID" => (!empty($_POST["sisopID"])) ? $_POST["sisopID"] : 0,
+                            "connessioneID" => (!empty($_POST["connessioneID"])) ? $_POST["connessioneID"] : 0,
+                        );
+                        
+                        getFilteredlist($filters);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
+                    break;
+                    
                 default:
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
@@ -382,6 +405,77 @@
             $return["n_connessioni"] = $cont;
             
             $return["json"] = json_encode($return);
+            echo json_encode($return);
+            
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+    function getFilteredlist($idCategoria, $filters) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = ?
+            AND
+            AND
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_devices"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] += $data;
+                $cont++;
+            }
+            
+            $return["n_devices"] = $cont;
+            
+            $return["json"] = json_encode();
             echo json_encode($return);
             
             $statement->close();
