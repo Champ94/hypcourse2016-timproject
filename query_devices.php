@@ -37,6 +37,16 @@
                     }
                     break;
                 
+                case "get_filtri":
+                    if(isset($_POST["idCategoria"])) {
+                        getFiltri($_POST["idCategoria"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
+                    break;
+                    
                 default:
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
@@ -248,6 +258,128 @@
             }
             
             $return["n_devices"] = $cont;
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+            
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+    function getFiltri($idCategoria) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT DISTINCT Tipologia.* 
+            FROM Devices, Categoria, Tipologia
+            WHERE Devices.tipologiaID = Tipologia.idTipologia
+                AND Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+            ORDER BY Tipologia.nome
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["tipologia_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_tipologie"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT Marca.* 
+            FROM Devices, Categoria, Marca
+            WHERE Devices.marcaID = Marca.idMarca
+                AND Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+            ORDER BY Marca.nome
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["marca_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_marche"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT SisOp.* 
+            FROM Devices, Categoria, SisOp
+            WHERE Devices.sisopID = SisOp.idSisOp
+                AND Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+            ORDER BY SisOp.nome
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["sisop_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_sisop"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT Connessione.* 
+            FROM Devices, Categoria, Connessione
+            WHERE Devices.connessioneID = Connessione.idConnessione
+                AND Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+            ORDER BY Connessione.tipo
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["connessione_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_connessioni"] = $cont;
             
             $return["json"] = json_encode($return);
             echo json_encode($return);

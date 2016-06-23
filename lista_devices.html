@@ -212,11 +212,12 @@
                 $(".rate").height(maxHeight);
             
                 var idCategoria = $_GET("idCategoria");
-                get_devlist(idCategoria);
+                getDevlist(idCategoria);
+                getFiltri(idCategoria);
         
             });
-        
-            function get_devlist(idCategoria) {
+            
+            function getDevlist(idCategoria) {
                  
                 var data = {
                     "action": "get_devlist",
@@ -298,6 +299,31 @@
                                 }
                             }
                         }
+                    }
+                });
+                
+                return false;
+            }
+            
+            function getFiltri(idCategoria) {
+                
+                var data = {
+                    "action": "get_filtri",
+                    "idCategoria": idCategoria
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_devices.php",
+                    data: data,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        // TO DO
+                        
                     }
                 });
                 
