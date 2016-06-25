@@ -86,6 +86,14 @@
             <a class="btn btn-primary collapsed pulsantefiltri" role="button" data-toggle="collapse" href="#menufiltri2" aria-expanded="false" aria-controls="menufiltri">Filtra per...</a>
             <div class="collapse row filtroresp" id="menufiltri2">
                 <div class="col-sm-4 col-xs-12">
+                    <form action="query_devices.php" method="post" id="filtri">
+                        <label for="mostra solo">Mostra solo:</label>
+                        <input type="checkbox" id="Promozione" name="Promozione">
+                        <input type="checkbox" id="Novità" name="Novità">
+                        <input type="checkbox" id="Disponibile" name="Disponibile">
+                        <hr>
+                        
+                    </form>
                     <p class="filtroresp">Mostra solo  </p>
                     <div class="checkbox filtroresp">
                         <label><input type="checkbox"> I più venduti </label>
@@ -133,60 +141,49 @@
                         <h3 class="panel-title">Filtra per</h3>
                     </div>
                     <div class="panel-body">
-                        <p>Mostra solo  </p>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I più venduti
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> In promozione
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Novità
-                            </label>
-                        </div>
-                        <hr>
-                        <p>Tipologia</p>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> iPhone
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Smartphone
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Telefoni di casa
-                            </label>
-                        </div>
-                        <hr>
-                        <p>Prezzo</p>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> -200
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> 200-500
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> +500
-                            </label>
-                        </div>
-                        <hr>
-                        <p>Marca</p>
-                        <hr>
-                        <p>Acquisto</p>
+                        <form action="" method="post" id="filtri">
+                            <label for="mostra solo">Mostra solo</label>
+                            <div class="radio">
+                                <label><input type="radio" name="mostra_solo" value="disponibile"> Disponibile</label>
+                                <br>
+                                <label><input type="radio" name="mostra_solo" value="novita"> Novità</label>
+                                <br>
+                                <label><input type="radio" name="mostra_solo" value="promo"> Promozione</label>
+                            </div>
+                            <hr>
+                            
+                            <label for="tipologia">Tipologia</label>
+                            <div id="tipologia">
+                            </div>
+                            <hr>
+                            <label for="prezzo">Prezzo</label>
+                            <div class="radio">
+                                <label><input type="radio" name="prezzo" value="150"> &lt;150</label>
+                                <br>
+                                <label><input type="radio" name="prezzo" value="150-300"> 150-300</label>
+                                <br>
+                                <label><input type="radio" name="prezzo" value="300-400"> 300-400</label>
+                                <br>
+                                <label><input type="radio" name="prezzo" value="400"> &gt;400</label>
+                            </div>
+                            <hr>
+                            
+                            <label for="acquisto">Acquisto</label>
+                            <div class="radio">
+                                <label><input type="radio" name="acquisto" value="rate"> A rate</label>
+                                <br>
+                                <label><input type="radio" name="acquisto" value="unica"> Soluzione unica</label>
+                            </div>             
+                            <hr>
+                            
+                            <div id="sis_ope">
+                            </div>
+                            
+                            <div id="connessione">
+                            </div>
+                            
+                            <input type="submit" name="submit" value="Applica filtri">
+                        </form>  
                     </div>
                 </div>
             </div> 
@@ -334,10 +331,11 @@
                 
                 var data = {
                     "action": "get_filteredlist",
-                    "idCategoria": idCategoria,
+                    "idCategoria": idCategoria
                     /*
                         Usare un form per queste variabili
                     */
+<<<<<<< HEAD
                     "promo": 0,
                     "novita": 0,
                     "disponibile": 0,
@@ -347,6 +345,17 @@
                     "rate": 0,
                     "sisopID": 0,
                     "connessioneID": 0
+=======
+                    /*"promo": ,
+                    "novita": ,
+                    "disponibile": ,
+                    "tipologiaID": ,
+                    "prezzo": ,
+                    "marcaID": ,
+                    "rate": ,
+                    "sisopID": ,
+                    "connessioneID": ,*/
+>>>>>>> 0f1f5e0fb4480f76391094552ca647d272d9f31e
                     /*
                         -> CREARE (PRENDERE) UNA VARIABILE PER OGNI FILTRO
                         Con un form viene più semplice (vedi esempio completo nella cartella esempi)
@@ -375,4 +384,5 @@
     
     </body>
 	
+    
 </html>
