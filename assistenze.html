@@ -9,7 +9,7 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
 		
 		<title>
-			TIM - Lista Devices
+			TIM - Assistenza
 		</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
@@ -18,7 +18,8 @@
         <link rel="stylesheet" href="css/tim/lista-devices.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
-		
+		<link rel="stylesheet" href="css/tim/assistenze.css">
+        
 	</head>
 	
 	<body>
@@ -55,21 +56,48 @@
             <li><a href="#">Assistenza</a></li>
             <li class="active">Assistenza X</li>
         </ol>
-        
-        <div class="col-md-1 col-md-offset-1 col-xs-2">
-            <img alt="#" src="#">    
-        </div>
-            
-        <div class="col-md-5 col-xs-5">
-            <p>Categoria device</p>
-            <li><a href="#">Torna alle categorie</a></li>
+        <div class="row rigarespo">
+            <div class="col-md-1 col-md-offset-1 col-xs-2">
+                <img alt="#" src="#">    
+            </div>
+            <div class="col-md-5 col-xs-5">
+                <p>Categoria device</p>
+                <li><a href="#">Torna alle categorie</a></li>
+            </div>
         </div>
 
-        <div class="row rigarespo">
-            <div class="col-md-1 col-md-offset-1">
-                
+        <!-- menù pc -->
+        <div class="row rigarespo assistenza visible-md visible-lg">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Assistenze</h3>
+                    </div>
+                    <div class="panel-body" id="tipi_assistenze">
+                        
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8 col-md-offset-1">
-            
+            <div class="col-md-7 col-md-offset-1">
+                <div id="assistenza_selezionata">
+                </div>
             </div>
         </div>
+        
+        <!-- menù responsive -->
+        <div class="hidden-md hidden-lg">
+            <a class="btn btn-primary collapsed pulsante-assistenze" role="button" data-toggle="collapse" href="#tipi-assistenze" aria-expanded="false" aria-controls="tipi-assistenze">Assistenze</a>
+            <div class="row rigarespo">
+                <div class="col-xs-10 col-xs-4 col-xs-offset-1 col-sm-offset-1">
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <script src="js/jquery-1.12.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/get.js"></script>
+        
+    </body>
+</html>
