@@ -141,7 +141,7 @@
                         <h3 class="panel-title">Filtra per</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="query_devices.php" method="post" id="filtri" accept-charset="utf-8">
+                        <form action="" method="post" id="filtri">
                             <label for="mostra solo">Mostra solo</label>
                             <div class="radio">
                                 <label><input type="radio" name="mostra_solo" value="disponibile"> Disponibile</label>
@@ -153,15 +153,9 @@
                             <hr>
                             
                             <label for="tipologia">Tipologia</label>
-                            <div id="tipologia" class="radio">
+                            <div id="tipologia">
                             </div>
                             <hr>
-                            
-                            <label for="marca">Marca</label>
-                            <div id="marca" class="radio">
-                            </div>
-                            <hr>
-                            
                             <label for="prezzo">Prezzo</label>
                             <div class="radio">
                                 <label><input type="radio" name="prezzo" value="150"> &lt;150</label>
@@ -217,7 +211,7 @@
                 var idCategoria = $_GET("idCategoria");
                 getDevlist(idCategoria);
                 getFiltri(idCategoria);
-                
+        
             });
             
             function getDevlist(idCategoria) {
@@ -326,80 +320,14 @@
                         console.log(data["json"]);
                         
                         // TO DO
-                        for(var i=0; i<(data["n_tipologie"]-1); i++) {
-                            $("#tipologia").append(
-                                '<label><input type="radio" name="tipologia" value="'+data['tipologia_'+i]["nome"]+'"> '+data['tipologia_'+i]["nome"]+'</label>'+
-                                '<br>'
-                            );
-                        }
                         
-                        $i=data["n_tipologie"];
-                        $("#tipologia").append(
-                            '<label><input type="radio" name="tipologia" value="'+data['tipologia_'+i]["nome"]+'"> '+data['tipologia_'+i]["nome"]+'</label>'
-                        );
-                        
-                        for(var i=0; i<(data["n_marche"]-1); i++) {
-                            $("#marca").append(
-                                '<label><input type="radio" name="marca" value="'+data['marca_'+i]["nome"]+'"> '+data['marca_'+i]["nome"]+'</label>'+
-                                '<br>'
-                            );
-                        }
-                        
-                        $i=data["n_marca"];
-                        $("#marca").append(
-                            '<label><input type="radio" name="marca" value="'+data['marca_'+i]["nome"]+'"> '+data['marca_'+i]["nome"]+'</label>'
-                        );
-                        
-                        if(data["n_sisop"]) {
-                            $("#sis_ope").append(
-                                '<label for="sisop">Sistema operativo</label>'+
-                                '<div id="filtri_sisop" class="radio">'+
-                                '</div>'+
-                                '<hr>'
-                            );
-                        }
-                        
-                        for(var i=0; i<(data["n_sisop"]-1); i++) {
-                            $("#filtri_sisop").append(
-                                '<label><input type="radio" name="sisop" value="'+data['sisop_'+i]["nome"]+'"> '+data['sisop_'+i]["nome"]+'</label>'+
-                                '<br>'
-                            );
-                        }
-                        
-                        $i=data["n_sisop"];
-                        $("#filtri_sispè").append(
-                            '<label><input type="radio" name="sisop" value="'+data['sisop_'+i]["nome"]+'"> '+data['sisop_'+i]["nome"]+'</label>'
-                        );
-                        
-                        if(data["n_connessioni"]) {
-                            $("#connessione").append(
-                                '<label for="connessione"> Connessione</label>'+
-                                '<div id="filtri_connessione" class="radio">'+
-                                '</div>'+
-                                '<br>'
-                            );
-                        }
-                        
-                        for(var i=0; i<(data["n_connessioni"]-1); i++) {
-                            $("#filtri_connessione").append(
-                                '<label><input type="radio" name="connessione" value="'+data['connessione_'+i]["nome"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'+
-                                '<br>'
-                            );
-                        }
-                        
-                        $i=data["filtri_connessione"];
-                        $("#filtri_connessione").append(
-                            '<label><input type="radio" name="connessione" value="'+data['connessione_'+i]["nome"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'
-                        );
                     }
                 });
                 
                 return false;
             }
             
-            $("#filtri").submit(function() {
-                
-                idCategoria = $_GET("idCategoria");
+            function getFilteredlist(idCategoria) {
                 
                 var data = {
                     "action": "get_filteredlist",
@@ -438,7 +366,7 @@
                 });
                 
                 return false;
-            });
+            }
         
         </script>
     

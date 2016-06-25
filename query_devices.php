@@ -1,5 +1,5 @@
 <?php
-
+    
     if(is_ajax()) {
         
         if(isset($_POST["action"]) && !empty($_POST["action"])) {
@@ -49,9 +49,7 @@
                     
                 case "get_filteredlist":
                     if(isset($_POST["idCategoria"])) {
-                        $return = $_POST;
-                        echo json_encode($return);
-                        /*
+                        
                         $filters = array(
                             "promo" => (!empty($_POST["promo"])) ? $_POST["promo"] : "%",
                             "novita" => (!empty($_POST["novita"])) ? $_POST["novita"] : "%",
@@ -64,7 +62,7 @@
                             "connessioneID" => (!empty($_POST["connessioneID"])) ? $_POST["connessioneID"] : "%",
                         );
                         
-                        getFilteredlist($_POST["idCategoria"], $filters);*/
+                        getFilteredlist($_POST["idCategoria"], $filters);
                     }
                     else {
                         $error["json"] = "Ajax call: error!";
