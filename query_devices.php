@@ -51,15 +51,15 @@
                     if(isset($_POST["idCategoria"])) {
                         
                         $filters = array(
-                            "promo" => (!empty($_POST["promo"])) ? $_POST["promo"] : "%",
-                            "novita" => (!empty($_POST["novita"])) ? $_POST["novita"] : "%",
-                            "disponibile" => (!empty($_POST["disponibile"])) ? $_POST["disponibile"] : "%",
-                            "tipologiaID" => (!empty($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : "%",
-                            "prezzo" => (!empty($_POST["prezzo"])) ? $_POST["prezzo"] : "%",
-                            "marcaID" => (!empty($_POST["marcaID"])) ? $_POST["marcaID"] : "%",
-                            "rate" => (!empty($_POST["rate"])) ? $_POST["rate"] : "%",
-                            "sisopID" => (!empty($_POST["sisopID"])) ? $_POST["sisopID"] : "%",
-                            "connessioneID" => (!empty($_POST["connessioneID"])) ? $_POST["connessioneID"] : "%",
+                            "promo" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="promo") ? "1" : "%",
+                            "novita" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="novita") ? "1" : "%",
+                            "disponibile" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="disponibile") ? "1" : "%",
+                            "tipologiaID" => (isset($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : "%",
+                            "prezzo" => (isset($_POST["prezzo"])) ? $_POST["prezzo"] : "%",
+                            "marcaID" => (isset($_POST["marcaID"])) ? $_POST["marcaID"] : "%",
+                            "rate" => (isset($_POST["acquisto"])) ? $_POST["acquisto"] : "%",
+                            "sisopID" => (isset($_POST["sisopID"])) ? $_POST["sisopID"] : "%",
+                            "connessioneID" => (isset($_POST["connessioneID"])) ? $_POST["connessioneID"] : "%",
                         );
                         
                         getFilteredlist($_POST["idCategoria"], $filters);
