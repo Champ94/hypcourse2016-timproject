@@ -1,5 +1,5 @@
 <?php
-
+    
     if(is_ajax()) {
         
         if(isset($_POST["action"]) && !empty($_POST["action"])) {
@@ -51,18 +51,18 @@
                     if(isset($_POST["idCategoria"])) {
                         
                         $filters = array(
-                            "promo" => (!empty($_POST["promo"])) ? $_POST["promo"] : 0,
-                            "novita" => (!empty($_POST["novita"])) ? $_POST["novita"] : 0,
-                            "disponibile" => (!empty($_POST["disponibile"])) ? $_POST["disponibile"] : 0,
-                            "tipologiaID" => (!empty($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : 0,
-                            "prezzo" => (!empty($_POST["prezzo"])) ? $_POST["prezzo"] : 0,
-                            "marcaID" => (!empty($_POST["marcaID"])) ? $_POST["marcaID"] : 0,
-                            "rate" => (!empty($_POST["rate"])) ? $_POST["rate"] : 0,
-                            "sisopID" => (!empty($_POST["sisopID"])) ? $_POST["sisopID"] : 0,
-                            "connessioneID" => (!empty($_POST["connessioneID"])) ? $_POST["connessioneID"] : 0,
+                            "promo" => (!empty($_POST["promo"])) ? $_POST["promo"] : "%",
+                            "novita" => (!empty($_POST["novita"])) ? $_POST["novita"] : "%",
+                            "disponibile" => (!empty($_POST["disponibile"])) ? $_POST["disponibile"] : "%",
+                            "tipologiaID" => (!empty($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : "%",
+                            "prezzo" => (!empty($_POST["prezzo"])) ? $_POST["prezzo"] : "%",
+                            "marcaID" => (!empty($_POST["marcaID"])) ? $_POST["marcaID"] : "%",
+                            "rate" => (!empty($_POST["rate"])) ? $_POST["rate"] : "%",
+                            "sisopID" => (!empty($_POST["sisopID"])) ? $_POST["sisopID"] : "%",
+                            "connessioneID" => (!empty($_POST["connessioneID"])) ? $_POST["connessioneID"] : "%",
                         );
                         
-                        getFilteredlist($filters);
+                        getFilteredlist($_POST["idCategoria"], $filters);
                     }
                     else {
                         $error["json"] = "Ajax call: error!";
@@ -280,6 +280,9 @@
                 $cont++;
             }
             
+            /*
+                Overwritten for debugging pourpose
+            */
             $return["n_devices"] = $cont;
             
             $return["json"] = json_encode($return);
@@ -427,13 +430,46 @@
             FROM Devices, Categoria
             WHERE Devices.categoriaID = Categoria.idCategoria
             AND Devices.categoriaID = ?
-            AND
-            AND
+            AND Devices.promo LIKE ?
+            AND Devices.novita LIKE ?
+            AND Devices.disponibile LIKE ?
+            AND Devices.tipologiaID LIKE ?
+            AND Devices.prezzo_intero BETWEEN ? AND ?
+            AND Devices.marcaID LIKE ?
+            AND Devices.n_rate LIKE ?
+            AND Devices.sisopID LIKE ?
+            AND Devices.connessioneID LIKE ?
         ";
+        
+        switch($filters["prezzo"]) {
+            case 1:
+                $min_prezzo = 0;
+                $max_prezzo = 150;
+                break;
+                
+            case 2:
+                $min_prezzo = 150;
+                $max_prezzo = 300;
+                break;
+                
+            case 3:
+                $min_prezzo = 300;
+                $max_prezzo = 400;
+                break;
+                
+            case 4:
+                $min_prezzo = 400;
+                $max_prezzo = 9999;
+                break;
+                
+            default:
+                $min_prezzo = 0;
+                $max_prezzo = 9999;
+        }
         
         if($statement = $con->prepare($query)) {
             
-            $statement->bind_param("i", $idCategoria);
+            $statement->bind_param("sssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $filters["rate"], $filters["sisopID"], $filters["connessioneID"]);
             $statement->execute();
             
             $cont = 0;
@@ -445,10 +481,13 @@
             
             $return["n_devices"] = $cont;
             
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+            
             $statement->close();
             
         }
-        
+        /*
         $query = "
         SELECT DISTINCT imgdevlist.* FROM (
             SELECT DISTINCT Devices.idDevices, Immagini.percorso
@@ -480,7 +519,7 @@
             
             $statement->close();
             
-        }
+        }*/
         
         $con->close();
         
