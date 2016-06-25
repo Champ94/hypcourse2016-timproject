@@ -481,20 +481,26 @@
             
             $return["n_devices"] = $cont;
             
-            $return["json"] = json_encode($return);
-            echo json_encode($return);
-            
             $statement->close();
             
         }
-        /*
+        
         $query = "
         SELECT DISTINCT imgdevlist.* FROM (
             SELECT DISTINCT Devices.idDevices, Immagini.percorso
                 FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
                     JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
                 WHERE Devices.categoriaID = Categoria.idCategoria
-                AND Devices.categoriaID = ?
+                    AND Devices.categoriaID = ?
+                    AND Devices.promo LIKE ?
+                    AND Devices.novita LIKE ?
+                    AND Devices.disponibile LIKE ?
+                    AND Devices.tipologiaID LIKE ?
+                    AND Devices.prezzo_intero BETWEEN ? AND ?
+                    AND Devices.marcaID LIKE ?
+                    AND Devices.n_rate LIKE ?
+                    AND Devices.sisopID LIKE ?
+                    AND Devices.connessioneID LIKE ?
                 ORDER BY Devices.idDevices
             ) AS imgdevlist
             GROUP BY idDevices
@@ -502,7 +508,7 @@
         
         if($statement = $con->prepare($query)) {
             
-            $statement->bind_param("i", $idCategoria);
+            $statement->bind_param("sssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $filters["rate"], $filters["sisopID"], $filters["connessioneID"]);
             $statement->execute();
             
             $cont = 0;
@@ -514,12 +520,12 @@
             
             $return["n_devices"] = $cont;
             
-            $return["json"] = json_encode();
+            $return["json"] = json_encode($return);
             echo json_encode($return);
             
             $statement->close();
             
-        }*/
+        }
         
         $con->close();
         
