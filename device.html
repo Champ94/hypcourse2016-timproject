@@ -127,8 +127,17 @@
                 
                 var idDevice = $_GET("idDevice");
                 get_device(idDevice);
-                get_img(idDevice, 3);
                 
+            });
+            
+            $("#colori_device").on("click", "div div", function(e) {
+                e.preventDefault();
+                var idImmagine = $(this).attr("id");
+                var idDevice = $_GET("idDevice");
+                get_img(idDevice, idImmagine);
+                $(this).addClass("active-color");
+                $(this).removeClass("active-color"); 
+                });
             });
             
             $("#img_dev").on("click", "a img", function(e){
@@ -157,6 +166,8 @@
                     success: function(data) {
                         
                         console.log(data["json"]);
+                        
+                        get_img(data["idDevices"], data["colore_0"]["id_colore"]);
                         
                         /*
                             Breadcrumb
@@ -202,9 +213,13 @@
                         */
                         for(i=0; i<data["n_colori"]; i++) {
                             $("#colori_device").append(
-                                '<div class="col-sm-1"><div class="device-color" class="active-color" style="background-color:'+data["colore_"+i]["codice_colore"]+'"></div></div>'
+                                '<div class="col-xs-2 col-md-1 col-sm-2 no-padding"><div id="'+data["colore_"+i]["id_colore"]+'" class="device-color" style="background-color:'+data["colore_"+i]["codice_colore"]+'"></div></div>'
                             );
+                            
+                               
                         }
+                        
+                       
                         
                         /*
                             Prezzo Intero
