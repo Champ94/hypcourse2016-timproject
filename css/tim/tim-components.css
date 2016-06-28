@@ -4,7 +4,6 @@
 
 html {
     min-height: 100%;
-    height: 100%;
     position: relative;
 }
 
@@ -53,10 +52,14 @@ body {
 
 .footer-row {
     height: 50px;
+    margin-bottom: 0px!important;
+    margin-top: 0px!important;
 }
 
 .footer-row div {
     height: inherit;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
 }
 
 .footer-row div img {
