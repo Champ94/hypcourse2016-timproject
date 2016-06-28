@@ -32,14 +32,14 @@
     right: 0;
     bottom: 5%;
     left: 0;
-    padding-top: 30px;
+    
     position: relative;
 }
 
 .innov-titoli {
     color: #0092D5;
     font-size: 25px;
-    margin-top: 10%;
+    margin-top: 5%;
     text-shadow: 0 0px;
 }
 
@@ -75,4 +75,15 @@
     height: 12px;
     margin: 0;
     width: 12px;
+}
+
+.chisiamosottotitoli {
+    font-weight: bold;
+    color: red;
+}
+
+.embedtim {
+    width: 60%!important;
+    height: 60%!important;
+    margin-left: 21%;
 }
