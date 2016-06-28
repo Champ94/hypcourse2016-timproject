@@ -87,3 +87,14 @@
     height: 60%!important;
     margin-left: 21%;
 }
+
+.progetti-text {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 365px) {
+    .slider-progetti {
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+}
