@@ -23,10 +23,16 @@
 	
 	<body>
         
-     	<!-- MAIN HEADER -->
+     	<!-- HEADER START -->
 		<nav class="navbar navbar-default tim-header">
 			<div class="container-fluid">
 				<div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 					<a class="navbar-brand timbrand" href="#">
 						<img alt="TIM" src="img/logo.png">
 					</a>
@@ -49,7 +55,7 @@
                 </div>
             </div>
         </nav>
-        <!-- FINE HEADER -->
+        <!-- HEADER END -->
 				
         <ol class="breadcrumb">
             <li><a href="#">Prodotti</a></li>
@@ -91,11 +97,11 @@
                         <div class="col-xs-12 col-sm-4">
                             <label for="mostra solo">Mostra solo</label>
                             <div class="radio">
-                                <label><input type="radio" name="mostra_solo" value="disponibile"> Disponibile</label>
+                                <label><input type="radio" name="mostra_solo" value="disponibile" data-waschecked="false"> Disponibile</label>
                                 <br>
-                                <label><input type="radio" name="mostra_solo" value="novita"> Novità</label>
+                                <label><input type="radio" name="mostra_solo" value="novita" data-waschecked="false"> Novità</label>
                                 <br>
-                                <label><input type="radio" name="mostra_solo" value="promo"> Promozione</label>
+                                <label><input type="radio" name="mostra_solo" value="promo" data-waschecked="false"> Promozione</label>
                             </div>
                             <br>
                         </div>
@@ -117,13 +123,13 @@
                         <div class="col-xs-12 col-sm-4">
                             <label for="prezzo">Prezzo</label>
                             <div class="radio">
-                                <label><input type="radio" name="prezzo" value="1"> &lt;150</label>
+                                <label><input type="radio" name="prezzo" value="1" data-waschecked="false"> &lt;150</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="2"> 150-300</label>
+                                <label><input type="radio" name="prezzo" value="2" data-waschecked="false"> 150-300</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="3"> 300-400</label>
+                                <label><input type="radio" name="prezzo" value="3" data-waschecked="false"> 300-400</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="4"> &gt;400</label>
+                                <label><input type="radio" name="prezzo" value="4" data-waschecked="false"> &gt;400</label>
                             </div>
                             <br>
                         </div>
@@ -131,9 +137,9 @@
                         <div class="col-xs-12 col-sm-4">
                             <label for="acquisto">Acquisto</label>
                             <div class="radio">
-                                <label><input type="radio" name="acquisto" value="1"> A rate</label>
+                                <label><input type="radio" name="acquisto" value="1" data-waschecked="false"> A rate</label>
                                 <br>
-                                <label><input type="radio" name="acquisto" value="2"> Soluzione unica</label>
+                                <label><input type="radio" name="acquisto" value="2" data-waschecked="false"> Soluzione unica</label>
                             </div>             
                             <br>
                         </div>
@@ -167,11 +173,11 @@
                         <form action="query_devices.php" method="post" id="filtri" accept-charset="utf-8">
                             <label for="mostra solo">Mostra solo</label>
                             <div class="radio">
-                                <label><input type="radio" name="mostra_solo" value="disponibile"> Disponibile</label>
+                                <label><input type="radio" name="mostra_solo" value="disponibile" data-waschecked="false"> Disponibile</label>
                                 <br>
-                                <label><input type="radio" name="mostra_solo" value="novita"> Novità</label>
+                                <label><input type="radio" name="mostra_solo" value="novita" data-waschecked="false"> Novità</label>
                                 <br>
-                                <label><input type="radio" name="mostra_solo" value="promo"> Promozione</label>
+                                <label><input type="radio" name="mostra_solo" value="promo" data-waschecked="false"> Promozione</label>
                             </div>
                             <hr>
                             
@@ -187,21 +193,21 @@
                             
                             <label for="prezzo">Prezzo</label>
                             <div class="radio">
-                                <label><input type="radio" name="prezzo" value="1"> &lt;150</label>
+                                <label><input type="radio" name="prezzo" value="1" data-waschecked="false"> &lt;150</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="2"> 150-300</label>
+                                <label><input type="radio" name="prezzo" value="2" data-waschecked="false"> 150-300</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="3"> 300-400</label>
+                                <label><input type="radio" name="prezzo" value="3" data-waschecked="false"> 300-400</label>
                                 <br>
-                                <label><input type="radio" name="prezzo" value="4"> &gt;400</label>
+                                <label><input type="radio" name="prezzo" value="4" data-waschecked="false"> &gt;400</label>
                             </div>
                             <hr>
                             
                             <label for="acquisto">Acquisto</label>
                             <div class="radio">
-                                <label><input type="radio" name="acquisto" value="1"> A rate</label>
+                                <label><input type="radio" name="acquisto" value="1" data-waschecked="false"> A rate</label>
                                 <br>
-                                <label><input type="radio" name="acquisto" value="2"> Soluzione unica</label>
+                                <label><input type="radio" name="acquisto" value="2" data-waschecked="false"> Soluzione unica</label>
                             </div>             
                             <hr>
                             
@@ -221,6 +227,41 @@
                 <div id="devlist" class="row"><!-- Device List --></div>
             </div>
         </div>
+        
+        <!-- FOOTER START -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row no-margin">
+                    <div class="col-sm-6">
+                        <div class="row footer-row">
+                            <div class="col-xs-6 col-sm-4 col-lg-3 vertical-align">
+                                <p class="footer-text">Privacy</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-lg-3 vertical-align">
+                                <p class="footer-text">Note Legali</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row footer-row">
+                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-2 col-lg-offset-4 vertical-align">
+                                <img src="img/social-icon/facebook-logo.png" class="img-responsive" alt="Facebook">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                                <img src="img/social-icon/twitter-logo.png" class="img-responsive" alt="Twitter">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                                <img src="img/social-icon/youtube.png" class="img-responsive" alt="Youtube">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                                <img src="img/social-icon/google-plus-logo.png" class="img-responsive" alt="Google Plus">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
     
         <script src="js/jquery-1.12.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
@@ -350,26 +391,26 @@
                         
                         for(var i=0; i<(data["n_tipologie"]-1); i++) {
                             $("#tipologia").append(
-                                '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'"> '+data['tipologia_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'" data-waschecked="false"> '+data['tipologia_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
                         
                         $i=data["n_tipologie"];
                         $("#tipologia").append(
-                            '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'"> '+data['tipologia_'+i]["nome"]+'</label>'
+                            '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'" data-waschecked="false"> '+data['tipologia_'+i]["nome"]+'</label>'
                         );
                         
                         for(var i=0; i<(data["n_marche"]-1); i++) {
                             $("#marca").append(
-                                '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'"> '+data['marca_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'" data-waschecked="false"> '+data['marca_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
                         
                         $i=data["n_marca"];
                         $("#marca").append(
-                            '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'"> '+data['marca_'+i]["nome"]+'</label>'
+                            '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'" data-waschecked="false"> '+data['marca_'+i]["nome"]+'</label>'
                         );
                         
                         if(data["n_sisop"]) {
@@ -383,14 +424,14 @@
                         
                         for(var i=0; i<(data["n_sisop"]-1); i++) {
                             $("#filtri_sisop").append(
-                                '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'"> '+data['sisop_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'" data-waschecked="false"> '+data['sisop_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
                         
                         $i=data["n_sisop"];
                         $("#filtri_sisop").append(
-                            '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'"> '+data['sisop_'+i]["nome"]+'</label>'
+                            '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'" data-waschecked="false"> '+data['sisop_'+i]["nome"]+'</label>'
                         );
                         
                         if(data["n_connessioni"]) {
@@ -404,20 +445,20 @@
                         
                         for(var i=0; i<(data["n_connessioni"]-1); i++) {
                             $("#filtri_connessione").append(
-                                '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'+
+                                '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'" data-waschecked="false"> '+data['connessione_'+i]["tipo"]+'</label>'+
                                 '<br>'
                             );
                         }
                         
                         $i=data["n_connessioni"];
                         $("#filtri_connessione").append(
-                            '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'
+                            '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'" data-waschecked="false"> '+data['connessione_'+i]["tipo"]+'</label>'
                         );
                     
                         //filtri responsive
                         for(var i=0; i<(data["n_tipologie"]-1); i++) {
                             $("#tipologia2").append(
-                                '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'"> '+data['tipologia_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="tipologiaID" value="'+data['tipologia_'+i]["idTipologia"]+'" data-waschecked="false"> '+data['tipologia_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
@@ -429,14 +470,14 @@
 
                         for(var i=0; i<(data["n_marche"]-1); i++) {
                             $("#marca2").append(
-                                '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'"> '+data['marca_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'" data-waschecked="false"> '+data['marca_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
 
                         $i=data["n_marca"];
                         $("#marca2").append(
-                            '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'"> '+data['marca_'+i]["nome"]+'</label>'
+                            '<label><input type="radio" name="marcaID" value="'+data['marca_'+i]["idMarca"]+'" data-waschecked="false"> '+data['marca_'+i]["nome"]+'</label>'
                         );
 
                         if(data["n_sisop"]) {
@@ -450,14 +491,14 @@
 
                         for(var i=0; i<(data["n_sisop"]-1); i++) {
                             $("#filtri_sisop2").append(
-                                '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'"> '+data['sisop_'+i]["nome"]+'</label>'+
+                                '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'" data-waschecked="false"> '+data['sisop_'+i]["nome"]+'</label>'+
                                 '<br>'
                             );
                         }
 
                         $i=data["n_sisop"];
                         $("#filtri_sisop2").append(
-                            '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'"> '+data['sisop_'+i]["nome"]+'</label>'
+                            '<label><input type="radio" name="sisopID" value="'+data['sisop_'+i]["idSisOp"]+'" data-waschecked="false"> '+data['sisop_'+i]["nome"]+'</label>'
                         );
 
                         if(data["n_connessioni"]) {
@@ -471,15 +512,27 @@
 
                         for(var i=0; i<(data["n_connessioni"]-1); i++) {
                             $("#filtri_connessione2").append(
-                                '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'+
+                                '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'" data-waschecked="false"> '+data['connessione_'+i]["tipo"]+'</label>'+
                                 '<br>'
                             );
                         }
 
                         $i=data["n_connessioni"];
                         $("#filtri_connessione2").append(
-                            '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'"> '+data['connessione_'+i]["tipo"]+'</label>'
+                            '<label><input type="radio" name="connessioneID" value="'+data['connessione_'+i]["idConnessione"]+'" data-waschecked="false"> '+data['connessione_'+i]["tipo"]+'</label>'
                         );
+                        
+                        $('[type="radio"]').click(function(){
+                            if($(this).data("waschecked") == false) {
+                                $(this).closest("div").find('[type="radio"]').data("waschecked", false);
+                                $(this).data("waschecked", true);
+                            }
+                            else if($(this).data("waschecked") == true) {
+                                $(this).data("waschecked", false);
+                                $(this).prop("checked", false);
+                            }
+                        });
+                        
                     }
                 });
                 
