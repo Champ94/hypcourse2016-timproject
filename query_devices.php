@@ -1,5 +1,7 @@
 <?php
     
+    getCategoria(1);
+
     if(is_ajax()) {
         
         if(isset($_POST["action"]) && !empty($_POST["action"])) {
@@ -242,15 +244,14 @@
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT Memoria.idMemoria, Memoria.dimensione
-            FROM Devices JOIN Mem_Dev ON Devices.idDevices = Mem_Dev.devicesID
-                JOIN Memoria ON Memoria.idMemoria = Mem_Dev.memoriaID
-            WHERE Devices.idDevices = ?
+        SELECT *
+            FROM Categoria
+            WHERE Categoria.idCategoria = ?
         ";
         
         if($statement = $con->prepare($query)) {
             
-            $statement->bind_param("i", $idDevice);
+            $statement->bind_param("i", $idCategoria);
             $statement->execute();
             
             $result = $statement->get_result();
@@ -260,7 +261,9 @@
             
             $return["json"] = json_encode($return);
             echo json_encode($return);
-
+            
+            var_dump($return);
+            
             $statement->close();
             
         }
@@ -277,9 +280,10 @@
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT *
-            FROM Categoria
-            WHERE Categoria.idCategoria = ?
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = ?
         ";
         
         if($statement = $con->prepare($query)) {
