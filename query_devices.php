@@ -46,6 +46,10 @@
                         echo json_encode($error);
                     }
                     break;
+                    
+                case "get_outlet":
+                    getOutlet($_POST["idCategoria"]);
+                    break;
                 
                 case "get_filtri":
                     if(isset($_POST["idCategoria"])) {
@@ -275,24 +279,12 @@
         $con->query("SET NAMES 'utf8'");
         $con->query("SET CHARACTER_SET utf8;");
         
-        if($idCategoria == 0) {
-            $query = "
-            SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-                FROM Devices, Categoria
-                WHERE Devices.categoriaID = Categoria.idCategoria
-                AND Devices.categoriaID LIKE ?
-                AND Devices.promo = 1
-            ";
-            $idCategoria = "%";
-        }
-        else {
-            $query = "
-            SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-                FROM Devices, Categoria
-                WHERE Devices.categoriaID = Categoria.idCategoria
-                AND Devices.categoriaID = ?
-            ";
-        }
+        $query = "
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = ?
+        ";
         
         
         if($statement = $con->prepare($query)) {
@@ -313,38 +305,90 @@
             
         }
         
-        if($idCategoria == 0) {
-            $query = "
-            SELECT DISTINCT imgdevlist.* FROM (
-                SELECT DISTINCT Devices.idDevices, Immagini.percorso
-                    FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
-                        JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
-                    WHERE Devices.categoriaID = Categoria.idCategoria
-                    AND Devices.categoriaID LIKE %
-                    AND Devices.promo = 1
-                    ORDER BY Devices.idDevices
-                ) AS imgdevlist
-                GROUP BY idDevices
-            ";
-            $idCategoria = "%";
-        }
-        else {
-            $query = "
-            SELECT DISTINCT imgdevlist.* FROM (
-                SELECT DISTINCT Devices.idDevices, Immagini.percorso
-                    FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
-                        JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
-                    WHERE Devices.categoriaID = Categoria.idCategoria
-                    AND Devices.categoriaID = ?
-                    ORDER BY Devices.idDevices
-                ) AS imgdevlist
-                GROUP BY idDevices
-            ";
-        }
+        $query = "
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE Devices.categoriaID = Categoria.idCategoria
+                AND Devices.categoriaID = ?
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ";
         
         if($statement = $con->prepare($query)) {
             
             $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] += $data;
+                $cont++;
+            }
+            
+            /*
+                Overwritten for debugging pourpose
+            */
+            $return["n_devices"] = $cont;
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+            
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+function getOutlet() {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.promo = 1
+        ";
+        
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["device_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_devices"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE WHERE Devices.promo = 1
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
             $statement->execute();
             
             $cont = 0;
@@ -499,42 +543,21 @@
         $con->query("SET NAMES 'utf8'");
         $con->query("SET CHARACTER_SET utf8;");
         
-        if($idCategoria == 0) {
-            $query = "
-            SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-                FROM Devices, Categoria
-                WHERE Devices.categoriaID = Categoria.idCategoria
-                AND Devices.categoriaID LIKE ?
-                AND Devices.promo LIKE ?
-                AND Devices.novita LIKE ?
-                AND Devices.disponibile LIKE ?
-                AND Devices.tipologiaID LIKE ?
-                AND Devices.prezzo_intero BETWEEN ? AND ?
-                AND Devices.marcaID LIKE ?
-                AND Devices.n_rate BETWEEN ? AND ?
-                AND Devices.sisopID LIKE ?
-                AND Devices.connessioneID LIKE ?
-            ";
-            $idCategoria = "%";
-            $filters["promo"] = 1;
-        }
-        else {
-            $query = "
-            SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-                FROM Devices, Categoria
-                WHERE Devices.categoriaID = Categoria.idCategoria
-                AND Devices.categoriaID = ?
-                AND Devices.promo LIKE ?
-                AND Devices.novita LIKE ?
-                AND Devices.disponibile LIKE ?
-                AND Devices.tipologiaID LIKE ?
-                AND Devices.prezzo_intero BETWEEN ? AND ?
-                AND Devices.marcaID LIKE ?
-                AND Devices.n_rate BETWEEN ? AND ?
-                AND Devices.sisopID LIKE ?
-                AND Devices.connessioneID LIKE ?
-            ";
-        }
+        $query = "
+        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
+            FROM Devices, Categoria
+            WHERE Devices.categoriaID = Categoria.idCategoria
+            AND Devices.categoriaID = ?
+            AND Devices.promo LIKE ?
+            AND Devices.novita LIKE ?
+            AND Devices.disponibile LIKE ?
+            AND Devices.tipologiaID LIKE ?
+            AND Devices.prezzo_intero BETWEEN ? AND ?
+            AND Devices.marcaID LIKE ?
+            AND Devices.n_rate BETWEEN ? AND ?
+            AND Devices.sisopID LIKE ?
+            AND Devices.connessioneID LIKE ?
+        ";
         
         switch($filters["prezzo"]) {
             case 1:
@@ -593,52 +616,26 @@
             
         }
         
-        if($idCategoria == 0) {
-            $query = "
-            SELECT DISTINCT imgdevlist.* FROM (
-                SELECT DISTINCT Devices.idDevices, Immagini.percorso
-                    FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
-                        JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
-                    WHERE Devices.categoriaID = Categoria.idCategoria
-                        AND Devices.categoriaID = ?
-                        AND Devices.promo LIKE ?
-                        AND Devices.novita LIKE ?
-                        AND Devices.disponibile LIKE ?
-                        AND Devices.tipologiaID LIKE ?
-                        AND Devices.prezzo_intero BETWEEN ? AND ?
-                        AND Devices.marcaID LIKE ?
-                        AND Devices.n_rate BETWEEN ? AND ?
-                        AND Devices.sisopID LIKE ?
-                        AND Devices.connessioneID LIKE ?
-                    ORDER BY Devices.idDevices
-                ) AS imgdevlist
-                GROUP BY idDevices
-            ";
-            $idCategoria = "%";
-            $filters["promo"] = 1;
-        }
-        else {
-            $query = "
-            SELECT DISTINCT imgdevlist.* FROM (
-                SELECT DISTINCT Devices.idDevices, Immagini.percorso
-                    FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
-                        JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
-                    WHERE Devices.categoriaID = Categoria.idCategoria
-                        AND Devices.categoriaID = ?
-                        AND Devices.promo LIKE ?
-                        AND Devices.novita LIKE ?
-                        AND Devices.disponibile LIKE ?
-                        AND Devices.tipologiaID LIKE ?
-                        AND Devices.prezzo_intero BETWEEN ? AND ?
-                        AND Devices.marcaID LIKE ?
-                        AND Devices.n_rate BETWEEN ? AND ?
-                        AND Devices.sisopID LIKE ?
-                        AND Devices.connessioneID LIKE ?
-                    ORDER BY Devices.idDevices
-                ) AS imgdevlist
-                GROUP BY idDevices
-            ";
-        }
+        $query = "
+        SELECT DISTINCT imgdevlist.* FROM (
+            SELECT DISTINCT Devices.idDevices, Immagini.percorso
+                FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+                    JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                WHERE Devices.categoriaID = Categoria.idCategoria
+                    AND Devices.categoriaID = ?
+                    AND Devices.promo LIKE ?
+                    AND Devices.novita LIKE ?
+                    AND Devices.disponibile LIKE ?
+                    AND Devices.tipologiaID LIKE ?
+                    AND Devices.prezzo_intero BETWEEN ? AND ?
+                    AND Devices.marcaID LIKE ?
+                    AND Devices.n_rate BETWEEN ? AND ?
+                    AND Devices.sisopID LIKE ?
+                    AND Devices.connessioneID LIKE ?
+                ORDER BY Devices.idDevices
+            ) AS imgdevlist
+            GROUP BY idDevices
+        ";
         
         if($statement = $con->prepare($query)) {
             
