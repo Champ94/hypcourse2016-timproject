@@ -6,3 +6,30 @@
     margin-top: 30px;
     margin-left: 30px;
 }
+
+.bordodestro {
+    border-right: 2px solid;
+    border-color: #004489;
+    padding-right: 10px;
+}
+
+.assis-desc {
+    font-size: 20px;
+    color: #004489;
+    font-weight: bold;
+}
+
+.assis-device {
+    font-size: 16px;
+    color: red;
+}
+
+.assis-titolo {
+    font-size: 22px;
+    color: #004489;
+    font-weight: bolder;
+}
+
+.assis-text {
+    font-size: 12px;
+}
