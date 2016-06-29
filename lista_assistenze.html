@@ -52,10 +52,8 @@
         </nav>
         <!-- FINE HEADER -->
 				
-        <ol class="breadcrumb">
-            <li><a href="intro_assistenze.html">ASSISTENZA</a></li>
-            <li class="active">Assistenza X</li>
-        </ol>
+        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
+
         
         <div class="row rigarespo">
             <div class="col-md-2 text-right">
@@ -64,7 +62,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div id="nomeassistenza"></div>
+                <div id="nomecategoria"></div>
                 <br>
                 <p class="assis-desc">Descrizione:</p>
                 <div id="descrizioneassistenza"></div>
@@ -118,7 +116,39 @@
         
         <script>
            
+            $(document).ready(function(){ 
+                var idCategoria = $_GET("idCategoria");
+                getAssistlist(idCategoria); 
+            });
             
+            function getAssistlist(idCategoria) {
+                 
+                var data = {
+                    "action": "get_assistlist",
+                    "idCategoria": idCategoria
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_assistance.php",
+                    data: data,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        $("#breadcrumb").html (
+                            '<li><a href="intro_assistenze.html">ASSISTENZA</a></li>'+
+                            '<li class="active"><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
+                        );
+                        
+                         $("#nomecategoria").html(
+                            '<p class="assis-titolo">'+data["nome"]+'</p>'
+                        );
+                    }
+                });
+            }
             
         </script>
         

@@ -1,7 +1,5 @@
 <?php
 
-    getImages(1, 3);
-
     if(is_ajax()) {
         
         if(isset($_POST["action"]) && !empty($_POST["action"])) {
