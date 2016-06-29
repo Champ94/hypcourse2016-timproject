@@ -345,7 +345,7 @@
         
     }
 
-function getOutlet() {
+    function getOutlet() {
         
         require "connessione.php";
         
@@ -353,8 +353,8 @@ function getOutlet() {
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-            FROM Devices, Categoria
+        SELECT DISTINCT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita, Devices.categoriaID
+            FROM Devices
             WHERE Devices.promo = 1
         ";
         
@@ -381,7 +381,7 @@ function getOutlet() {
             SELECT DISTINCT Devices.idDevices, Immagini.percorso
                 FROM Categoria, Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
                     JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
-                WHERE WHERE Devices.promo = 1
+                WHERE Devices.promo = 1
                 ORDER BY Devices.idDevices
             ) AS imgdevlist
             GROUP BY idDevices
