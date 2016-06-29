@@ -48,7 +48,7 @@
                     break;
                     
                 case "get_outlet":
-                    getOutlet($_POST["idCategoria"]);
+                    getOutlet();
                     break;
                 
                 case "get_filtri":
