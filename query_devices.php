@@ -26,6 +26,16 @@
                         echo json_encode($error);
                     }
                     break;
+                
+                case "get_categoria":
+                    if(isset($_POST["idCategoria"])) {
+                        getCategoria($_POST["idCategoria"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
+                    break;
                     
                 case "get_devlist":
                     if(isset($_POST["idCategoria"])) {
@@ -224,6 +234,41 @@
         
     }
 
+    function getCategoria($idCategoria) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT Memoria.idMemoria, Memoria.dimensione
+            FROM Devices JOIN Mem_Dev ON Devices.idDevices = Mem_Dev.devicesID
+                JOIN Memoria ON Memoria.idMemoria = Mem_Dev.memoriaID
+            WHERE Devices.idDevices = ?
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idDevice);
+            $statement->execute();
+            
+            $result = $statement->get_result();
+            if($data = $result->fetch_assoc()) {
+                $return = $data;
+            }
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
     function getDevlist($idCategoria) {
         
         require "connessione.php";
@@ -232,10 +277,9 @@
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT Devices.idDevices, Devices.nome, Devices.prezzo_intero, Devices.prezzo_rate, Devices.prezzo_scontato, Devices.n_rate, Devices.promo, Devices.novita
-            FROM Devices, Categoria
-            WHERE Devices.categoriaID = Categoria.idCategoria
-            AND Devices.categoriaID = ?
+        SELECT *
+            FROM Categoria
+            WHERE Categoria.idCategoria = ?
         ";
         
         if($statement = $con->prepare($query)) {
