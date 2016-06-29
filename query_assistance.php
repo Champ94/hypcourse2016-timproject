@@ -1,6 +1,4 @@
 <?php
-    
-    getAssistance(2);
 
     if(is_ajax()) {
         
