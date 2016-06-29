@@ -60,24 +60,24 @@
         
         <div class="row rigarespo">
             <div class="col-md-2 text-right">
-                <div class="bordodestro">
                     <a href="#">
                         <img src="#">
                     </a>
                     <ul><a href="#">Torna indietro &gt;</a></ul>
-                </div>
             </div>
             <div class="col-md-9">
-                <div id="nomeassistenza"></div>
-                <br>
-                <p class="assis-desc">Descrizione:</p>
-                <div id="descrizioneassistenza"></div>
-                <br>
-                <p class="assis-desc">FAQ:</p>
-                <div id="faqassistenza"></div>
-                <br>
-                <p class="assis-device">I prodotti associati all'assistenza sono</p>
-                <div id="deviceassistenza"></div>
+                <div class="bordosinistro">
+                    <div id="nomeassistenza"></div>
+                    <br>
+                    <p class="assis-desc">Descrizione:</p>
+                    <div id="descrizioneassistenza"></div>
+                    <br>
+                    <p class="assis-desc">FAQ:</p>
+                    <div id="faqassistenza"></div>
+                    <br>
+                    <p class="assis-device">I prodotti associati all'assistenza sono</p>
+                    <div id="deviceassistenza"></div>
+                </div>
             </div>
         </div>
         
@@ -121,19 +121,50 @@
         <script src="js/get.js"></script>
         
         <script>
-            $("#nomeassistenza").append(
-                '<div>'++'</div>'
-            )
             
-            $("#descrizioneassistenza").append(
+            
+            $(document).ready(function(){ 
                 
-            )
-            $("#faqassistenza").append(
+                getAssistance();
                 
-            )
-            $("#deviceassistenza").append(
+            });
+            
+            function getAssistance() {
                 
-            )
+                var data = {
+                    "action": "get_assistance",
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_assistance.php",
+                    data: data,
+                    success: function(data) {
+                
+                        $("#nomeassistenza").append(
+                            '<div>'++'</div>'
+                        );
+                        
+                        $("#descrizioneassistenza").append(
+
+                        );
+                        
+                        $("#faqassistenza").append(
+
+                        );
+                        
+                        $("#deviceassistenza").append(
+
+                        );
+                    }
+                });
+                
+                return false;
+            }          
+                    
+            
         </script>
         
     </body>

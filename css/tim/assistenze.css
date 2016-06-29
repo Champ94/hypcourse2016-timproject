@@ -7,10 +7,10 @@
     margin-left: 30px;
 }
 
-.bordodestro {
-    border-right: 2px solid;
+.bordosinistro {
+    border-left: 2px solid;
     border-color: #004489;
-    padding-right: 10px;
+    padding-left: 30px;
 }
 
 .assis-desc {
