@@ -109,9 +109,6 @@
             }
             
             $return["n_devices"] = $cont;
-            
-            $return["json"] = json_encode($return);
-            echo json_encode($return);
 
             $statement->close();
             
@@ -120,7 +117,7 @@
         $query = "
         SELECT Immagini.percorso, Devices.idDevices
         FROM Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
-            JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+                JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
             WHERE Devices.idDevices = ?
             GROUP BY Devices.idDevices
         ";

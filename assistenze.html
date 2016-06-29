@@ -52,18 +52,11 @@
         </nav>
         <!-- FINE HEADER -->
 				
-        <ol class="breadcrumb">
-            <li><a href="intro_assistenze.html">Assistenza</a></li>
-            <li><a href="#">Categoria assistenze</a></li>
-            <li class="active">Assistenza X</li>
-        </ol>
+        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
         
         <div class="row rigarespo">
             <div class="col-md-2 text-right">
-                    <a href="#">
-                        <img src="#">
-                    </a>
-                    <ul><a href="#">Torna indietro &gt;</a></ul>
+                    <div id="immagine"></div>
             </div>
             <div class="col-md-9">
                 <div class="bordosinistro">
@@ -116,7 +109,7 @@
         </footer>
         <!-- FOOTER END -->
         
-        <script src="js/jquery-1.12.4.min.js"></script>
+        <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/get.js"></script>
         
@@ -124,15 +117,15 @@
             
             
             $(document).ready(function(){ 
-                
-                getAssistance();
-                
+                var idAssistance = $_GET("idAssistance");
+                getAssistance(idAssistance); 
             });
             
-            function getAssistance() {
-                
+            function getAssistance(idAssistance) {
+                 
                 var data = {
                     "action": "get_assistance",
+                    "idAssistance": idAssistance
                 };
                 data = $(this).serialize() + "&" + $.param(data);
                 
@@ -142,27 +135,52 @@
                     url: "query_assistance.php",
                     data: data,
                     success: function(data) {
-                
-                        $("#nomeassistenza").append(
-                            '<div>'++'</div>'
+                        
+                        console.log(data["json"]);
+                        
+                        $("#nomeassistenza").html(
+                            '<p class="assis-titolo">'+data["titolo"]+'</p>'
                         );
                         
-                        $("#descrizioneassistenza").append(
-
+                        $("#descrizioneassistenza").html (
+                            '<p class="assis-text">'+data["descrizione"]+'</p>'
                         );
                         
-                        $("#faqassistenza").append(
-
+                        $("#breadcrumb").html (
+                            '<li><a href="intro_assistenze.html">ASSISTENZA</a></li>'+
+                            '<li><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'+
+                            '<li class="active">'+data["titolo"]+'</li>'
                         );
                         
-                        $("#deviceassistenza").append(
-
+                        $("#immagine").html (
+                            '<img src="'+data["icona"]+'">'+
+                            '<ul><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">Torna indietro &gt;</a></ul>'
+                        );
+                        
+                        for(var i=0; i<data["n_faq"]; i++) {                            
+                            $("#faqassistenza").append (
+                                '<p class="assis-text">'+data["faq_"+i]["domanda"]+'</p>'+
+                                '<br>'+
+                                '<p class="assis-text">'+data["faq_"+i]["risposta"]+'</p>'+
+                                '<br>'+
+                                '<br>'
+                            )
+                        };
+                        
+                        for(var i=0; i<data["n_devices"]; i++) {
+                            $("#deviceassistenza").append (
+                                '<a href="device.html?idDevice='+data["device_"+i]["idDevice"]+'"><img src="'+data["device_"+i]["percorso"]+'></a>'
+                            )
+                        };
+                        
+                        $("#deviceassistenza").append (
+                            '<br>'
                         );
                     }
                 });
                 
                 return false;
-            }          
+            }
                     
             
         </script>
