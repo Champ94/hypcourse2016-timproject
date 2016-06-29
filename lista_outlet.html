@@ -9,7 +9,7 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
 		
 		<title>
-			TIM - Lista Devices
+			TIM - Outlet
 		</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
@@ -57,15 +57,18 @@
         </nav>
         <!-- HEADER END -->
 				
-        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
+        <ol class="breadcrumb">
+            <li><a href="intro_devices.html">PRODOTTI</a></li>
+            <li>Outlet</li>
+        </ol>
         
         <div class="row tim-row">
             <div class="col-md-1 col-md-offset-1 col-xs-2">
-                <div id="immagine-categoria"></div>
+                <img src="img/05_Outlet_2.png">
             </div>
             
             <div class="col-md-5 col-xs-5">
-                <div id="nomecategoria"></div>
+                <h2>Outlet TIMstore </h2>
                 <ul><a href="intro_devices.html">Torna alle categorie &gt;</a></ul>
             </div>
             
@@ -167,17 +170,7 @@
                         <h3 class="panel-title">Filtra per</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="query_devices.php" method="post" id="filtri" accept-charset="utf-8">
-                            <label for="mostra solo">Mostra solo</label>
-                            <div class="radio">
-                                <label><input type="radio" name="mostra_solo" value="disponibile" data-waschecked="false"> Disponibile</label>
-                                <br>
-                                <label><input type="radio" name="mostra_solo" value="novita" data-waschecked="false"> Novità</label>
-                                <br>
-                                <label><input type="radio" name="mostra_solo" value="promo" data-waschecked="false"> Promozione</label>
-                            </div>
-                            <hr>
-                            
+                        <form action="query_devices.php" method="post" id="filtri" accept-charset="utf-8">                            
                             <label for="tipologia">Tipologia</label>
                             <div id="tipologia" class="radio">
                             </div>
@@ -276,52 +269,10 @@
                 $(".rate").height(maxHeight);
             
                 var idCategoria = $_GET("idCategoria");
-                getDevlist(idCategoria);
+                //getDevlist(promo);
                 getFiltri(idCategoria);
-                getCategoria(idCategoria);
                 
             });
-            
-            function getCategoria(idCategoria) {                
-                
-                var data = {
-                    "action": "get_categoria",
-                    "idCategoria": idCategoria
-                };
-                
-                data = $(this).serialize() + "&" + $.param(data);
-                
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "query_devices.php",
-                    data: data,
-                    success: function(data) {
-                        
-                        console.log(data["json"]);
-                        
-                         
-                        /*
-                            Breadcrumb
-                        */
-                        $("#breadcrumb").html(
-                            '<li><a href="intro_devices.html">PRODOTTI</a></li>'+
-                            '<li>'+data["nome"]+'</li>'
-                        );
-                        
-                        $("#immagine-categoria").html(
-                            '<img src="'+data['icona']+'">'
-                        );
-                        
-                        $("#nomecategoria").append(
-                            '<h2>'+data['nome']+'</h2>'
-                        );
-                        
-                    }
-                    
-                });
-                return false;
-            }
             
             function getDevlist(idCategoria) {
                  
