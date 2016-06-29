@@ -57,19 +57,16 @@
         </nav>
         <!-- HEADER END -->
 				
-        <ol class="breadcrumb">
-            <li><a href="#">Prodotti</a></li>
-            <li class="active">Categoria device</li>
-        </ol>
+        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
         
         <div class="row tim-row">
             <div class="col-md-1 col-md-offset-1 col-xs-2">
-                <img alt="#" src="#">    
+                <div id="immagine-categoria"></div>
             </div>
             
             <div class="col-md-5 col-xs-5">
-                <p>Categoria device</p>
-                <li><a href="#">Torna alle categorie</a></li>
+                <div id="nomecategoria"></div>
+                <ul><a href="intro_devices.html">Torna alle categorie &gt;</a></ul>
             </div>
             
             <div class="col-md-4 col-xs-5">
@@ -281,8 +278,50 @@
                 var idCategoria = $_GET("idCategoria");
                 getDevlist(idCategoria);
                 getFiltri(idCategoria);
+                getCategoria(idCategoria);
                 
             });
+            
+            function getCategoria(idCategoria) {                
+                
+                var data = {
+                    "action": "get_categoria",
+                    "idCategoria": idCategoria
+                };
+                
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_devices.php",
+                    data: data,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                         
+                        /*
+                            Breadcrumb
+                        */
+                        $("#breadcrumb").html(
+                            '<li><a href="intro_devices.html">Prodotti</a></li>'+
+                            '<li>'+data["nome"]+'</li>'
+                        );
+                        
+                        $("#immagine-categoria").html(
+                            '<img src="'+data['icona']+'">'
+                        );
+                        
+                        $("#nomecategoria").append(
+                            '<h2>'+data['nome']+'</h2>'
+                        );
+                        
+                    }
+                    
+                });
+                return false;
+            }
             
             function getDevlist(idCategoria) {
                  
@@ -314,7 +353,7 @@
                                     '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                     '<div class="row rigarespo" style="margin-bottom:10px"> <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 text-center prezzi_scont col-scontati">'+data['device_'+i]["prezzo_intero"]+'€'+'</div><div class="col-md-5 col-sm-5 text-center prezzi col-scontati">'+data['device_'+i]["prezzo_scontato"]+'€</div></div>'+
                                     '<p class="rate">&nbsp;</p>'+
-                                    '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                    '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                     '</div>'+
                                     '</div>'
                                 );
@@ -329,7 +368,7 @@
                                         '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                         '<p class="text-center prezzi">'+data['device_'+i]["prezzo_rate"]+'€/mese</p>'+
                                         '<p class="text-center rate">in '+data['device_'+i]["n_rate"]+' rate senza interessi</p>'+
-                                        '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                        '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                         '</div>'+
                                         '</div>'
                                     );
@@ -344,7 +383,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );
@@ -358,7 +397,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );
