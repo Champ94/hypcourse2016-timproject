@@ -153,8 +153,7 @@
             function getDevlist(idCategoria) {
                  
                 var data = {
-                    "action": "get_devlist",
-                    "idCategoria": idCategoria
+                    "action": "get_outlet",
                 };
                 data = $(this).serialize() + "&" + $.param(data);
                 
@@ -180,7 +179,7 @@
                                     '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                     '<div class="row rigarespo" style="margin-bottom:10px"> <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 text-center prezzi_scont col-scontati">'+data['device_'+i]["prezzo_intero"]+'€'+'</div><div class="col-md-5 col-sm-5 text-center prezzi col-scontati">'+data['device_'+i]["prezzo_scontato"]+'€</div></div>'+
                                     '<p class="rate">&nbsp;</p>'+
-                                    '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                    '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                     '</div>'+
                                     '</div>'
                                 );
@@ -195,7 +194,7 @@
                                         '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                         '<p class="text-center prezzi">'+data['device_'+i]["prezzo_rate"]+'€/mese</p>'+
                                         '<p class="text-center rate">in '+data['device_'+i]["n_rate"]+' rate senza interessi</p>'+
-                                        '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                        '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                         '</div>'+
                                         '</div>'
                                     );
@@ -210,7 +209,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );
@@ -224,7 +223,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+idCategoria+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );
