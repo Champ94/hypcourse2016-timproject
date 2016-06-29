@@ -1,9 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
-    
-    getCategoria(1);
->>>>>>> 480b5c7b8caec36d25ca8c125f854945c31c4fc8
 
     if(is_ajax()) {
         
@@ -264,12 +259,7 @@
             
             $return["json"] = json_encode($return);
             echo json_encode($return);
-            
-<<<<<<< HEAD
-=======
-            var_dump($return);
-            
->>>>>>> 480b5c7b8caec36d25ca8c125f854945c31c4fc8
+
             $statement->close();
             
         }
@@ -490,7 +480,7 @@
             AND Devices.tipologiaID LIKE ?
             AND Devices.prezzo_intero BETWEEN ? AND ?
             AND Devices.marcaID LIKE ?
-            AND Devices.n_rate LIKE ?
+            AND Devices.n_rate BETWEEN ? AND ?
             AND Devices.sisopID LIKE ?
             AND Devices.connessioneID LIKE ?
         ";
@@ -521,9 +511,22 @@
                 $max_prezzo = 9999;
         }
         
+        if($filters["rate"]==1) {
+            $min_rate = 1;
+            $max_rate = 100;
+        }
+        else if($filters["rate"]==2) {
+            $min_rate = -1;
+            $max_rate = 1;
+        }
+        else {
+            $min_rate = -1;
+            $max_rate = 100;
+        }
+        
         if($statement = $con->prepare($query)) {
             
-            $statement->bind_param("sssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $filters["rate"], $filters["sisopID"], $filters["connessioneID"]);
+            $statement->bind_param("ssssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $min_rate, $max_rate, $filters["sisopID"], $filters["connessioneID"]);
             $statement->execute();
             
             $cont = 0;
@@ -552,7 +555,7 @@
                     AND Devices.tipologiaID LIKE ?
                     AND Devices.prezzo_intero BETWEEN ? AND ?
                     AND Devices.marcaID LIKE ?
-                    AND Devices.n_rate LIKE ?
+                    AND Devices.n_rate BETWEEN ? AND ?
                     AND Devices.sisopID LIKE ?
                     AND Devices.connessioneID LIKE ?
                 ORDER BY Devices.idDevices
@@ -562,7 +565,7 @@
         
         if($statement = $con->prepare($query)) {
             
-            $statement->bind_param("sssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $filters["rate"], $filters["sisopID"], $filters["connessioneID"]);
+            $statement->bind_param("ssssssssssss", $idCategoria, $filters["promo"], $filters["novita"], $filters["disponibile"], $filters["tipologiaID"], $min_prezzo, $max_prezzo, $filters["marcaID"], $min_rate, $max_rate, $filters["sisopID"], $filters["connessioneID"]);
             $statement->execute();
             
             $cont = 0;
