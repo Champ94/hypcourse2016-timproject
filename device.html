@@ -9,7 +9,7 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
         
         <title>
-            TIM - Prodotti
+            TIM - Prodotto
         </title>
         
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -195,7 +195,9 @@
             $(document).ready(function(){
                 
                 var idDevice = $_GET("idDevice");
+                var idCategoria = $_GET("idCategoria");
                 get_device(idDevice);
+                getCategoria(idCategoria);
                 
             });
             
@@ -218,6 +220,39 @@
                 });
             });
             
+            function getCategoria(idCategoria) {                
+                
+                var data = {
+                    "action": "get_categoria",
+                    "idCategoria": idCategoria
+                };
+                
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "query_devices.php",
+                    data: data,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                         
+                        /*
+                            Breadcrumb
+                        */
+                        $("#breadcrumb").html(
+                            '<li><a href="intro_devices.html">Prodotti</a></li>'+
+                            '<li><a href="lista_devices.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
+                        );
+                        
+                    }
+                    
+                    
+                });
+                return false;
+            }
+            
             function get_device(idDevice) {
                  
                 var data = {
@@ -237,12 +272,11 @@
                         
                         get_img(data["idDevices"], data["colore_0"]["id_colore"]);
                         
+                        
                         /*
                             Breadcrumb
                         */
-                        $("#breadcrumb").html(
-                            '<li><a href="#">Prodotti</a></li>'+
-                            '<li><a href="#">'+data["nome_categoria"]+'</a></li>'+
+                        $("#breadcrumb").append(
                             '<li class="active">'+data["nome"]+'</li>'
                         );
                         
@@ -316,7 +350,7 @@
                             
                             $("#myTabContent").append(
                                 '<div class="tab-pane fade in active" id="specifiche">'+
-                                '<p>'+data["specifiche"]+'</p>'+
+                                '<p class="spaziotab">'+data["specifiche"]+'</p>'+
                                 '</div>'
                             );
                         }
@@ -328,7 +362,7 @@
                                 
                             $("#myTabContent").append(
                                 '<div class="tab-pane fade" id="descrizione">'+
-                                '<p>'+data["descrizione"]+'</p>'+
+                                '<p class="spaziotab">'+data["descrizione"]+'</p>'+
                                 '</div>'
                             );
                         }
@@ -340,7 +374,7 @@
                             
                             $("#myTabContent").append(
                                 '<div class="tab-pane fade" id="inclusi">'+
-                                '<p>'+data["inclusi"]+'</p>'+
+                                '<p class="spaziotab">'+data["inclusi"]+'</p>'+
                                 '</div>'
                             );
                         }

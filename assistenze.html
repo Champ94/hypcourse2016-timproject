@@ -56,48 +56,82 @@
             <li><a href="#">Assistenza</a></li>
             <li class="active">Assistenza X</li>
         </ol>
+        
         <div class="row rigarespo">
-            <div class="col-md-1 col-md-offset-1 col-xs-2">
-                <img alt="#" src="#">    
+            <div class="col-md-2 text-right">
+                <a href="#">
+                    <img src="#">
+                </a>
+                <ul><a href="#">Torna indietro &gt;</a></ul>
             </div>
-            <div class="col-md-5 col-xs-5">
-                <p>Categoria device</p>
-                <li><a href="#">Torna alle categorie</a></li>
-            </div>
-        </div>
-
-        <!-- menù pc -->
-        <div class="row rigarespo assistenza visible-md visible-lg">
-            <div class="col-md-2 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Assistenze</h3>
-                    </div>
-                    <div class="panel-body" id="tipi_assistenze">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7 col-md-offset-1">
-                <div id="assistenza_selezionata">
-                </div>
+            <div class="col-md-9">
+                <div id="nomeassistenza"></div>
+                <br>
+                <p>Descrizione:</p>
+                <div id="descrizioneassistenza"></div>
+                <br>
+                <p>FAQ:</p>
+                <div id="faqassistenza"></div>
+                <br>
+                <p>I prodotti associati all'assistenza sono</p>
+                <div id="deviceassistenza"></div>
             </div>
         </div>
         
-        <!-- menù responsive -->
-        <div class="hidden-md hidden-lg">
-            <a class="btn btn-primary collapsed pulsante-assistenze" role="button" data-toggle="collapse" href="#tipi-assistenze" aria-expanded="false" aria-controls="tipi-assistenze">Assistenze</a>
-            <div class="row rigarespo">
-                <div class="col-xs-10 col-xs-4 col-xs-offset-1 col-sm-offset-1">
-                    
+        <!-- FOOTER START -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row footer-row">
+                            <div class="col-xs-6 col-sm-4 col-lg-3 vertical-align">
+                                <p class="footer-text">Privacy</p>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-lg-3 vertical-align">
+                                <p class="footer-text">Note Legali</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row footer-row">
+                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-1 col-lg-offset-8 vertical-align">
+                                <img src="img/social-icon/facebook-logo.png" class="img-responsive" alt="Facebook">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
+                                <img src="img/social-icon/twitter-logo.png" class="img-responsive" alt="Twitter">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
+                                <img src="img/social-icon/youtube.png" class="img-responsive" alt="Youtube">
+                            </div>
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
+                                <img src="img/social-icon/google-plus-logo.png" class="img-responsive" alt="Google Plus">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
+        </footer>
+        <!-- FOOTER END -->
         
         <script src="js/jquery-1.12.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/get.js"></script>
+        
+        <script>
+            $("#nomeassistenza").append(
+                '<div>'++'</div>'
+            )
+            
+            $("#descrizioneassistenza").append(
+                
+            )
+            $("#faqassistenza").append(
+                
+            )
+            $("#deviceassistenza").append(
+                
+            )
+        </script>
         
     </body>
 </html>

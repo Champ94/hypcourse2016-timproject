@@ -1,9 +1,4 @@
 <?php
-<<<<<<< HEAD
-=======
-    
-    getCategoria(1);
->>>>>>> 480b5c7b8caec36d25ca8c125f854945c31c4fc8
 
     if(is_ajax()) {
         
@@ -265,11 +260,6 @@
             $return["json"] = json_encode($return);
             echo json_encode($return);
             
-<<<<<<< HEAD
-=======
-            var_dump($return);
-            
->>>>>>> 480b5c7b8caec36d25ca8c125f854945c31c4fc8
             $statement->close();
             
         }
