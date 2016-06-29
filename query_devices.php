@@ -193,6 +193,34 @@
             
         }
         
+        $query = "
+        SELECT Assistance.idAssistance, Assistance.titolo
+            FROM Devices JOIN Ass_Dev ON Devices.idDevices = Ass_Dev.devicesID
+                JOIN Assistance ON Assistance.idAssistance = Ass_Dev.assistanceID
+            WHERE Devices.idDevices = ?
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idDevice);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["assistance_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_assistances"] = $cont;
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+
+            $statement->close();
+            
+        }
+        
         $con->close();
         
     }

@@ -1,5 +1,7 @@
 <?php
     
+    getAssistance(2);
+
     if(is_ajax()) {
         
         if(isset($_POST["action"]) && !empty($_POST["action"])) {
@@ -10,16 +12,6 @@
                 case "get_assistance":
                     if(isset($_POST["idAssistance"])) {
                         getAssistance($_POST["idAssistance"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                case "get_DevAss":
-                    if(isset($_POST["idAssistance"])) {
-                        gedDevAss($_POST["idAssistance"]);
                     }
                     else {
                         $error["json"] = "Ajax call: error!";
@@ -69,29 +61,14 @@
                 $return = $data;
             }
             
-            $return["json"] = json_encode($return);
-            echo json_encode($return);
-            
             $statement->close();
             
         }
         
-        $con->close();
-        
-    }
-
-    function getDevAss($idAssistance) {
-        
-        require "connessione.php";
-        
-        $con->query("SET NAMES 'utf8'");
-        $con->query("SET CHARACTER_SET utf8;");
-        
         $query = "
-        SELECT Devices.idDevices, Devices.nome
-            FROM DEVICES JOIN Ass_Dev ON Devices.idDevices = Ass_Dev.devicesID
-                JOIN Assistance ON Ass_Dev.assistanceID = Assistance.idAssistance
-            WHERE Assistance.idAssistance = ?
+        SELECT *
+            FROM Faq
+            WHERE assistanceID = ?
         ";
         
         if($statement = $con->prepare($query)) {
@@ -102,11 +79,67 @@
             $cont = 0;
             $result = $statement->get_result();
             while($data = $result->fetch_assoc()) {
+                $return["faq_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_faq"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT Devices.idDevices, Devices.nome
+            FROM Assistance JOIN Ass_Dev ON Assistance.idAssistance = Ass_Dev.assistanceID
+                JOIN Devices ON Devices.idDevices = Ass_Dev.devicesID
+            WHERE Assistance.idAssistance = ?
+            ORDER BY Devices.idDevices
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idAssistance);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $idDevices[$cont] = $data["idDevices"];
                 $return["device_".$cont] = $data;
                 $cont++;
             }
             
             $return["n_devices"] = $cont;
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+
+            $statement->close();
+            
+        }
+        
+        $query = "
+        SELECT Immagini.percorso, Devices.idDevices
+        FROM Devices JOIN Img_Dev ON Devices.idDevices = Img_Dev.devicesID
+            JOIN Immagini ON Img_Dev.immaginiID = Immagini.idImmagini
+            WHERE Devices.idDevices = ?
+            GROUP BY Devices.idDevices
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            for($i=0; $i<$cont; $i++) {
+                $statement->bind_param("i", $idDevices[$i]);
+                $statement->execute();
+
+                $result = $statement->get_result();
+                if($data = $result->fetch_assoc()) {
+                    $return["percorso_".$i] = $data["percorso"];
+                }
+            }
+            
+            $return["n_immagini"] = $i;
             
             $return["json"] = json_encode($return);
             echo json_encode($return);
