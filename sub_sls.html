@@ -64,14 +64,10 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="container-img pos-rel">
-                        <img src="https://img.tim.it/sdr/smartlife/img/wp/01-tv-entertainment.jpg" class="img-responsive pos-rel">
+                        <img id="immagine-testata" src="" class="img-responsive pos-rel">
                         <div class="container-text text-center">
-                            <p class="titolo">
-                                TV & Entertainment
-                            </p>
-                            <p class="descrizione">
-                                SERIE TV, FILM, MUSICA, LIBRI, GIOCHI E CALCIO.<br>Scopri il tipo di intrattenimento che preferisci. Il divertimento comincia subito!<br>Quando e come vuoi.
-                            </p>
+                            <p id="titolo" class="titolo"><!-- Titolo --></p>
+                            <p id="descrizione" class="descrizione"><!-- Descrizione --></p>
                         </div>
                     </div>
                 </div>
@@ -80,38 +76,15 @@
             <div class="row spazio">
                 <div class="col-xs-12">
                     <div class="row">
-                        <div class="col-sm-6 text-center">
+                        <div class="col-sm-6 col-sm-offset-3 text-center">
                             <h2>Contenuti</h2>
-                            <p>
-                            TIMvision è la TV sempre on demand di TIM che non ti abbandona mai, senza pubblicità e anche da più dispositivi contemporaneamente. Vedi i tuoi programmi preferiti direttamente su Web e TV. Anche su Smartphone e Tablet senza consumare Giga.
-                            </p>
-                            <img src="https://img.tim.it/sdr/landing/tim-vision/img/device-vision.jpg" class="img-responsive img-center">
+                            <p id="testo-contenuti"><!-- Testo contenuti --></p>
+                            <img id="immagine-contenuti" src="" class="img-responsive img-center">
                         </div>
-                        <div class="col-sm-6 text-center">
-                            <div class="row vertical-align spazio">
-                                <div class="col-sm-8">
-                                    <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                                </div>
-                                <div class="col-sm-4">
-                                    <a href="">Decoder Tim Vision</a>
-                                </div>
-                            </div>
-                            <div class="row vertical-align spazio">
-                                <div class="col-sm-8">
-                                    <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                                </div>
-                                <div class="col-sm-4">
-                                    <a href="">Decoder Tim Vision</a>
-                                </div>
-                            </div>
-                            <div class="row vertical-align spazio">
-                                <div class="col-sm-8">
-                                    <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                                </div>
-                                <div class="col-sm-4">
-                                    <a href="">Decoder Tim Vision</a>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div id="prodotti" class="row spazio"><!-- Prodotti abbinati --></div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +130,75 @@
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/get.js"></script>
-                     
+        
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                
+                var idSubSLS = $_GET("idSubSLS");
+                getidSubSLS(idSubSLS);
+
+                
+            });
+            
+            function getidSubSLS(idSubSLS) {
+                
+                var data = {
+                    "action": "get_subsls",
+                    "idSubSLS": idSubSLS
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_sls.php",
+                    data: data,
+                    
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        $("#breadcrumb").html(
+                            '<li><a href="intro_sls.html">SLS</a></li>'+
+                            '<li><a href="sls.html?idSLS='+data["SLSID"]+'">'+data["nome_sls"]+'</a></li>'+
+                            '<li class="active">'+data["nome"]+'</li>'
+                        );
+                        
+                        $("#immagine-testata").attr("src", data["img_testata"]);
+                        
+                        $("#titolo").html(
+                            data["nome"]
+                        );
+                        
+                        $("#descrizione").html(
+                            data["descrizione"]
+                        );
+                        
+                        $("#testo-contenuti").html(
+                            data["testo_contenuti"]
+                        );
+                        
+                        $("#immagine-contenuti").attr("src", data["img_contenuti"]);
+                                    
+                        for(var i=0; i<data["n_immagini"]; i++) {
+                            $("#prodotti").append(
+                                '<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">'+
+                                    '<img src="'+data["percorso_"+i]+'" class="img-responsive img-center">'+
+                                    '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'">'+data["device_"+i]["nome"]+'</a>'+
+                                '</div>'
+                            );
+                        }
+
+                    }
+                });
+                
+                return false;
+                
+            }
+            
+        </script>
+        
     </body>
     
 </html>

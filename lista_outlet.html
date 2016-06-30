@@ -158,9 +158,9 @@
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
                     success: function(data) {
                         

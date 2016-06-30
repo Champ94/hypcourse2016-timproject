@@ -1,47 +1,35 @@
 <?php
 
-    if(is_ajax()) {
-        
-        if(isset($_POST["action"]) && !empty($_POST["action"])) {
-            
-            $action = $_POST["action"];
-            
-            switch($action) {
-                case "get_assistance":
-                    if(isset($_POST["idAssistance"])) {
-                        getAssistance($_POST["idAssistance"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                case "get_assistancelist":
-                    if(isset($_POST["idCategoria"])) {
-                        getAssistanceList($_POST["idCategoria"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                default:
+    if(isset($_GET["action"]) && !empty($_GET["action"])) {
+
+        $action = $_GET["action"];
+
+        switch($action) {
+            case "get_assistance":
+                if(isset($_GET["idAssistance"])) {
+                    getAssistance($_GET["idAssistance"]);
+                }
+                else {
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
-            }
-            
+                }
+                break;
+
+            case "get_assistancelist":
+                if(isset($_GET["idCategoria"])) {
+                    getAssistanceList($_GET["idCategoria"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            default:
+                $error["json"] = "Ajax call: error!";
+                echo json_encode($error);
         }
-        
-    }
 
-    /*
-        Function that checks if it's an Ajax call
-    */
-
-    function is_ajax() {
-        return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
     }
 
     function getAssistance($idAssistance) {
@@ -149,7 +137,7 @@
             
             $return["n_immagini"] = $i;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_assistance: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -189,7 +177,7 @@
             
             $return["n_assistenze"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_assistancelist: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();

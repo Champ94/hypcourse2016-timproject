@@ -1,110 +1,98 @@
 <?php
 
-    if(is_ajax()) {
-        
-        if(isset($_POST["action"]) && !empty($_POST["action"])) {
-            
-            $action = $_POST["action"];
-            
-            switch($action) {
-                /*
-                    Funzioni pagina device.html
-                */
-                case "get_device":
-                    if(isset($_POST["idDevice"])) {
-                        getDevice($_POST["idDevice"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                case "get_img":
-                    if(isset($_POST["idDevice"]) && isset($_POST["idColore"])) {
-                        getImages($_POST["idDevice"], $_POST["idColore"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                
-                case "get_categoria":
-                    if(isset($_POST["idCategoria"])) {
-                        getCategoria($_POST["idCategoria"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
+    if(isset($_GET["action"]) && !empty($_GET["action"])) {
 
-                /*
-                    Funzioni pagina lista_devices.html e lista_outlet.html
-                */
-                case "get_devlist":
-                    if(isset($_POST["idCategoria"])) {
-                        getDevlist($_POST["idCategoria"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                case "get_outlet":
-                    getOutlet();
-                    break;
-                
-                case "get_filtri":
-                    if(isset($_POST["idCategoria"])) {
-                        getFiltri($_POST["idCategoria"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                case "get_filteredlist":
-                    if(isset($_POST["idCategoria"])) {
-                        
-                        $filters = array(
-                            "promo" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="promo") ? "1" : "%",
-                            "novita" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="novita") ? "1" : "%",
-                            "disponibile" => (isset($_POST["mostra_solo"]) && $_POST["mostra_solo"]=="disponibile") ? "1" : "%",
-                            "tipologiaID" => (isset($_POST["tipologiaID"])) ? $_POST["tipologiaID"] : "%",
-                            "prezzo" => (isset($_POST["prezzo"])) ? $_POST["prezzo"] : "%",
-                            "marcaID" => (isset($_POST["marcaID"])) ? $_POST["marcaID"] : "%",
-                            "rate" => (isset($_POST["acquisto"])) ? $_POST["acquisto"] : "%",
-                            "sisopID" => (isset($_POST["sisopID"])) ? $_POST["sisopID"] : "%",
-                            "connessioneID" => (isset($_POST["connessioneID"])) ? $_POST["connessioneID"] : "%",
-                        );
-                        
-                        getFilteredlist($_POST["idCategoria"], $filters);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                default:
+        $action = $_GET["action"];
+
+        switch($action) {
+            /*
+                Funzioni pagina device.html
+            */
+            case "get_device":
+                if(isset($_GET["idDevice"])) {
+                    getDevice($_GET["idDevice"]);
+                }
+                else {
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
-            }
-            
+                }
+                break;
+
+            case "get_img":
+                if(isset($_GET["idDevice"]) && isset($_GET["idColore"])) {
+                    getImages($_GET["idDevice"], $_GET["idColore"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            case "get_categoria":
+                if(isset($_GET["idCategoria"])) {
+                    getCategoria($_GET["idCategoria"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            /*
+                Funzioni pagina lista_devices.html e lista_outlet.html
+            */
+            case "get_devlist":
+                if(isset($_GET["idCategoria"])) {
+                    getDevlist($_GET["idCategoria"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            case "get_outlet":
+                getOutlet();
+                break;
+
+            case "get_filtri":
+                if(isset($_GET["idCategoria"])) {
+                    getFiltri($_GET["idCategoria"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            case "get_filteredlist":
+                if(isset($_GET["idCategoria"])) {
+
+                    $filters = array(
+                        "promo" => (isset($_GET["mostra_solo"]) && $_GET["mostra_solo"]=="promo") ? "1" : "%",
+                        "novita" => (isset($_GET["mostra_solo"]) && $_GET["mostra_solo"]=="novita") ? "1" : "%",
+                        "disponibile" => (isset($_GET["mostra_solo"]) && $_GET["mostra_solo"]=="disponibile") ? "1" : "%",
+                        "tipologiaID" => (isset($_GET["tipologiaID"])) ? $_GET["tipologiaID"] : "%",
+                        "prezzo" => (isset($_GET["prezzo"])) ? $_GET["prezzo"] : "%",
+                        "marcaID" => (isset($_GET["marcaID"])) ? $_GET["marcaID"] : "%",
+                        "rate" => (isset($_GET["acquisto"])) ? $_GET["acquisto"] : "%",
+                        "sisopID" => (isset($_GET["sisopID"])) ? $_GET["sisopID"] : "%",
+                        "connessioneID" => (isset($_GET["connessioneID"])) ? $_GET["connessioneID"] : "%",
+                    );
+
+                    getFilteredlist($_GET["idCategoria"], $filters);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            default:
+                $error["json"] = "Ajax call: error!";
+                echo json_encode($error);
         }
-        
-    }
 
-    /*
-        Function that checks if it's an Ajax call
-    */
-
-    function is_ajax() {
-        return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
     }
 
     function getDevice($idDevice) {

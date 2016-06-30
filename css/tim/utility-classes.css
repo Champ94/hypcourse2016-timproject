@@ -6,6 +6,19 @@
     position: relative;
 }
 
+.push-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.disp-flex {
+    display: flex;
+}
+
+.same-height {
+    flex: 1;
+}
+
 .no-margin {
     margin: 0;
 }

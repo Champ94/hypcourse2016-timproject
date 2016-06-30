@@ -1,48 +1,34 @@
 <?php
-
-getSLS(1);
-
-    if(is_ajax()) {
         
-        if(isset($_POST["action"]) && !empty($_POST["action"])) {
-            
-            $action = $_POST["action"];
-            
-            switch($action) {
-                case "get_sls":
-                    if(isset($_POST["idSLS"])) {
-                        getSLS($_POST["idSLS"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                case "get_subsls":
-                    if(isset($_POST["idSubSLS"])) {
-                        getSubSLS($_POST["idSubSLS"]);
-                    }
-                    else {
-                        $error["json"] = "Ajax call: error!";
-                        echo json_encode($error);
-                    }
-                    break;
-                    
-                default:
+    if(isset($_GET["action"]) && !empty($_GET["action"])) {
+
+        $action = $_GET["action"];
+
+        switch($action) {
+            case "get_sls":
+                if(isset($_GET["idSLS"])) {
+                    getSLS($_GET["idSLS"]);
+                }
+                else {
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
-            }
-            
+                }
+                break;
+            case "get_subsls":
+                if(isset($_GET["idSubSLS"])) {
+                    getSubSLS($_GET["idSubSLS"]);
+                }
+                else {
+                    $error["json"] = "Ajax call: error!";
+                    echo json_encode($error);
+                }
+                break;
+
+            default:
+                $error["json"] = "Ajax call: error!";
+                echo json_encode($error);
         }
-        
-    }
 
-    /*
-        Function that checks if it's an Ajax call
-    */
-
-    function is_ajax() {
-        return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
     }
 
     function getSLS($idSLS) {
@@ -95,7 +81,7 @@ getSLS(1);
             
             $return["n_subsls"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_sls: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -114,9 +100,9 @@ getSLS(1);
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT SubSLS.*
+        SELECT SubSLS.*, SLS.nome AS 'nome_sls'
             FROM SubSLS, SLS
-            WHERE SubSLS.slsID = ?
+            WHERE SubSLS.idSubSLS = ?
                 AND SubSLS.slsID = SLS.idSLS
         ";
         
@@ -129,6 +115,8 @@ getSLS(1);
             if($data = $result->fetch_assoc()) {
                 $return = $data;
             }
+            
+            $return["testo_contenuti"] = str_replace("#", "<br>", $return["testo_contenuti"]);
             
             $statement->close();
             
@@ -183,7 +171,7 @@ getSLS(1);
             
             $return["n_immagini"] = $i;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_subsls: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();

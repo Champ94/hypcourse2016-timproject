@@ -64,14 +64,10 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="pos-rel">
-                        <img src="https://img.tim.it/sdr/smartlife/img/wp/01-tv-entertainment.jpg" class="img-responsive pos-rel">
+                        <img id="immagine-testata" src="" class="img-responsive pos-rel">
                         <div class="container-text text-center">
-                            <p class="titolo">
-                                TV & Entertainment
-                            </p>
-                            <p class="descrizione">
-                                SERIE TV, FILM, MUSICA, LIBRI, GIOCHI E CALCIO.<br>Scopri il tipo di intrattenimento che preferisci. Il divertimento comincia subito!<br>Quando e come vuoi.
-                            </p>
+                            <p id="titolo" class="titolo"><!-- Nome SLS --></p>
+                            <p id="descrizione" class="descrizione"><!-- Descrizione SLS --></p>
                         </div>
                     </div>
                 </div>
@@ -79,32 +75,7 @@
             
             <div class="row spazio">
                 <div class="col-xs-12">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 text-center">
-                            <img src="https://img.tim.it/sdr/landing/smartlife-tv/1.png" class="img-responsive img-center">
-                            <a href="">TIM Vision</a>
-                        </div>
-                    </div>
+                    <div id="sub_sls" class="row disp-flex"><!-- Sub SLS --></div>
                 </div>
             </div>
             
@@ -148,7 +119,68 @@
         <script src="js/jquery-1.9.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/get.js"></script>
-                     
+        
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                
+                var idSLS = $_GET("idSLS");
+                getSLS(idSLS);
+
+                
+            });
+            
+            function getSLS(idSLS) {
+                
+                var data = {
+                    "action": "get_sls",
+                    "idSLS": idSLS
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_sls.php",
+                    data: data,
+                    
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        $("#breadcrumb").html(
+                            '<li><a href="intro_sls.html">SLS</a></li>'+
+                            '<li>'+data["nome"]+'</li>'
+                        );
+                        
+                        $("#immagine-testata").attr("src", data["img"]);
+                        
+                        $("#titolo").html(
+                            data["nome"]
+                        );
+                        
+                        $("#descrizione").html(
+                            data["descrizione"]
+                        );
+                        
+                        for(var i=0; i<data["n_subsls"]; i++) {
+                            $("#sub_sls").append(
+                                '<div class="col-sm-6 col-md-4 text-center same-height pos-rel">'+
+                                    '<img src="'+data["subsls_"+i]["img_contenuti"]+'" class="img-responsive img-center">'+
+                                    '<a href="sub_sls.html?idSubSLS='+data["subsls_"+i]["idSubSLS"]+'" class="push-bottom">'+data["subsls_"+i]["nome"]+'</a>'+
+                                '</div>'
+                            );
+                        }
+
+                    }
+                });
+                
+                return false;
+                
+            }
+            
+        </script>
+        
     </body>
     
 </html>

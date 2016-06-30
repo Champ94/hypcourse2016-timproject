@@ -89,7 +89,7 @@
         <div class="hidden-md hidden-lg">
             <a class="btn btn-primary collapsed pulsantefiltri" role="button" data-toggle="collapse" href="#menufiltri2" aria-expanded="false" aria-controls="menufiltri">Filtra per...</a>
             <div class="collapse row filtroresp" id="menufiltri2">
-                <form action="query_devices.php" method="post" id="filtri2" accept-charset="utf-8">
+                <form action="http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php" method="get" id="filtri2" accept-charset="utf-8">
                     <div class="row rigarespo">
                         <div class="col-xs-12 col-sm-4">
                             <label for="mostra solo">Mostra solo</label>
@@ -167,7 +167,7 @@
                         <h3 class="panel-title">Filtra per</h3>
                     </div>
                     <div class="panel-body">
-                        <form action="query_devices.php" method="post" id="filtri" accept-charset="utf-8">
+                        <form action="http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php" method="get" id="filtri" accept-charset="utf-8">
                             <label for="mostra solo">Mostra solo</label>
                             <div class="radio">
                                 <label><input type="radio" name="mostra_solo" value="disponibile" data-waschecked="false"> Disponibile</label>
@@ -291,9 +291,9 @@
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
                     success: function(data) {
                         
@@ -332,9 +332,9 @@
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
                     success: function(data) {
                         
@@ -421,9 +421,9 @@
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
                     success: function(data) {
                         
@@ -591,9 +591,9 @@
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
                     success: function(data) {
                         
