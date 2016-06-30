@@ -9,21 +9,20 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
 		
 		<title>
-			TIM - Lista Assistenze
+			TIM - ASSISTENZA
 		</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
-        <link rel="stylesheet" href="css/tim/assistenza.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
-        
+		
 	</head>
 	
 	<body>
-        
-     	<!-- HEADER START -->
+    
+        <!-- HEADER START -->
 		<nav class="navbar navbar-default tim-header">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -56,19 +55,49 @@
             </div>
         </nav>
         <!-- HEADER END -->
-				
-        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
-
         
-        <div class="row rigarespo">
-            <div class="col-sm-2 textalign">
-                <div id="icona-assist"></div>
+        <ol class="breadcrumb">
+            <li class="active">ASSISTENZA</li>
+        </ol>
+        
+        <br>
+        
+        <h1 class="text-center benvenuto">Benvenuto negli Smar Life Services TIM</h1>
+        
+        <br>
+        
+        <div class="row products rigarespo">
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="sls.html?idSLS=1">
+                    <img class="catpic" alt="Smartphone" src="img/01_Intrattenimento_0.png">
+                    <p class="cattext">TV & Entertainment</p>
+                </a>
             </div>
-            <div class="col-sm-9 bordosinistro">
-                <div id="nomecategoria"></div>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="sls.html?idSLS=10">
+                    <img class="catpic" alt="Tablet" src="img/02_icona_salute_benessere.png">
+                    <p class="cattext">Salute e Benessere</p>
+                </a>
+            </div>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="sls.html?idSLS=11">
+                    <img class="catpic" alt="Modem" src="img/03_casa_famiglia_v2.png">
+                    <p class="cattext">Casa e Famiglia</p>
+                </a>
+            </div>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="sls.html?idSLS=12">
+                    <img class="catpic" alt="TV" src="img/04_ConenutiDigitalLife_0.png">
+                    <p class="cattext">Servizi alla Persona</p>
+                </a>
             </div>
         </div>
         
+        
+        <br>
         <br>
         
         <!-- FOOTER START -->
@@ -108,74 +137,7 @@
         
         <script src="js/jquery-1.12.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/get.js"></script>
-        
-        <script>
-           
-            $(document).ready(function() {
-                
-                var idCategoria = $_GET("idCategoria");
-                getAssistlist(idCategoria); 
-                
-            });
-            
-            function getAssistlist(idCategoria) {
-                 
-                var data = {
-                    "action": "get_assistancelist",
-                    "idCategoria": idCategoria
-                };
-                data = $(this).serialize() + "&" + $.param(data);
-                
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_assistance.php",
-                    data: data,
-                    success: function(data) {
-                        
-                        console.log(data["json"]);
-                        
-                        $("#breadcrumb").html (
-                            '<li><a href="intro_assistenza.html">ASSISTENZA</a></li>'+
-                            '<li class="active">'+data["assistenza_"+0]["nome_categoria"]+'</li>'
-                        );
-                        
-                        $("#icona-assist").html(
-                            '<img src="'+data["assistenza_"+0]["icona"]+'">'+
-                            '<br>'+
-                            '<br>'+
-                            '<a href="intro_assistenza.html">Torna indietro &gt;</a>'+
-                            '<br>'+
-                            '<br>'
-                        );
-                        
-                        $("#nomecategoria").html(
-                            '<p class="assis-titolo">'+data["assistenza_"+0]["nome_categoria"]+'</p>'+
-                            '<br>'+
-                            '<br>'
-                        );
-                        
-                        for(var i=0; i<(data["n_assistenze"]-1); i++) {
-                            $("#nomecategoria").append(
-                                '<a href="assistenza.html?idAssistance='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'+
-                                '<br>'
-                            );
-                        }                            
-                        
-                        $("#nomecategoria").append(
-                            '<a href="assistenza.html?idAssistance='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'
-                            );
-                    
-                    }
-                    
-                });
-                
-                return false;
-                
-            }
-            
-        </script>
         
     </body>
+    
 </html>

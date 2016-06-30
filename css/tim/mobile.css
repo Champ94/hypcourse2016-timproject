@@ -1,6 +1,24 @@
 @media screen and (max-width: 767px) {
     
     /*
+        Utility Classes
+    */
+    
+    .push-bottom {
+        position: relative;
+    }
+
+    .disp-flex {
+        display: block;
+    }
+
+    .same-height {
+        flex: none;
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+    
+    /*
         tim-components
     */
     
