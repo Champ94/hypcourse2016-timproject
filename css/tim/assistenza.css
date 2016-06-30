@@ -44,10 +44,11 @@
 
 .nomedevices {
     font-size: 14px;
+    height: 30px;
 }
 
 .deviceassist {
-    height: 160px;
+    height: 140px;
 }
 
 @media screen and (min-width: 1017px) {

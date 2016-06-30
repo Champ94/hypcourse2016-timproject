@@ -73,7 +73,7 @@
                     <p class="assis-desc">FAQ:</p>
                     <div id="faqassistenza"></div>
                     <br>
-                    <div id="deviceassistenza"></div>
+                    <div id="devicerow"></div>
                 </div>
             </div>
         </div>
@@ -181,25 +181,23 @@
                         };
                         
                         if(data["n_devices"]) {
-                            $("#deviceassistenza").append (
+                            $("#devicerow").append (
                                 '<p class="assis-device">I prodotti associati all&rsquo;assistenza sono</p>'+
                                 '<br>'+
-                                '<div class="row rigarespo">'
+                                '<div class="row rigarespo">'+
+                                '<div id="deviceassistenza"></div>'
+                                
                             )
                         }
                         
                         for(var i=0; i<data["n_devices"]; i++) {
                             $("#deviceassistenza").append (
                                 '<div class="col-md-2 col-sm-4 col-xs-6 deviceassist text-center">'+
-                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><p class="nomedevices">'+data["device_"+i]["nome"]+'</p><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><p class="nomedevices">'+data["device_"+i]["nome"]+'</p></a>'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
                                 '</div>'
                             )
                         };
-                        
-                        $("#deviceassistenza").append (
-                            '</div>'+
-                            '<br>'
-                        );
                         
                     }
                     

@@ -66,9 +66,10 @@
             </div>
             <div class="col-sm-9 bordosinistro">
                 <div id="nomecategoria"></div>
-                <br>
             </div>
         </div>
+        
+        <br>
         
         <!-- FOOTER START -->
         <footer class="footer">
@@ -155,13 +156,16 @@
                             '<br>'
                         );
                         
-                        for(var i=0; i<data["n_assistenze"]; i++) {
+                        for(var i=0; i<(data["n_assistenze"]-1); i++) {
                             $("#nomecategoria").append(
                                 '<a href="assistenza.html?idAssistance='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'+
                                 '<br>'
                             );
                         }                            
                         
+                        $("#nomecategoria").append(
+                            '<a href="assistenza.html?idAssistance='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'
+                            );
                     
                     }
                     
