@@ -9,7 +9,7 @@
     color: white;
     font-weight: bolder;
     margin-top: 136px;
-    width: 160px;
+    width: 140px;
     padding-right: 5px;
     padding-left: 5px;
     text-shadow: 0 0px 0;
@@ -92,9 +92,73 @@
     margin-top: 10px;
 }
 
+.colonnepulsanti {
+    padding: 0 0 0 0;
+}
+
 @media screen and (max-width: 365px) {
     .slider-progetti {
         margin-top: 0px;
         padding-top: 0px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .posizionepic {
+        margin-top: 22%;
+    }
+    
+    .dimensionecarousel-progetti {
+        height: 500px;
+    }
+    
+    .dimensionecarousel-testimonial {
+        height: 500px;
+    }
+    
+    .dimensionecarousel-innovazione {
+        height: 500px;
+    }
+}
+
+@media screen and (width: 768px) {
+    .dimensionecarousel-progetti {
+        height: 450px;
+    }
+    
+    .dimensionecarousel-testimonial {
+        height: 600px;
+    }
+    
+    .dimensionecarousel-innovazione {
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 581px) {
+    .dimensionecarousel-progetti {
+        height: 500px;
+    }
+    
+    .dimensionecarousel-testimonial {
+        height: 450px;
+    }
+    
+    .dimensionecarousel-innovazione {
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .dimensionecarousel-progetti {
+        height: 500px;
+    }
+    
+    .dimensionecarousel-testimonial {
+        height: 380px;
+    }
+    
+    .dimensionecarousel-innovazione {
+        height: 450px;
     }
 }

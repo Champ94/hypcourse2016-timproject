@@ -74,7 +74,6 @@
                     <p class="assis-desc">FAQ:</p>
                     <div id="faqassistenza"></div>
                     <br>
-                    <p class="assis-device">I prodotti associati all'assistenza sono</p>
                     <div id="deviceassistenza"></div>
                 </div>
             </div>
@@ -172,18 +171,27 @@
                                 '<p class="assis-text">'+data["faq_"+i]["domanda"]+'</p>'+
                                 '<br>'+
                                 '<p class="assis-text">'+data["faq_"+i]["risposta"]+'</p>'+
-                                '<br>'+
                                 '<br>'
                             )
                         };
                         
+                        if(data["n_devices"]) {
+                            $("#deviceassistenza").append (
+                                '<p class="assis-device">I prodotti associati all&rsquo;assistenza sono</p>'+
+                                '<div class="row rigarespo">'
+                            )
+                        }
+                        
                         for(var i=0; i<data["n_devices"]; i++) {
                             $("#deviceassistenza").append (
-                                '<a href="device.html?idDevice='+data["device_"+i]["idDevice"]+'"><img src="'+data["device_"+i]["percorso"]+'></a>'
+                                '<div class="col-md-2">'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
+                                '</div>'
                             )
                         };
                         
                         $("#deviceassistenza").append (
+                            '</div>'+
                             '<br>'
                         );
                         
