@@ -7,6 +7,9 @@
             $action = $_POST["action"];
             
             switch($action) {
+                /*
+                    Funzioni pagina device.html
+                */
                 case "get_device":
                     if(isset($_POST["idDevice"])) {
                         getDevice($_POST["idDevice"]);
@@ -36,7 +39,10 @@
                         echo json_encode($error);
                     }
                     break;
-                    
+
+                /*
+                    Funzioni pagina lista_devices.html e lista_outlet.html
+                */
                 case "get_devlist":
                     if(isset($_POST["idCategoria"])) {
                         getDevlist($_POST["idCategoria"]);
@@ -186,9 +192,6 @@
             
             $return["n_memoria"] = $cont;
             
-            $return["json"] = json_encode($return);
-            echo json_encode($return);
-
             $statement->close();
             
         }
@@ -214,7 +217,7 @@
             
             $return["n_assistances"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_device: dati ritornati correttamente!";
             echo json_encode($return);
 
             $statement->close();
@@ -255,7 +258,7 @@
             
             $return["n_immagini"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_img: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -289,7 +292,7 @@
                 $return = $data;
             }
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_categoria: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -362,7 +365,7 @@
             */
             $return["n_devices"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_devlist: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -431,7 +434,7 @@
             */
             $return["n_devices"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_outlet: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -553,7 +556,7 @@
             
             $return["n_connessioni"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_filtri: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
@@ -679,7 +682,7 @@
             
             $return["n_devices"] = $cont;
             
-            $return["json"] = json_encode($return);
+            $return["json"] = "Action get_filteredlist: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();

@@ -22,7 +22,7 @@
     </head>
     
     <body>
-        
+    
         <!-- HEADER START -->
 		<nav class="navbar navbar-default tim-header">
 			<div class="container-fluid">
@@ -33,22 +33,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-					<a class="navbar-brand timbrand" href="#">
+					<a class="navbar-brand timbrand" href="home.html">
 						<img alt="TIM" src="img/logo.png">
 					</a>
 				</div>
                 
                 <div class="collapse navbar-collapse" id="header">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" style="color:white;">Chi siamo</a></li>
-                        <li><a href="#" style="color:white;">Il gruppo</a></li>
+                        <li><a href="innovazione.html" class="menu-textcolor">Chi siamo</a></li>
+                        <li><a href="#" class="menu-textcolor">Il gruppo</a></li>
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" style="color:white;">PRODOTTI</a></li>
-                        <li><a href="#" style="color:white;">SMARTLIFE</a></li>
-                        <li><a href="#" style="color:white;">ASSISTENZA</a></li>
-                        <a class="navbar-brand cartbrand" href="#">
+                        <li><a href="intro_prodotti.html" class="menu-textcolor">PRODOTTI</a></li>
+                        <li><a href="intro_sls.html" class="menu-textcolor">SMARTLIFE</a></li>
+                        <li><a href="intro_assistenza.html" class="menu-textcolor">ASSISTENZA</a></li>
+                        <a class="navbar-brand cartbrand" href="carrello.html">
                             <img class="cartlogo" alt="Carrello" src="img/cart.png">
                         </a>
                     </ul>
@@ -71,14 +71,10 @@
                             <div class="container">
                                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                     <!-- Indicators -->
-                                    <ol class="carousel-indicators">
-                                        <!-- data-target -->
-                                    </ol>
+                                    <ol class="carousel-indicators"><!-- data-target --></ol>
 
                                     <!-- Wrapper for slides -->
-                                    <div class="carousel-inner" role="listbox">
-                                        <!--Items -->
-                                    </div>
+                                    <div class="carousel-inner" role="listbox"><!--Items --></div>
 
                                     <!-- Left and right controls -->
                                     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -152,7 +148,7 @@
         
         <!-- FOOTER START -->
         <footer class="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row no-margin">
                     <div class="col-sm-6">
                         <div class="row footer-row">
@@ -166,16 +162,16 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row footer-row">
-                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-2 col-lg-offset-4 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-1 col-lg-offset-8 vertical-align">
                                 <img src="img/social-icon/facebook-logo.png" class="img-responsive" alt="Facebook">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/twitter-logo.png" class="img-responsive" alt="Twitter">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/youtube.png" class="img-responsive" alt="Youtube">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/google-plus-logo.png" class="img-responsive" alt="Google Plus">
                             </div>
                         </div>
@@ -194,39 +190,44 @@
             
             $(document).ready(function(){
                 
-                var idDevice = $_GET("idDevice");
                 var idCategoria = $_GET("idCategoria");
-                get_device(idDevice);
+                var idDevice = $_GET("idDevice");
                 getCategoria(idCategoria);
+                get_device(idDevice);
+                
+                /*
+                    Cambio immagini in base al colore
+                */
+                $("#colori_device").on("click", "div div", function(e) {
+                    e.preventDefault();
+                    $("#colori_device").children("div").children("div").removeClass("active-color");
+                    var idImmagine = $(this).attr("id");
+                    var idDevice = $_GET("idDevice");
+                    get_img(idDevice, idImmagine);
+                    $(this).addClass("active-color");
+                });
+                
+                /*
+                    Transizioni immagini
+                */
+                $("#img_dev").on("click", "a img", function(e){
+                    e.preventDefault();
+                    $("#img_dev").children("a").removeClass("thumb-active");
+                    $(this).closest("a").addClass("thumb-active");
+                    var src = this.src;
+                    $(".img-dev").fadeOut(400,function(){
+                        $(this).fadeIn(400)[0].src = src;
+                    });
+                });
                 
             });
             
-            $("#colori_device").on("click", "div div", function(e) {
-                e.preventDefault();
-                $("#colori_device").children("div").children("div").removeClass("active-color");
-                var idImmagine = $(this).attr("id");
-                var idDevice = $_GET("idDevice");
-                get_img(idDevice, idImmagine);
-                $(this).addClass("active-color");
-            });
-            
-            $("#img_dev").on("click", "a img", function(e){
-                e.preventDefault();
-                $("#img_dev").children("a").removeClass("thumb-active");
-                $(this).closest("a").addClass("thumb-active");
-                var src = this.src;
-                $(".img-dev").fadeOut(400,function(){
-                    $(this).fadeIn(400)[0].src = src;
-                });
-            });
-            
-            function getCategoria(idCategoria) {                
+            function getCategoria(idCategoria) { 
                 
                 var data = {
                     "action": "get_categoria",
                     "idCategoria": idCategoria
                 };
-                
                 data = $(this).serialize() + "&" + $.param(data);
                 
                 $.ajax({
@@ -242,19 +243,21 @@
                             Breadcrumb
                         */
                         $("#breadcrumb").html(
-                            '<li><a href="intro_devices.html">Prodotti</a></li>'+
-                            '<li><a href="lista_devices.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
+                            '<li><a href="intro_prodotti.html">Prodotti</a></li>'+
+                            '<li><a href="lista_prodotti.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
                         );
                         
                     }
                     
                     
                 });
+                
                 return false;
+                
             }
             
             function get_device(idDevice) {
-                 
+                
                 var data = {
                     "action": "get_device",
                     "idDevice": idDevice
@@ -379,11 +382,15 @@
                             );
                         }
                         
+                        /*
+                            Evoca il metodo che rende le schede responsive
+                        */
                         $('#myTab').tabCollapse();
                     }
                 });
                 
                 return false;
+                
             }
             
             function get_img(idDevice, idColore) {
@@ -403,7 +410,10 @@
                     success: function(data) {
                         
                         console.log(data["json"]);
-                            
+                        
+                        /*
+                            Pulisce il DOM in caso di inserimenti precedenti
+                        */
                         $("#img_dev").html (
                             ""
                         );
@@ -444,8 +454,11 @@
                 });
                 
                 return false;
+                
             }
-             
+            
         </script>
+        
     </body>
+    
 </html>

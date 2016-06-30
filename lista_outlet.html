@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
-        <link rel="stylesheet" href="css/tim/lista-devices.css">
+        <link rel="stylesheet" href="css/tim/lista-prodotti.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
 		
@@ -33,22 +33,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-					<a class="navbar-brand timbrand" href="#">
+					<a class="navbar-brand timbrand" href="home.html">
 						<img alt="TIM" src="img/logo.png">
 					</a>
 				</div>
                 
                 <div class="collapse navbar-collapse" id="header">
                     <ul class="nav navbar-nav">
-                        <li><a href="#" style="color:white;">Chi siamo</a></li>
-                        <li><a href="#" style="color:white;">Il gruppo</a></li>
+                        <li><a href="innovazione.html" class="menu-textcolor">Chi siamo</a></li>
+                        <li><a href="#" class="menu-textcolor">Il gruppo</a></li>
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" style="color:white;">PRODOTTI</a></li>
-                        <li><a href="#" style="color:white;">SMARTLIFE</a></li>
-                        <li><a href="#" style="color:white;">ASSISTENZA</a></li>
-                        <a class="navbar-brand cartbrand" href="#">
+                        <li><a href="intro_prodotti.html" class="menu-textcolor">PRODOTTI</a></li>
+                        <li><a href="intro_sls.html" class="menu-textcolor">SMARTLIFE</a></li>
+                        <li><a href="intro_assistenza.html" class="menu-textcolor">ASSISTENZA</a></li>
+                        <a class="navbar-brand cartbrand" href="carrello.html">
                             <img class="cartlogo" alt="Carrello" src="img/cart.png">
                         </a>
                     </ul>
@@ -58,7 +58,7 @@
         <!-- HEADER END -->
 				
         <ol class="breadcrumb">
-            <li><a href="intro_devices.html">PRODOTTI</a></li>
+            <li><a href="intro_prodotti.html">PRODOTTI</a></li>
             <li>Outlet</li>
         </ol>
         
@@ -69,7 +69,7 @@
             
             <div class="col-md-5 col-xs-5">
                 <h2>Outlet TIMstore </h2>
-                <ul><a href="intro_devices.html">Torna alle categorie &gt;</a></ul>
+                <ul><a href="intro_prodotti.html">Torna alle categorie &gt;</a></ul>
             </div>
             
             <div class="col-md-4 col-xs-5">
@@ -96,8 +96,8 @@
         
         <!-- FOOTER START -->
         <footer class="footer">
-            <div class="container">
-                <div class="row no-margin">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="row footer-row">
                             <div class="col-xs-6 col-sm-4 col-lg-3 vertical-align">
@@ -110,16 +110,16 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row footer-row">
-                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-2 col-lg-offset-4 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-sm-offset-4 col-lg-1 col-lg-offset-8 vertical-align">
                                 <img src="img/social-icon/facebook-logo.png" class="img-responsive" alt="Facebook">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/twitter-logo.png" class="img-responsive" alt="Twitter">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/youtube.png" class="img-responsive" alt="Youtube">
                             </div>
-                            <div class="col-xs-3 col-sm-2 col-lg-2 vertical-align">
+                            <div class="col-xs-3 col-sm-2 col-lg-1 vertical-align">
                                 <img src="img/social-icon/google-plus-logo.png" class="img-responsive" alt="Google Plus">
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                                     '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                     '<div class="row rigarespo" style="margin-bottom:10px"> <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 text-center prezzi_scont col-scontati">'+data['device_'+i]["prezzo_intero"]+'€'+'</div><div class="col-md-5 col-sm-5 text-center prezzi col-scontati">'+data['device_'+i]["prezzo_scontato"]+'€</div></div>'+
                                     '<p class="rate">&nbsp;</p>'+
-                                    '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                    '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                     '</div>'+
                                     '</div>'
                                 );
@@ -194,7 +194,7 @@
                                         '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                         '<p class="text-center prezzi">'+data['device_'+i]["prezzo_rate"]+'€/mese</p>'+
                                         '<p class="text-center rate">in '+data['device_'+i]["n_rate"]+' rate senza interessi</p>'+
-                                        '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                        '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                         '</div>'+
                                         '</div>'
                                     );
@@ -209,7 +209,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );
@@ -223,7 +223,7 @@
                                             '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
                                             '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
                                             '<p class="rate">&nbsp;</p>'+
-                                            '<a  href="device.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'&idCategoria='+data['device_'+i]["categoriaID"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
                                             '</div>'+
                                             '</div>'
                                         );

@@ -38,6 +38,10 @@ body {
     height: 25px;
 }
 
+.menu-textcolor {
+    color: #ffffff!important;
+}
+
 /*
     FOOTER
 */
@@ -79,7 +83,7 @@ body {
 
 .products {
     margin-bottom: 40px;
-    margin-top: 30px;
+    margin-top: 5%;
 }
 
 .catpic {
@@ -88,11 +92,6 @@ body {
 
 .cattext {
     font-size: 20px;
-}
-
-.products {
-    margin-bottom: 40px;
-    margin-top: 30px;
 }
 
 .vantaggi {

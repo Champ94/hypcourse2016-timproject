@@ -17,6 +17,16 @@
                     }
                     break;
                     
+                case "get_assistancelist":
+                    if(isset($_POST["idCategoria"])) {
+                        getAssistanceList($_POST["idCategoria"]);
+                    }
+                    else {
+                        $error["json"] = "Ajax call: error!";
+                        echo json_encode($error);
+                    }
+                    break;
+                    
                 default:
                     $error["json"] = "Ajax call: error!";
                     echo json_encode($error);
@@ -59,6 +69,8 @@
                 $return = $data;
             }
             
+            $return["descrizione"] = str_replace("#", "<br>", $return["descrizione"]);
+            
             $statement->close();
             
         }
@@ -78,6 +90,7 @@
             $result = $statement->get_result();
             while($data = $result->fetch_assoc()) {
                 $return["faq_".$cont] = $data;
+                $return["faq_".$cont]["risposta"] = str_replace("#", "<br>", $return["faq_".$cont]["risposta"]);
                 $cont++;
             }
             
@@ -135,6 +148,46 @@
             }
             
             $return["n_immagini"] = $i;
+            
+            $return["json"] = json_encode($return);
+            echo json_encode($return);
+            
+            $statement->close();
+            
+        }
+        
+        $con->close();
+        
+    }
+
+    function getAssistanceList($idCategoria) {
+        
+        require "connessione.php";
+        
+        $con->query("SET NAMES 'utf8'");
+        $con->query("SET CHARACTER_SET utf8;");
+        
+        $query = "
+        SELECT DISTINCT Assistance.*, Categoria.*, Tipo_assistenza.*
+            FROM Assistance, Categoria, Tipo_assistenza
+            WHERE Assistance.categoriaID = Categoria.idCategoria
+                AND Assistance.categoriaID = ?
+                AND Assistance.tipo_assistenzaID = Tipo_assistenza.idTipo_assistenza
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idCategoria);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["assistenza_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_assistenze"] = $cont;
             
             $return["json"] = json_encode($return);
             echo json_encode($return);
