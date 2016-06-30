@@ -267,8 +267,9 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "query_devices.php",
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/query_devices.php",
                     data: data,
+                    
                     success: function(data) {
                         
                         console.log(data["json"]);

@@ -168,7 +168,7 @@
         $con->query("SET CHARACTER_SET utf8;");
         
         $query = "
-        SELECT DISTINCT Assistance.*, Categoria.*, Tipo_assistenza.*
+        SELECT DISTINCT Assistance.*, Categoria.idCategoria, Categoria.nome AS 'nome_categoria', Categoria.icona, Tipo_assistenza.*
             FROM Assistance, Categoria, Tipo_assistenza
             WHERE Assistance.categoriaID = Categoria.idCategoria
                 AND Assistance.categoriaID = ?
