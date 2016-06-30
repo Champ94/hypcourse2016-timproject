@@ -9,13 +9,12 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
 		
 		<title>
-			TIM - Assistenza
+			TIM - Lista Assistenze
 		</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
-        <link rel="stylesheet" href="css/tim/lista-prodotti.css">
         <link rel="stylesheet" href="css/tim/assistenza.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
@@ -138,25 +137,26 @@
                         
                         $("#breadcrumb").html (
                             '<li><a href="intro_assistenza.html">ASSISTENZA</a></li>'+
-                            '<li class="active"><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
+                            '<li class="active">'+data["assistenza_"+0]["nome_categoria"]+'</li>'
                         );
                         
                         $("#icona-assist").html(
                             '<img src="'+data["assistenza_"+0]["icona"]+'">'+
                             '<br>'+
                             '<br>'+
-                            '<ul><a href="intro_assistenze.html">Torna indietro &gt;</a></ul>'
+                            '<ul><a href="intro_assistenza.html">Torna indietro &gt;</a></ul>'
                         );
                         
                         $("#nomecategoria").html(
-                            //'<p class="assis-titolo">'+data["categoriaID"]["nome"]+'</p>'+
+                            '<p class="assis-titolo">'+data["assistenza_"+0]["nome_categoria"]+'</p>'+
                             '<br>'+
                             '<br>'
                         );
                         
                         for(var i=0; i<data["n_assistenze"]; i++) {
                             $("#nomecategoria").append(
-                                '<a href="assistenza.html?idCategoria='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'
+                                '<a href="assistenza.html?idAssistance='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'+
+                                '<br>'
                             );
                         }                            
                         

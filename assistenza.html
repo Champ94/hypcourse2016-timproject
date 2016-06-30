@@ -15,7 +15,6 @@
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
-        <link rel="stylesheet" href="css/tim/lista-prodotti.css">
         <link rel="stylesheet" href="css/tim/assistenza.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
@@ -178,15 +177,15 @@
                         if(data["n_devices"]) {
                             $("#deviceassistenza").append (
                                 '<p class="assis-device">I prodotti associati all&rsquo;assistenza sono</p>'+
+                                '<br>'+
                                 '<div class="row rigarespo">'
                             )
                         }
                         
                         for(var i=0; i<data["n_devices"]; i++) {
                             $("#deviceassistenza").append (
-                                '<div class="col-md-2">'+
-                                '<p class="nomedevices">'+data["device_"+i]["nome"]+'</p>'+
-                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
+                                '<div class="col-md-2 col-sm-4 col-xs-6 deviceassist text-center">'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><p class="nomedevices">'+data["device_"+i]["nome"]+'</p><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
                                 '</div>'
                             )
                         };
