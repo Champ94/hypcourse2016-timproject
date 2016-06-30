@@ -15,16 +15,14 @@
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
-        <link rel="stylesheet" href="css/tim/lista-prodotti.css">
-        <link rel="stylesheet" href="css/tim/assistenza.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
-        
+		
 	</head>
 	
 	<body>
-        
-     	<!-- HEADER START -->
+    
+        <!-- HEADER START -->
 		<nav class="navbar navbar-default tim-header">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -57,19 +55,44 @@
             </div>
         </nav>
         <!-- HEADER END -->
-				
-        <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
-
         
-        <div class="row rigarespo">
-            <div class="col-md-2 text-right">
-                <div id="icona-assist"></div>
+        <ol class="breadcrumb">
+            <li class="active">Prodotti</li>
+        </ol>
+        
+        <div class="row products rigarespo">
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="lista_assistenze.html?idCategoria=5">
+                    <img class="catpic" alt="Smartphone" src="img/01_Gestione_Linea_e_Servizi_v1.png">
+                    <p class="cattext">Gestione linea e servizi</p>
+                </a>
             </div>
-            <div class="col-md-9 bordosinistro">
-                <div id="nomecategoria"></div>
-                <br>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="lista_assistenze.html?idCategoria=6">
+                    <img class="catpic" alt="Tablet" src="img/02_CostiPagamenti_0.png">
+                    <p class="cattext">Controllo costi e pagamenti</p>
+                </a>
+            </div>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="lista_assistenze.html?idCategoria=7">
+                    <img class="catpic" alt="Modem" src="img/03_Configurazione.png">
+                    <p class="cattext">Supporto tecnico e configurazioni</p>
+                </a>
+            </div>
+            
+            <div class="col-md-3 col-sm-3 text-center">
+                <a href="lista_assistenze.html?idCategoria=8">
+                    <img class="catpic" alt="TV" src="img/04_ConenutiDigitalLife.png">
+                    <p class="cattext">Contenuti e smartlife</p>
+                </a>
             </div>
         </div>
+        
+        
+        <br>
+        <br>
         
         <!-- FOOTER START -->
         <footer class="footer">
@@ -108,68 +131,7 @@
         
         <script src="js/jquery-1.12.4.min.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script src="js/get.js"></script>
-        
-        <script>
-           
-            $(document).ready(function() {
-                
-                var idCategoria = $_GET("idCategoria");
-                getAssistlist(idCategoria); 
-                
-            });
-            
-            function getAssistlist(idCategoria) {
-                 
-                var data = {
-                    "action": "get_assistancelist",
-                    "idCategoria": idCategoria
-                };
-                data = $(this).serialize() + "&" + $.param(data);
-                
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "query_assistance.php",
-                    data: data,
-                    success: function(data) {
-                        
-                        console.log(data["json"]);
-                        
-                        $("#breadcrumb").html (
-                            '<li><a href="intro_assistenza.html">ASSISTENZA</a></li>'+
-                            '<li class="active"><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">'+data["nome"]+'</a></li>'
-                        );
-                        
-                        $("#icona-assist").html(
-                            '<img src="'+data["assistenza_"+0]["icona"]+'">'+
-                            '<br>'+
-                            '<br>'+
-                            '<ul><a href="intro_assistenze.html">Torna indietro &gt;</a></ul>'
-                        );
-                        
-                        $("#nomecategoria").html(
-                            //'<p class="assis-titolo">'+data["categoriaID"]["nome"]+'</p>'+
-                            '<br>'+
-                            '<br>'
-                        );
-                        
-                        for(var i=0; i<data["n_assistenze"]; i++) {
-                            $("#nomecategoria").append(
-                                '<a href="assistenza.html?idCategoria='+data["assistenza_"+i]["idAssistance"]+'"><p>'+data["assistenza_"+i]["titolo"]+'</p></a>'
-                            );
-                        }                            
-                        
-                    
-                    }
-                    
-                });
-                
-                return false;
-                
-            }
-            
-        </script>
         
     </body>
+    
 </html>

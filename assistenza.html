@@ -185,6 +185,7 @@
                         for(var i=0; i<data["n_devices"]; i++) {
                             $("#deviceassistenza").append (
                                 '<div class="col-md-2">'+
+                                '<p class="nomedevices">'+data["device_"+i]["nome"]+'</p>'+
                                 '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
                                 '</div>'
                             )
