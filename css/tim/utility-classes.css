@@ -2,6 +2,10 @@
     Utility Classes
 */
 
+.pos-rel {
+    position: relative;
+}
+
 .no-margin {
     margin: 0;
 }
@@ -18,4 +22,8 @@
 .rigarespo {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+.img-center {
+    margin: auto;
 }

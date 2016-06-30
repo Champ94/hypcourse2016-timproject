@@ -1,0 +1,23 @@
+/*
+    Personal classes
+*/
+.container-text {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.titolo {
+    color: #ffffff;
+    font-size: 3vmin;
+    font-weight: bold;
+}
+
+.descrizione {
+    color: #ffffff;
+    font-size: 3vmin;
+}
+
+.spazio {
+    margin: 5% 0px;
+}
