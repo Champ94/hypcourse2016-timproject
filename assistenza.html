@@ -60,7 +60,7 @@
         <ol id="breadcrumb" class="breadcrumb"><!-- Breadcrumb --></ol>
         
         <div class="row rigarespo">
-            <div class="col-md-2 text-right">
+            <div class="col-md-2 textalign">
                 <div id="immagine"></div>
             </div>
             <div class="col-md-9">
@@ -162,7 +162,10 @@
                             '<img src="'+data["icona"]+'">'+
                             '<br>'+
                             '<br>'+
-                            '<ul><a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">Torna indietro &gt;</a></ul>'
+                            '<a href="lista_assistenze.html?idCategoria='+data["idCategoria"]+'">Torna indietro &gt;</a>'+
+                            '<br>'+
+                            '<br>'
+                            
                         );
                         
                         for(var i=0; i<data["n_faq"]; i++) {                            
