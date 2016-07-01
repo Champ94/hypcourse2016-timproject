@@ -49,12 +49,8 @@
     text-shadow: 0 0px;
 }
 
-.carousel-sfumatura-sin {
-    background-image: linear-gradient(to right, #050f84 0%, #fff)!important;
-}
-
-.carousel-sfumatura-des {
-    background-image: linear-gradient(to left, #050f84 0%, #fff)!important;
+.carousel-sfondo {
+    background-image: none!important;
 }
 
 .carousel-indicators li {
