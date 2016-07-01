@@ -172,7 +172,7 @@
             
             $return["n_immagini"] = $i;
             
-            $return["json"] = "Action get_subsls: dati ritornati correttamente!";
+            $return["json"] = "Action get_SubSLS: dati ritornati correttamente!";
             echo json_encode($return);
             
             $statement->close();
