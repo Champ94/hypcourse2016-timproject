@@ -57,7 +57,7 @@
     display: inline-block;
     background-color: #000 \9;
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #0092D5;
+    border: 1px solid red;
     border-radius: 10px;
     cursor: pointer;
     height: 10px;
@@ -67,7 +67,7 @@
 }
 
 .carousel-indicators .active {
-    background-color: #0092D5;
+    background-color: red;
     height: 12px;
     margin: 0;
     width: 12px;
