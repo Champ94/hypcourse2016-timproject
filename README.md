@@ -49,10 +49,10 @@ Link alla <a href="timwebapp-hypcourse.rhcloud.com">->DEMO<-</a>
         - tim/nome-pagina.css           // File di style per l'applicazione
         - tim/mobile.css                // Media query per rendere il design responsive
 
-- Backend:
+######Backend:
 		
-		Nel backend sono presenti brevi script per l'inserimento dei dispositivi e la generazione automatica di relazioni. Questi ultimi, in particolare, se runnati ancora duplicherebbero relazioni già esistenti.
-		Per la realizzazione degli script si è usato codice veloce e pratico, non essendo oggetto di valutazione.
+Nel backend sono presenti brevi script per l'inserimento dei dispositivi e la generazione automatica di relazioni. Questi ultimi, in particolare, se runnati ancora duplicherebbero relazioni già esistenti.
+Per la realizzazione degli script si è usato codice veloce e pratico, non essendo oggetto di valutazione.
 		
 ######Chiamate Ajax
 
