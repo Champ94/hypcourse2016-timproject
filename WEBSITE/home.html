@@ -9,12 +9,13 @@
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
 		
 		<title>
-			TIM - Assistenza
+			TIM - Home
 		</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-theme.css">
         <link rel="stylesheet" href="css/tim/tim-components.css">
+        <link rel="stylesheet" href="css/tim/lista-prodotti.css">
         <link rel="stylesheet" href="css/tim/utility-classes.css">
         <link rel="stylesheet" href="css/tim/mobile.css">
         
@@ -24,7 +25,7 @@
         
      	<!-- HEADER START -->
 		<nav class="navbar navbar-default tim-header">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -56,9 +57,71 @@
         </nav>
         <!-- HEADER END -->
 		
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="pos-rel">
+                        <img src="img/testata_offerte_1920x250.jpg" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+            
+            <p style="margin-bottom: 6%; margin-top: 7%; font-weight: bold; font-size: 3em; color: red; width: 100%;" class="text-center">
+                PRODOTTI IN EVIDENZA
+            </p>
+            
+            <div class="row">
+            
+                <div class="col-xs-12 col-sm-4 colonne">
+                    <div class="panel panel-default pannelli-store">
+                        <span class="label label-info pull-right etichette">RATE</span>
+                        <img class="devicepics" href="#" src="data/s_t/iphone6s/argento/apple-iPhone6s_Svr-1.jpg">
+                        <p class="text-center">Apple iPhone 6s</p>
+                        <p class="text-center prezzi">21.94€/mese</p>
+                        <p class="text-center rate">in 36 rate senza interessi</p>
+                        <a href="prodotto.html?idDevice=1&amp;idCategoria=1">
+                            <button type="button" class="btn btn-default detail-button">DETTAGLI</button>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="col-xs-12 col-sm-4 colonne">
+                    <div class="panel panel-default pannelli-store">
+                        <span class="label label-warning pull-right etichette">PROMO</span>
+                        <img class="devicepics" href="#" src="data/s_t/lumia950/bianco/microsoft-LUMIA950_wht-1_2.jpg">
+                        <p class="text-center">Lumia 950</p>
+                        <div class="row rigarespo" style="margin-bottom:10px">
+                            <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 text-center prezzi_scont col-scontati">599.90€</div>
+                            <div class="col-md-5 col-sm-5 text-center prezzi col-scontati">499.90€</div>
+                        </div>
+                        <p class="rate">&nbsp;</p>
+                        <a href="prodotto.html?idDevice=9&amp;idCategoria=1">
+                            <button type="button" class="btn btn-default detail-button">DETTAGLI</button>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-4 colonne">
+                    <div class="panel panel-default pannelli-store">
+                        <span class="label label-primary pull-right etichette" style="background-color:white;">&nbsp;</span>
+                        <img class="devicepics" href="#" src="data/s_t/huaweip9plus/nocolor/huawei-p9-plus-qrtzgry-front.jpg">
+                        <p class="text-center">Huawei P9 Plus</p>
+                        <p class="text-center prezzi">749.90€</p>
+                        <p class="rate">&nbsp;</p>
+                        <a href="prodotto.html?idDevice=15&amp;idCategoria=1">
+                            <button type="button" class="btn btn-default detail-button">DETTAGLI</button>
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        
         <!-- FOOTER START -->
         <footer class="footer">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row footer-row">

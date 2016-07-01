@@ -1,16 +1,33 @@
 # hypcourse2016-timproject
 PoliMi, Hypermedia Application Course 2016: Tim Project
 
-Note alla creazione di nuove pagine
+N.B.: Il sito è ottimizzato per Google Chrome e Firefox ed è completamente responsive. Per motivi di tempo la pagina home e la sezione "Chi Siamo", come le pagine di intro alle categorie non sono dinamiche.
+Per semplicità di lettura e visualizzazione i file CSS e gli script non sono stati minificati.
 
-- Inserire nell'head di ogni pagina .html/.php i seguenti meta tag:
+Link alla <a href="timwebapp-hypcourse.rhcloud.com">->DEMO<-</a>
+
+- Framework usato:
+	
+		- Bootstrap
+		
+- Linguaggi usati:
+
+		Lato Client
+			- HTML5
+			- CSS3
+			- JavaScritp (jQuery + Ajax)
+			
+		Lato Server
+			- PHP
+
+- Meta tag usati:
     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="Tim Project Hypermedia Application Course 2016">
         
-- Media queries selectors usati in BS3:
+- Media queries selectors:
         
         /* Extra small devices (phones, less than 768px) */
         @media(max-width: 767px) { /* code here */ }
@@ -26,46 +43,43 @@ Note alla creazione di nuove pagine
 
 - Guida ai file .css:
 
-        - bootstrap-*.css           // Framework
+        - bootstrap-*.css           	// Framework
         - tim/tim-components.css        // Componenti presenti in ogni pagina (e.g. header, footer)
         - tim/utility-classes.css       // Classi di utilità (e.g. vertical align)
         - tim/nome-pagina.css           // File di style per l'applicazione
         - tim/mobile.css                // Media query per rendere il design responsive
 
-- Come collegarsi al DataBase:
+- Backend:
+		
+		Nel backend sono presenti brevi script per l'inserimento dei dispositivi e la generazione automatica di relazioni. Questi ultimi, in particolare, se runnati ancora duplicherebbero relazioni già esistenti.
+		Per la realizzazione degli script si è usato codice veloce e pratico, non essendo oggetto di valutazione.
+		
+- Chiamate Ajax:
 
-        - Caricare il server in locale e modificare le variabili nel file connessione.php
-        - Usare il comando rhc port-forward -a timwebapp -n hypcourse2016 (dopo aver effettuato il login tramite rhc setup -l denniscampagna@gmail.com o rhc setup -l nicolo.anto@gmail.com), lasciando il file connessione.php inalterato
-
-- Guida al backend:
-
-        - Inserire dati dispositivo (Devices)
-            - idDevices (automatico)
-            - categoriaID
-            - marcaID
-            - nome
-            - prezzo_intero (facoltativo)
-            - prezzo_rate (facoltativo)
-            - prezzo_scontato (facoltativo)
-            - n_rate (facoltativo)
-            - promo
-            - novita
-            - disponibile
-            - tipologiaID
-            - sisopID
-            - schermoID
-            - connessioneID
-            - caratteristiche (facoltativo)
-            - descrizione (facoltativo)
-            - inclusi (facoltativo)
-            - specifiche
-            - memoriaID
-            
-        - Inserire dati immagine, viene caricata automaticamente nella directory. Se non esiste la crea seguendo per il path la convenzione data/tipologia/nomedispositivo/colore/nomeimmagine.estensione
-            - idImmagini (automatico)
-            - nome cartella (-> tipologia del dispositivo)
-            - dispositivo
-            - file
-            - colore
-            
-        N.B.: Se l'immagine è già stata inserita e bisogna solo collegarla al dispositivo usare il terzo form
+		Gli script .php richiamati in Ajax sono contenuti all'interno della cartella "api". Essendo solo letture il metodo generalmente usato è stato il GET.
+		
+		Di norma all'interno dei file .php richiamati via Ajax bisognerebbe assicurarsi prima dell'esecuzione che sia effettivamente una chiamata di questo tipo. Solitamente si verifica che l'header HTTP_X_REQUESTED_WITH sia presente e sia uguale a "XMLHttpRequest" con una funzione del tipo
+		
+		```php
+			function is_ajax() {
+				return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
+			}
+		```
+		
+		Tale funzione nel codice è stata omessa e viene sostituita da un controllo su una variabile "action". L'omissione è dovuta al fatto che l'api richiesta si trova su una "origin" diversa (cross-origin) da quella di partenza e l'header non viene mandato (Same-Origin Policy).
+		Anche tentando di mandarlo forzatamente aggiungendo come proprietà della funzione $.ajax una delle seguenti
+			- beforeSend: function(xhr){xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "xmlhttprequest")
+			- headers: {"HTTP_X_REQUESTED_WITH": "xmlhttprequest"}
+			- crossDomain: false
+		La richiesta verrebbe rifiutata, poiché è il server a dover settare l'header.
+			
+		Quindi come workaround si è deciso di inserire sul server nel file .htaccess le seguenti istruzioni (CORS authorization):
+		
+		```php
+			<IfModule mod_headers.c>
+				Header set Access-Control-Allow-Origin "*"
+				Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+			</IfModule>
+		```
+		
+		che consentono a qualunque fonte esterna di richiamare uno script php.
