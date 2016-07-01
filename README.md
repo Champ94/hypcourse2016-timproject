@@ -54,7 +54,7 @@ Link alla <a href="timwebapp-hypcourse.rhcloud.com">->DEMO<-</a>
 		Nel backend sono presenti brevi script per l'inserimento dei dispositivi e la generazione automatica di relazioni. Questi ultimi, in particolare, se runnati ancora duplicherebbero relazioni già esistenti.
 		Per la realizzazione degli script si è usato codice veloce e pratico, non essendo oggetto di valutazione.
 		
-- Chiamate Ajax:
+######Chiamate Ajax
 
 		Gli script .php richiamati in Ajax sono contenuti all'interno della cartella "api". Essendo solo letture il metodo generalmente usato è stato il GET.
 		
