@@ -193,8 +193,8 @@
                         for(var i=0; i<data["n_devices"]; i++) {
                             $("#deviceassistenza").append (
                                 '<div class="col-md-2 col-sm-4 col-xs-6 deviceassist text-center">'+
-                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'&idCategoria='+data["device_"+i]["categoriaID"]+'"><p class="nomedevices">'+data["device_"+i]["nome"]+'</p></a>'+
-                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'&idCategoria='+data["device_"+i]["categoriaID"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'&idCategoria='+data["device_"+i]["idCategoria"]+'"><p class="nomedevices">'+data["device_"+i]["nome"]+'</p></a>'+
+                                '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'&idCategoria='+data["device_"+i]["idCategoria"]+'"><img class="immaginidevices" src="'+data["percorso_"+i]+'"></a>'+
                                 '</div>'
                             )
                         };
