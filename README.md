@@ -1,13 +1,10 @@
 # hypcourse2016-timproject
-######PoliMi, Hypermedia Application Course 2016: Tim Project
+PoliMi, Hypermedia Application Course 2016: Tim Project
 
-######A cura di Antonucci Niccolò, Campagna Dennis, Giudici Gabriele
-
-######N.B.:
-Il sito è ottimizzato per Google Chrome e Firefox ed è completamente responsive. Per motivi di tempo la pagina home e la sezione "Chi Siamo", come le pagine di intro alle categorie non sono dinamiche.
+N.B.: Il sito è ottimizzato per Google Chrome e Firefox ed è completamente responsive. Per motivi di tempo la pagina home e la sezione "Chi Siamo", come le pagine di intro alle categorie non sono dinamiche.
 Per semplicità di lettura e visualizzazione i file CSS e gli script non sono stati minificati.
 
-Link alla <a href="timwebapp-hypcourse.rhcloud.com">->DEMO<-</a>
+DEMO: timwebapp-hypcourse.rhcloud.com
 
 - Framework usato:
 	
