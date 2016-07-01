@@ -123,10 +123,11 @@
         }
         
         $query = "
-        SELECT Devices.idDevices, Devices.nome
-            FROM SubSLS JOIN SubSls_Dev ON SubSLS.idSubSLS = SubSls_Dev.subslsID
+        SELECT Devices.idDevices, Devices.nome, Categoria.idCategoria
+            FROM Categoria, SubSLS JOIN SubSls_Dev ON SubSLS.idSubSLS = SubSls_Dev.subslsID
                 JOIN Devices ON Devices.idDevices = SubSls_Dev.devID
-            WHERE SubSLS.idSubSLS = ?
+            WHERE SubSLS.idSubSLS = 1
+				AND Devices.categoriaID = Categoria.idCategoria
             ORDER BY Devices.idDevices
         ";
         

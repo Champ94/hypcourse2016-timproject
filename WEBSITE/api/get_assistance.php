@@ -89,10 +89,11 @@
         }
         
         $query = "
-        SELECT Devices.idDevices, Devices.nome
-            FROM Assistance JOIN Ass_Dev ON Assistance.idAssistance = Ass_Dev.assistanceID
+        SELECT Devices.idDevices, Devices.nome, Categoria.idCategoria
+            FROM Categoria, Assistance JOIN Ass_Dev ON Assistance.idAssistance = Ass_Dev.assistanceID
                 JOIN Devices ON Devices.idDevices = Ass_Dev.devicesID
-            WHERE Assistance.idAssistance = ?
+            WHERE Assistance.idAssistance = 2
+				AND Devices.categoriaID = Categoria.idCategoria
             ORDER BY Devices.idDevices
         ";
         
