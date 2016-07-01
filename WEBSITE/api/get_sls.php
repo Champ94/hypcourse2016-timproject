@@ -126,7 +126,7 @@
         SELECT Devices.idDevices, Devices.nome, Categoria.idCategoria
             FROM Categoria, SubSLS JOIN SubSls_Dev ON SubSLS.idSubSLS = SubSls_Dev.subslsID
                 JOIN Devices ON Devices.idDevices = SubSls_Dev.devID
-            WHERE SubSLS.idSubSLS = 1
+            WHERE SubSLS.idSubSLS = ?
 				AND Devices.categoriaID = Categoria.idCategoria
             ORDER BY Devices.idDevices
         ";

@@ -92,7 +92,7 @@
         SELECT Devices.idDevices, Devices.nome, Categoria.idCategoria
             FROM Categoria, Assistance JOIN Ass_Dev ON Assistance.idAssistance = Ass_Dev.assistanceID
                 JOIN Devices ON Devices.idDevices = Ass_Dev.devicesID
-            WHERE Assistance.idAssistance = 2
+            WHERE Assistance.idAssistance = ?
 				AND Devices.categoriaID = Categoria.idCategoria
             ORDER BY Devices.idDevices
         ";
