@@ -56,30 +56,30 @@ Link alla <a href="timwebapp-hypcourse.rhcloud.com">->DEMO<-</a>
 		
 ######Chiamate Ajax
 
-		Gli script .php richiamati in Ajax sono contenuti all'interno della cartella "api". Essendo solo letture il metodo generalmente usato è stato il GET.
-		
-		Di norma all'interno dei file .php richiamati via Ajax bisognerebbe assicurarsi prima dell'esecuzione che sia effettivamente una chiamata di questo tipo. Solitamente si verifica che l'header HTTP_X_REQUESTED_WITH sia presente e sia uguale a "XMLHttpRequest" con una funzione del tipo
-		
-		```php
-			function is_ajax() {
-				return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
-			}
-		```
-		
-		Tale funzione nel codice è stata omessa e viene sostituita da un controllo su una variabile "action". L'omissione è dovuta al fatto che l'api richiesta si trova su una "origin" diversa (cross-origin) da quella di partenza e l'header non viene mandato (Same-Origin Policy).
-		Anche tentando di mandarlo forzatamente aggiungendo come proprietà della funzione $.ajax una delle seguenti
-			- beforeSend: function(xhr){xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "xmlhttprequest")
-			- headers: {"HTTP_X_REQUESTED_WITH": "xmlhttprequest"}
-			- crossDomain: false
-		La richiesta verrebbe rifiutata, poiché è il server a dover settare l'header.
-			
-		Quindi come workaround si è deciso di inserire sul server nel file .htaccess le seguenti istruzioni (CORS authorization):
-		
-		```php
-			<IfModule mod_headers.c>
-				Header set Access-Control-Allow-Origin "*"
-				Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
-			</IfModule>
-		```
-		
-		che consentono a qualunque fonte esterna di richiamare uno script php.
+Gli script .php richiamati in Ajax sono contenuti all'interno della cartella "api". Essendo solo letture il metodo generalmente usato è stato il GET.
+
+Di norma all'interno dei file .php richiamati via Ajax bisognerebbe assicurarsi prima dell'esecuzione che sia effettivamente una chiamata di questo tipo. Solitamente si verifica che l'header HTTP_X_REQUESTED_WITH sia presente e sia uguale a "XMLHttpRequest" con una funzione del tipo
+
+```php
+    function is_ajax() {
+        return isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"]) == "xmlhttprequest";
+    }
+```
+
+Tale funzione nel codice è stata omessa e viene sostituita da un controllo su una variabile "action". L'omissione è dovuta al fatto che l'api richiesta si trova su una "origin" diversa (cross-origin) da quella di partenza e l'header non viene mandato (Same-Origin Policy).
+Anche tentando di mandarlo forzatamente aggiungendo come proprietà della funzione $.ajax una delle seguenti
+    - beforeSend: function(xhr){xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "xmlhttprequest")
+    - headers: {"HTTP_X_REQUESTED_WITH": "xmlhttprequest"}
+    - crossDomain: false
+La richiesta verrebbe rifiutata, poiché è il server a dover settare l'header.
+
+Quindi come workaround si è deciso di inserire sul server nel file .htaccess le seguenti istruzioni (CORS authorization):
+
+```php
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    </IfModule>
+```
+
+che consentono a qualunque fonte esterna di richiamare uno script php.
