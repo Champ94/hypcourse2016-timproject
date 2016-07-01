@@ -185,7 +185,7 @@
                             $("#prodotti").append(
                                 '<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">'+
                                     '<img src="'+data["percorso_"+i]+'" class="img-responsive img-center">'+
-                                    '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'">'+data["device_"+i]["nome"]+'</a>'+
+                                    '<a href="prodotto.html?idDevice='+data["device_"+i]["idDevices"]+'&idCategoria='+data["device_"+i]["idCategoria"]+'">'+data["device_"+i]["nome"]+'</a>'+
                                 '</div>'
                             );
                         }
