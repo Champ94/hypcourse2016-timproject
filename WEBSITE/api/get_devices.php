@@ -1,5 +1,7 @@
 <?php
-
+	
+	header('Content-Type: application/json');
+	
     if(isset($_GET["action"]) && !empty($_GET["action"])) {
 
         $action = $_GET["action"];
@@ -354,7 +356,7 @@
             $return["n_devices"] = $cont;
             
             $return["json"] = "Action get_devlist: dati ritornati correttamente!";
-            echo json_encode($return);
+			echo $_GET["callback"]."(".json_encode($return).")";
             
             $statement->close();
             
