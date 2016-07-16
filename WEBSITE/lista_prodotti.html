@@ -317,12 +317,13 @@
                     "idCategoria": idCategoria
                 };
                 data = $(this).serialize() + "&" + $.param(data);
-                
+
                 $.ajax({
                     type: "GET",
-                    dataType: "json",
                     url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
+                    dataType: "jsonp",
+                    crossDomain: true,
                     success: function(data) {
                         
                         console.log(data["json"]);
@@ -392,6 +393,7 @@
                                 }
                             }
                         }
+                        
                     }
                 });
                 
@@ -412,6 +414,7 @@
                     dataType: "json",
                     url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
+                    
                     success: function(data) {
                         
                         console.log(data["json"]);
