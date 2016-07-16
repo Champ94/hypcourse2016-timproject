@@ -395,8 +395,8 @@
                         }
                         
                     },
-                    error {
-                        alert("Errore");
+                    error function (jqXHR, textStatus, errorThrown) {
+                        alert('new textStatus=' + textStatus + ' errorThrown=' + errorThrown);
                     }
                 });
                 
