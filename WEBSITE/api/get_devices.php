@@ -425,7 +425,7 @@
             $return["n_devices"] = $cont;
             
             $return["json"] = "Action get_outlet: dati ritornati correttamente!";
-            echo json_encode($return);
+            echo $_GET["callback"]."(".json_encode($return).")";
             
             $statement->close();
             
@@ -547,7 +547,7 @@
             $return["n_connessioni"] = $cont;
             
             $return["json"] = "Action get_filtri: dati ritornati correttamente!";
-            echo json_encode($return);
+            echo $_GET["callback"]."(".json_encode($return).")";
             
             $statement->close();
             
@@ -673,7 +673,7 @@
             $return["n_devices"] = $cont;
             
             $return["json"] = "Action get_filteredlist: dati ritornati correttamente!";
-            echo json_encode($return);
+            echo $_GET["callback"]."(".json_encode($return).")";
             
             $statement->close();
             
