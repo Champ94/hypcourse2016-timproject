@@ -153,6 +153,10 @@
                     </div>
                     <div class="panel-body">
                         <form action="http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php" method="get" id="filtri" accept-charset="utf-8">
+                            <input type="submit" name="submit" value="Applica filtri">
+                            <br>
+                            <br>
+                            
                             <label for="mostra solo">Mostra solo</label>
                             <div class="radio">
                                 <label><input type="radio" name="mostra_solo" value="disponibile" data-waschecked="false"> Disponibile</label>
@@ -568,6 +572,102 @@
                 return false;
                 
             }
+            
+            $("#filtri2").submit(function() {
+                
+                idCategoria = $_GET("idCategoria");
+                
+                var data = {
+                    "action": "get_filteredlist",
+                    "idCategoria": idCategoria
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                
+                $.ajax({
+                    url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
+                    data: data,
+                    dataType: "jsonp",
+                    crossDomain: true,
+                    success: function(data) {
+                        
+                        console.log(data["json"]);
+                        
+                        /*
+                            Pulisci lista
+                        */
+                        $("#devlist").html("");
+                        
+                        /*
+                            Lista Devices
+                        */
+                        for(var i=0; i<data["n_devices"]; i++) {
+                            if(data["device_"+i]["prezzo_scontato"] != "0.00") {
+                                $("#devlist").append(
+                                    '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                    '<div class="panel panel-default pannelli-store">'+
+                                    '<span class="label label-warning pull-right etichette">PROMO</span>'+
+                                    '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                    '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                    '<div class="row rigarespo" style="margin-bottom:10px"> <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 text-center prezzi_scont col-scontati">'+data['device_'+i]["prezzo_intero"]+'€'+'</div><div class="col-md-5 col-sm-5 text-center prezzi col-scontati">'+data['device_'+i]["prezzo_scontato"]+'€</div></div>'+
+                                    '<p class="rate">&nbsp;</p>'+
+                                    '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'"><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                    '</div>'+
+                                    '</div>'
+                                );
+                            }
+                            else {
+                                if(data['device_'+i]["n_rate"] != 0) {
+                                    $("#devlist").append(
+                                        '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                        '<div class="panel panel-default pannelli-store">'+
+                                        '<span class="label label-info pull-right etichette">RATE</span>'+
+                                        '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                        '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                        '<p class="text-center prezzi">'+data['device_'+i]["prezzo_rate"]+'€/mese</p>'+
+                                        '<p class="text-center rate">in '+data['device_'+i]["n_rate"]+' rate senza interessi</p>'+
+                                        '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                        '</div>'+
+                                        '</div>'
+                                    );
+                                }
+                                else {
+                                    if(data['device_'+i]["novita"] == 1) {
+                                        $("#devlist").append(
+                                            '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                            '<div class="panel panel-default pannelli-store">'+
+                                            '<span class="label label-primary pull-right etichette">NOVIT&#192;</span>'+
+                                            '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                            '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                            '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
+                                            '<p class="rate">&nbsp;</p>'+
+                                            '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '</div>'+
+                                            '</div>'
+                                        );
+                                    }
+                                    else {
+                                        $("#devlist").append(
+                                            '<div class="col-md-3 col-sm-4 col-xs-12 colonne">'+
+                                            '<div class="panel panel-default pannelli-store">'+
+                                            '<span class="label label-primary pull-right etichette" style="background-color:white;">&nbsp;</span>'+
+                                            '<img class="devicepics" href="#" src="'+data['device_'+i]["percorso"]+'">'+
+                                            '<p class="text-center">'+data['device_'+i]["nome"]+'</p>'+
+                                            '<p class="text-center prezzi">'+data['device_'+i]["prezzo_intero"]+'€</p>'+
+                                            '<p class="rate">&nbsp;</p>'+
+                                            '<a  href="prodotto.html?idDevice='+data['device_'+i]["idDevices"]+'><button type="button" class="btn btn-default detail-button">DETTAGLI</button></a>'+
+                                            '</div>'+
+                                            '</div>'
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                return false;
+                
+            });
             
             $("#filtri").submit(function() {
                 
