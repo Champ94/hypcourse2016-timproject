@@ -383,6 +383,52 @@
                             );
                         }
                         
+                        $("#myTab").append(
+                            '<li><a href="#subsls" data-toggle="tab">SLS ABBINATI</a></li>'
+                        );
+                        $("#myTabContent").append(
+                            '<div class="tab-pane fade" id="subsls">'
+                        );
+
+                        if(data["n_subsls"]==null) {
+                            $("#subsls").append(
+                                '<p class="spaziotab">Nessun SLS abbinato disponibile</p>'
+                            );
+                        }
+                        else {
+                            for(i=0; i<data["n_subsls"]; i++) {
+                                $("#subsls").append(
+                                    '<p class="spaziotab">'+'<a href="sub_sls.html?idSubSLS='+data["subsls_"+i]["idSubSLS"]+'">'+data["subsls_"+i]["nome"]+'</a>'+'</p>'
+                                );
+                            }
+                        }
+                        $("#myTabContent").append(
+                            '</div>'
+                        );
+
+                        $("#myTab").append(
+                            '<li><a href="#assistance" data-toggle="tab">SERVIZI ASSISTENZA</a></li>'
+                        );
+                        $("#myTabContent").append(
+                            '<div class="tab-pane fade" id="assistance">'
+                        );
+                        if(data["n_assistances"]==null) {
+                            $("#assistance").append(
+                                '<p class="spaziotab">Nessun AS abbinato disponibile</p>'
+                            );
+                        }
+                        else {
+                            for(i=0; i<data["n_assistances"]; i++) {
+                                $("#assistance").append(
+                                    '<p class="spaziotab">'+'<a href="assistenza.html?idAssistance='+data["assistance_"+i]["idAssistance"]+'">'+data["assistance_"+i]["titolo"]+'</a>'+'</p>'
+                                );
+                            }
+                        }
+                        $("#myTabContent").append(
+                            '</div>'
+                        );
+                        
+                        
                         /*
                             Evoca il metodo che rende le schede responsive
                         */

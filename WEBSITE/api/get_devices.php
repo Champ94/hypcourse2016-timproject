@@ -187,6 +187,31 @@
         }
         
         $query = "
+        SELECT SubSLS.idSubSLS, SubSLS.nome
+            FROM Devices JOIN SubSls_Dev ON Devices.idDevices = SubSls_Dev.devID
+                JOIN SubSLS ON SubSLS.idSubSLS = SubSls_Dev.subslsID
+            WHERE Devices.idDevices = ?
+        ";
+        
+        if($statement = $con->prepare($query)) {
+            
+            $statement->bind_param("i", $idDevice);
+            $statement->execute();
+            
+            $cont = 0;
+            $result = $statement->get_result();
+            while($data = $result->fetch_assoc()) {
+                $return["subsls_".$cont] = $data;
+                $cont++;
+            }
+            
+            $return["n_subsls"] = $cont;
+            
+            $statement->close();
+            
+        }
+        
+        $query = "
         SELECT Assistance.idAssistance, Assistance.titolo
             FROM Devices JOIN Ass_Dev ON Devices.idDevices = Ass_Dev.devicesID
                 JOIN Assistance ON Assistance.idAssistance = Ass_Dev.assistanceID
