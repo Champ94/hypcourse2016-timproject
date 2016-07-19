@@ -1,0 +1,99 @@
+.bannerpic {
+    background-size: 100%;
+}
+
+.innov-puls {
+    background-color: red;
+    background-image: none;
+    border-color: red;
+    color: white;
+    font-weight: bolder;
+    margin-top: 136px;
+    width: 140px;
+    padding-right: 5px;
+    padding-left: 5px;
+    text-shadow: 0 0px 0;
+}
+
+.siamobanner {
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.innov-head {
+    font-size: 20px;
+}
+
+.innov-carousel {
+    top: 5%;
+    right: 0;
+    bottom: 5%;
+    left: 0;
+    
+    position: relative;
+}
+
+.innov-titoli {
+    color: #0092D5;
+    font-size: 25px;
+    margin-top: 5%;
+    text-shadow: 0 0px;
+}
+
+.innov-desc {
+    color: #000000;
+    font-size: 16px;
+    text-shadow: 0 0px;
+}
+
+.carousel-sfondo {
+    background-image: none!important;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    background-color: #000 \9;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid red;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    width: 10px;
+}
+
+.carousel-indicators .active {
+    background-color: red;
+    height: 12px;
+    margin: 0;
+    width: 12px;
+}
+
+.chisiamosottotitoli {
+    font-weight: bold;
+    color: red;
+}
+
+.embedtim {
+    width: 60%!important;
+    height: 60%!important;
+    margin-left: 21%;
+}
+
+.progetti-text {
+    margin-top: 10px;
+}
+
+.colonnepulsanti {
+    padding: 0 0 0 0;
+}
+
+.bordi-item {
+    margin-left: 16.66666667%;
+    margin-right: 16.66666667%;
+}
+
