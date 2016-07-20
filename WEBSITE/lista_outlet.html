@@ -159,9 +159,10 @@
                 
                 $.ajax({
                     type: "GET",
-                    dataType: "json",
                     url: "http://timwebapp-hypcourse2016.rhcloud.com/api/get_devices.php",
                     data: data,
+                    dataType: "jsonp",
+                    crossDomain: true,
                     success: function(data) {
                         
                         console.log(data["json"]);

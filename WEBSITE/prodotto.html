@@ -131,9 +131,7 @@
 
                 <div class="col-sm-3 col-md-5 col-md-offset-1">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-10 text-center">
-                            <button type="button" class="btn btn-primary btn-lg active tim-acquista">Acquista</button>
-                        </div>
+                        <div id="link-acquista" class="col-xs-12 col-sm-10 text-center"><!-- Link per l'acquisto --></div>
                     </div>
                 </div> 
             </div>
@@ -345,6 +343,13 @@
                         }
                         
                         /*
+                            Link per l'acquisto
+                        */
+                        $("#link-acquista").html(
+                            '<a href="carrello.html?idDevice='+idDevice+'" class="btn btn-primary btn-lg active tim-acquista">Acquista</a>'
+                        );
+                        
+                        /*
                             Navigazione a Schede
                         */
                         if(data["specifiche"] != null) {
@@ -389,8 +394,8 @@
                         $("#myTabContent").append(
                             '<div class="tab-pane fade" id="subsls">'
                         );
-
-                        if(data["n_subsls"]==null) {
+                        
+                        if(data["n_subsls"]==0) {
                             $("#subsls").append(
                                 '<p class="spaziotab">Nessun SLS abbinato disponibile</p>'
                             );
@@ -412,7 +417,7 @@
                         $("#myTabContent").append(
                             '<div class="tab-pane fade" id="assistance">'
                         );
-                        if(data["n_assistances"]==null) {
+                        if(data["n_assistances"]==0) {
                             $("#assistance").append(
                                 '<p class="spaziotab">Nessun AS abbinato disponibile</p>'
                             );
