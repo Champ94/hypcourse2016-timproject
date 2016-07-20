@@ -5,6 +5,7 @@ N.B.: Il sito è ottimizzato per Google Chrome e Firefox ed è completamente res
 Per semplicità di lettura e visualizzazione i file CSS e gli script non sono stati minificati.
 
 DEMO: timwebapp-hypcourse.rhcloud.com
+PhoneGap Public Page: https://build.phonegap.com/apps/2171929/share
 
 - Framework usato:
 	
@@ -19,6 +20,8 @@ DEMO: timwebapp-hypcourse.rhcloud.com
 			
 		Lato Server
 			- PHP
+            
+        + SQL per la gestione del database
 
 - Meta tag usati:
     
@@ -71,7 +74,7 @@ Anche tentando di mandarlo forzatamente aggiungendo come proprietà della funzio
     - beforeSend: function(xhr){xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "xmlhttprequest")
     - headers: {"HTTP_X_REQUESTED_WITH": "xmlhttprequest"}
     - crossDomain: false
-La richiesta verrebbe rifiutata, poiché è il server a dover settare l'header.
+La richiesta verrebbe rifiutata, poiché è il server a doverlo settare.
 
 Quindi come workaround si è deciso di inserire sul server nel file .htaccess le seguenti istruzioni (CORS authorization):
 
@@ -82,4 +85,14 @@ Quindi come workaround si è deciso di inserire sul server nel file .htaccess le
     </IfModule>
 ```
 
-che consentono a qualunque fonte esterna di richiamare uno script php.
+che consentono a qualunque fonte esterna di richiamare uno script php. (L'equivalente istruzione in PHP non veniva accettata).
+
+Un'altra possibile soluzione sarebbe stata quella di usare JSONP. Tale metodo viene implementato solo nelle pagine lista_prodotti.html e lista_outlet.html con le dovute modifiche alle rispettive funzioni richiamate nei file .php.
+
+######Extra implementati:
+
+1. Filtri, funzionanti sia nella versione desktop che nella versione mobile. Particolarità della funzione sono i radio-button resi deselezionabili con un apposito codice scritto in JavaScript.
+
+2. Carrello, per ambo le versioni della web app. Non è stata implementata una gestione delle sessioni per questioni di tempo e semplicità nella compatibilità con PhoneGap. Quindi il carrello non ha memoria.
+
+3. Form, presente all'interno del carrello una volta selezionato un prodotto da acquistare, implementa l'unico metodo POST usato. Una volta validato il form con un breve controllo via JavaScript si simula l'acquisto.
