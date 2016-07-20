@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.11.7.130:3306
--- Generato il: Giu 30, 2016 alle 23:15
+-- Generato il: Lug 20, 2016 alle 10:07
 -- Versione del server: 5.5.45
 -- Versione PHP: 5.3.3
 
@@ -852,7 +852,7 @@ CREATE TABLE IF NOT EXISTS `SLS` (
 --
 
 INSERT INTO `SLS` (`idSLS`, `nome`, `categoriaID`, `descrizione`, `img`, `sub`) VALUES
-(1, 'TV & Entertainment', 9, 'SERIE TV, FILM, MUSICA, LIBRI, GIOCHI E CALCIO.\r\nScopri il tipo di intrattenimento che preferisci. Il divertimento comincia subito!\r\nQuando vuoi e come vuoi.', 'data/sls/01-tv-entertainment.jpg', 1),
+(1, 'TV & Entertainment', 9, 'SERIE TV, FILM, MUSICA, LIBRI, GIOCHI E CALCIO.\nScopri il tipo di intrattenimento che preferisci.\n', 'data/sls/01-tv-entertainment.jpg', 1),
 (10, 'Salute e Benessere', 10, 'Prova gli ultimi wearables. Scopri come salute e benessere possono cambiare in meglio la tua vita.\r\nLibera la tua voglia di movimento. Condividi con gli amici i tuoi risultati. Il futuro è smart.', 'data/sls/02-salute-benessere.jpg', 1),
 (11, 'Casa e Famiglia', 11, 'Smart Life vuol dire anche una vita più semplice e sicura.\r\nAnche per la tua casa e i tuoi cari.', 'data/sls/03-casa-famiglia.jpg', 1),
 (12, 'Servizi alla Persona', 12, 'Un nuovo approccio al mondo dell’ e-payment e dell’identità digitale.\r\nPotrai organizzare e gestire con semplicità e in tutta sicurezza i tuoi pagamenti digitali, il tuo archivio personale,\r\ncustodire le password, le fatture, gli scontrini ed i referti medici.', 'data/sls/04-tim-personal.jpg', 1);
@@ -873,7 +873,7 @@ CREATE TABLE IF NOT EXISTS `SubSLS` (
   `img_contenuti` mediumtext NOT NULL,
   PRIMARY KEY (`idSubSLS`),
   KEY `fkssls_sls_idx` (`SLSID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dump dei dati per la tabella `SubSLS`
@@ -882,7 +882,16 @@ CREATE TABLE IF NOT EXISTS `SubSLS` (
 INSERT INTO `SubSLS` (`idSubSLS`, `SLSID`, `img_testata`, `nome`, `descrizione`, `testo_contenuti`, `img_contenuti`) VALUES
 (1, 1, 'data/sub_sls/tv-entertainment_0.jpg', 'TIMvision', 'Serie tv, cartoni, cinema e documentari dove e quando vuoi', 'TIMvision è la TV sempre on demand di TIM che non ti abbandona mai, senza pubblicità e anche da più dispositivi contemporaneamente. Vedi i tuoi programmi preferiti direttamente su Web e TV Anche su Smartphone e Tablet senza consumare Giga', 'data/sub_sls/device-vision.jpg'),
 (2, 1, 'data/sub_sls/bg-head-sky_v5.jpg', 'TIM Sky', 'Internet ultraveloce fino a 100 MEGA, chiamate da fisso e da mobile, Sky senza parabola. Da 39,90€/mese', 'C’è un nuovo modo per avere Sky. Basta collegare My Sky alla Fibra o ADSL veloce. Senza installare la parabola.##Sky TV: L’offerta più completa di serie TV su Sky Atlantic e Fox, con le serie più seguite e premiate da tutto il mondo e le grandi produzioni originali Sky.Tanti programmi interessanti di arte, cucina, musica, viaggi, lifestyle, storie dal mondo e grandi eventi dello sport internazionale.Le news dall’Italia e dal mondo di Sky TG24, e gli approfondimenti sportivi 24 ore su 24 di Sky Sport 24.', 'data/sub_sls/2.png'),
-(3, 1, 'data/sub_sls/banner-2_1.jpg', 'TIMmusic', 'Entra in un mondo di musica con l''app TIMmusic. Milioni di brani in streaming, tutte le ultime uscite discografiche e tante playlist, da ascoltare dove e quando vuoi, senza consumare GB!', 'Ogni settimana la classifica dei 20 brani più ascoltati su TIMmusic.##Tante playlist create per accompagnare ogni momento della tua giornata.##Tutte le novità discografiche nazionali e internazionali, spesso in anteprima esclusiva', 'data/sub_sls/83526_blocchetto-710x300-soler.jpg');
+(3, 1, 'data/sub_sls/banner-2_1.jpg', 'TIMmusic', 'Entra in un mondo di musica con l''app TIMmusic. Milioni di brani in streaming, tutte le ultime uscite discografiche e tante playlist, da ascoltare dove e quando vuoi, senza consumare GB!', 'Ogni settimana la classifica dei 20 brani più ascoltati su TIMmusic.##Tante playlist create per accompagnare ogni momento della tua giornata.##Tutte le novità discografiche nazionali e internazionali, spesso in anteprima esclusiva', 'data/sub_sls/banner-2_1.jpg'),
+(4, 10, 'data\\sub_sls\\i1 (1).jpg', ' Samsung Galaxy Gear S con SIM', '', 'SAMSUNG GALAXY GEAR S CON SIM##Un elegante display Super AMOLED curvo per una vestibilità ottimale, schermate personalizzabili e cinturini intercambiabili per esprimere al meglio il proprio stile', 'data/sub_sls/i1 (2).jpg'),
+(6, 10, 'data\\sub_sls\\Heart_rate_RGB_150dpi.jpg', 'Polar Loop H7 HR', '', 'POLAR LOOP H7 HR ##In abbinamento con Polar sensore frequenza Cardiaca. Per chi desidera misurare la propria attività 24 ore su 24 ed essere guidato al raggiungimento di obiettivi giornalieri', 'data/sub_sls/i2.jpg'),
+(7, 10, 'data\\sub_sls\\samsung-galaxy-gear-fit-product-photos-14.jpg', 'Samsung Galaxy Gear Fit', '', 'SAMSUNG GALAXY GEAR FIT##Tiene sempre traccia delle attività durante la giornata ed è sempre pronto ad accompagnarti grazie al suo design innovativo, confortevole ed ultraleggero ed in più resistente all’acqua ed alla polvere', 'data/sub_sls/i4.jpg'),
+(8, 11, 'data\\sub_sls\\tim_Tag.jpg', 'TIM Tag', '', 'TIM TAG##\r\nTIMTag, è il dispositivo che ti informa sulla posizione del tuo amico a quattro zampe e delle cose a te più care. \r\nSegui in tempo reale i suoi spostamenti sul tuo smartphone senza perderlo mai di vista.', 'data/sub_sls/tim_Tag - Copia.png'),
+(9, 11, 'data/sls/03-casa-famiglia.jpg', 'TIM Home Connect', '', 'TIM HOME CONNECT##La soluzione ideale per gestire tutti i sistemi di domotica presenti nella tua casa, dalla semplice caldaia domestica, ai sistemi di protezione della casa, ai più avanzati sistemi di monitoraggio.', 'data/sub_sls/timcasa-zoom_2.png'),
+(10, 11, 'data\\sub_sls\\dlink-smarthome.jpg', 'D-Link SmartHome', '', 'D-LINK SMARTHOME##D-Link SmartHome Starter Kit ti offre la possibilità di impostare, controllare, monitorare e automatizzare la tua casa ovunque ti trovi.', 'data/sub_sls/D-LinkHD.jpg'),
+(11, 12, 'data\\sub_sls\\CAMBIO SIM.jpg', 'SIM', '', 'SIM##Dalla nascita del sistema di comunicazione radiomobile GSM, è la più promettente applicazione della tecnologia Smart Card. Garantisce la sicurezza di tutte le comunicazioni e garantirà in futuro l''identità personale. TIM è impegnata in primo piano sulle ricerche in questo campo', 'data/sub_sls/sim - Copia.jpg'),
+(12, 12, 'data\\sub_sls\\identita-pagamenti.jpg', 'Firma digitale', '', 'FIRMA DIGITALE##La fiducia che una firma digitale deve assicurare è ben superiore a quella della tradizionale firma manuale. Una chiave privata conosciuta solo dalla persona autorizzata a farne uso può servire persino a provarne l''identità. Si attendono sviluppi molto interessanti e TIM è in primo piano', 'data/sub_sls/identita-pagamenti - Copia.jpg'),
+(13, 12, 'data\\sub_sls\\digital-or-real.jpg', 'Vita digitale o vita reale?', '', 'VITA DIGITALE O VITA REALE?##Accedere ai servizi, pagare per una sottoscrizione o per un acquisto, le transazioni digitali sono ormai parte della nostra vita quotidiana e si stanno via via diffondendo. L’affidabilità è una componente cruciale. Lo storage di denaro, oltre che di dati personali, può essere più comodo e anche più sicuro', 'data/sub_sls/digital-or-real - Copia.jpg');
 
 -- --------------------------------------------------------
 
@@ -897,7 +906,7 @@ CREATE TABLE IF NOT EXISTS `SubSls_Dev` (
   PRIMARY KEY (`idsls_dev`),
   KEY `fkssls_subsls_idx` (`subslsID`),
   KEY `fkssls_device_idx` (`devID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dump dei dati per la tabella `SubSls_Dev`
@@ -906,7 +915,10 @@ CREATE TABLE IF NOT EXISTS `SubSls_Dev` (
 INSERT INTO `SubSls_Dev` (`idsls_dev`, `subslsID`, `devID`) VALUES
 (1, 1, 1),
 (2, 3, 1),
-(3, 1, 5);
+(3, 1, 5),
+(4, 4, 47),
+(7, 8, 40),
+(8, 10, 41);
 
 -- --------------------------------------------------------
 
