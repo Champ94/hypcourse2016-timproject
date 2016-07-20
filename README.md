@@ -4,7 +4,8 @@ PoliMi, Hypermedia Application Course 2016: Tim Project
 N.B.: Il sito è ottimizzato per Google Chrome e Firefox ed è completamente responsive. Per motivi di tempo la pagina home e la sezione "Chi Siamo", come le pagine di intro alle categorie non sono dinamiche.
 Per semplicità di lettura e visualizzazione i file CSS e gli script non sono stati minificati.
 
-DEMO: timwebapp-hypcourse.rhcloud.com
+DEMO: timwebapp-hypcourse2016.rhcloud.com
+<br>
 PhoneGap Public Page: https://build.phonegap.com/apps/2176893/share
 
 - Framework usato:
