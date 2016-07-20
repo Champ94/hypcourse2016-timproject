@@ -5,7 +5,7 @@ N.B.: Il sito è ottimizzato per Google Chrome e Firefox ed è completamente res
 Per semplicità di lettura e visualizzazione i file CSS e gli script non sono stati minificati.
 
 DEMO: timwebapp-hypcourse.rhcloud.com
-PhoneGap Public Page: https://build.phonegap.com/apps/2171929/share
+PhoneGap Public Page: https://build.phonegap.com/apps/2176893/share
 
 - Framework usato:
 	
@@ -95,4 +95,4 @@ Un'altra possibile soluzione sarebbe stata quella di usare JSONP. Tale metodo vi
 
 2. Carrello, per ambo le versioni della web app. Non è stata implementata una gestione delle sessioni per questioni di tempo e semplicità nella compatibilità con PhoneGap. Quindi il carrello non ha memoria.
 
-3. Form, presente all'interno del carrello una volta selezionato un prodotto da acquistare, implementa l'unico metodo POST usato. Una volta validato il form con un breve controllo via JavaScript si simula l'acquisto.
+3. Form, presente all'interno del carrello una volta selezionato un prodotto da acquistare. Una volta validato il form con un breve controllo via JavaScript si simula l'acquisto.
